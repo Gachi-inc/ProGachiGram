@@ -3,16 +3,22 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const MongoClient = require("mongodb").MongoClient;
+//const MongoClient = require("mongodb").MongoClient;
 var mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({ login: 'string', password: 'string', email: 'string' });
 
 
-// async function start(){
-//   mongoose.connect('', {
-
-//   })
-// }
+/*async function start(){
+  try {
+    await mongoose.connect('mongodb+srv://MishNigGrishPuk:1488228@cluster0-6rss2.azure.mongodb.net/app?retryWrites=true&w=majority', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    })
+  } catch (e) {
+    console.log('Server Error', e.message);
+  }
+}*/
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
