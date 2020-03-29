@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # team-2
 =======
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -70,3 +71,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 >>>>>>> parent of 50b4c29... Update README.md
+=======
+team 2
+>>>>>>> parent of 750445c... Функционал
