@@ -4,7 +4,7 @@
   "description": "messenger",
   "main": "",
   "scripts": {
-    "start": "node sever/bin/www",
+    "start": "cd server && node ./bin/www",
     "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "repository": {
