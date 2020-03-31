@@ -19,26 +19,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-//app.use('/api', indexRouter);
-//app.use('/users', usersRouter);
-//app.use('/api/users', usersRouter);
+app.use('/api', indexRouter);
+app.use('/api/users', usersRouter);
+
 // catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   next(createError(404));
-// });
-
-app.get('/api/users', function(req, res) {
-	// Comment out this line:
-  //res.send('respond with a resource');
-
-  // And insert something like this instead:
-  res.json([{
-  	id: 1,
-  	username: "samsepi0l"
-  }, {
-  	id: 2,
-  	username: "D0loresH4ze"
-  }]);
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
 // error handler
