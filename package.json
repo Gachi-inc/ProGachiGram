@@ -5,7 +5,7 @@
   "main": "./server/index.js",
   "scripts": {
     "start": "cd server && npm start",
-    "build": "react-scripts build"
+    "build": "cd client && react-scripts build"
   },
   "repository": {
     "type": "git",
