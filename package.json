@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/frontend-rtf-2020/team-2/issues"
   },
-  "homepage": "https://github.com/frontend-rtf-2020/team-2#readme"
+  "homepage": "https://github.com/frontend-rtf-2020/team-2#readme",
+  "dependencies": {
+    "git": "^0.1.5"
+  }
 }
