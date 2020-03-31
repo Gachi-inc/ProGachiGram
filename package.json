@@ -4,7 +4,8 @@
   "description": "<<<<<<< HEAD\r # team-2\r =======\r # team-2\r >>>>>>> parent of 8bd5c00... 1",
   "main": "./server/index.js",
   "scripts": {
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
