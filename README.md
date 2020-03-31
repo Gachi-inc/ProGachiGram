@@ -1,5 +1,4 @@
-<<<<<<< HEAD
+
+https://team-2tinkoff.herokuapp.com/
 # team-2
-=======
-# team-2
->>>>>>> parent of 8bd5c00... 1
+
