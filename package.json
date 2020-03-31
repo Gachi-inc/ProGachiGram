@@ -2,10 +2,10 @@
   "name": "team-2-messenger",
   "version": "1.0.0",
   "description": "<<<<<<< HEAD\r # team-2\r =======\r # team-2\r >>>>>>> parent of 8bd5c00... 1",
-  "main": "./server/index.js",
+  "main": "",
   "scripts": {
-    "start": "cd server && npm start",
-    "build": "cd client && react-scripts build"
+    "start": "cd server && node ./bin/www",
+    "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "repository": {
     "type": "git",
