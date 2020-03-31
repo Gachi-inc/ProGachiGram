@@ -1,0 +1,20 @@
+{
+  "name": "team-2-messenger",
+  "version": "1.0.0",
+  "description": "<<<<<<< HEAD\r # team-2\r =======\r # team-2\r >>>>>>> parent of 8bd5c00... 1",
+  "main": "./server/index.js",
+  "scripts": {
+    "start": "cd server && npm start && cd client && npm start",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frontend-rtf-2020/team-2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frontend-rtf-2020/team-2/issues"
+  },
+  "homepage": "https://github.com/frontend-rtf-2020/team-2#readme"
+}
