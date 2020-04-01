@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import {Link, BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
+import {Registrate} from './Components/Registrate'
+import {Login} from './Components/Login'
 
 class App extends Component {
   state = {users: []}
@@ -12,12 +15,37 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>Team-2</h1>
-        {this.state.users.map(user =>
-          <div key={user.id}>{user.username}</div>
-        )}
+      <Router>
+        <div class="App">
+          <div class="title">
+            <div><h1>ProGachiGram</h1></div>
+            <div class="RegistrateButton">
+              <Link to="/registrate">
+                <button>Регистрация</button>
+              </Link>
+              <Link to="/login">
+                <button>Войти</button>
+              </Link>
+            </div>       
+          </div>
+        
+        
+        
+        
+        <div className="admins">
+          {this.state.users.map(user =>
+            <div key={user.id}>{user.username}</div>
+          )}
+        </div>
+
+      <Switch>
+        <Route path="/registrate" component={Registrate}/>
+        <Route path="/login" component={Login}/>
+      </Switch>
+        
       </div>
+      </Router>
+      
     );
   }
 }

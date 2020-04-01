@@ -24,7 +24,8 @@ client.connect(err => {
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+//var register = require('../client/src/Pages/Registrate');
+//app.use('/registrate');
 var app = express();
 
 // const mongoose = require("mongoose");
