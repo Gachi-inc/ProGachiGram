@@ -9,6 +9,7 @@ export class Registrate extends Component{
             <Router>
                 <div class="Registration">
                     <h1 class="page">Hi</h1>
+                    <button>Зарегистрироваться</button>
                 </div>
            
             </Router>
