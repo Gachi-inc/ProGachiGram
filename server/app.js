@@ -4,11 +4,41 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+//DataBase
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://parenyuk2014:1234@cluster0-6rss2.azure.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("Users").collection("UserData");
+  // perform actions on the collection object
+  if(err) return console.log(err);
+     
+    collection.find().toArray(function(err, results){
+                
+        console.log(results);
+        
+    client.close();
+    });
+});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
+// const mongoose = require("mongoose");
+// const Schema = mongoose.Schema;
+ 
+// // установка схемы
+// const userModelScheme = new Schema({
+//   email: String,  
+//   login: String,
+//   passwrod: String
+// });
+
+// var UserModel = mongoose.model('UserModel', userModelScheme );
+// console.log(UserModel);
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');

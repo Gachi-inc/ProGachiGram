@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
   	username: "Savin Grigoriy"
   }, {
   	id: 4,
-  	username: "Parenyk Nikita"
+  	username: "Parenyuk Nikita"
   }]);
 });
 
