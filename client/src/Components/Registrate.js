@@ -9,7 +9,7 @@ export class Registrate extends Component{
         return (
             <Router>
                 <div class="Registration">
-                    <h1 class="page" onClick = {SendMailer("savin-grigosha@yandex.ru")}/*script src={SendMailer.send()}*/>Hi</h1>
+                    <h1 class="page" onClick = {SendMailer("example@example.com")}/*script src={SendMailer.send()}*/>Hi</h1>
                     <button>Зарегистрироваться</button>
                 </div>
            
