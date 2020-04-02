@@ -35,6 +35,10 @@ export class Registrate extends Component{
                   <br/><input type="text" placeholder="Введите пароль" name="password" />
                 </label><br/>
                 <label>
+                  Повторите пароль:
+                  <br/><input type="text" name="password" />
+                </label><br/>
+                <label>
                   E-mail:
                   <br/><input type="text" placeholder="Введите E-mail" name="Email" />
                 </label><br/>
