@@ -38,12 +38,11 @@ class App extends Component {
           )}
         </div>
 
-      <Switch>
-        <Route path="/registrate" component={Registrate}/>
-        <Route path="/login" component={Login}/>
-      </Switch>
-        
-      </div>
+        <Switch>
+          <Route path="/login" component={Login}/>
+          <Route path="/registrate" component={Registrate}/>
+        </Switch>          
+        </div>
       </Router>
       
     );

@@ -23,6 +23,18 @@
   align-items: center;
 }
 
+.RegForm{
+  display:flex;
+  align-items: flex-start;
+  border: 2px solid black;
+  flex-direction: column;
+  background-color: gainsboro;
+  width: min-content;
+}
+
+.RegForm div{
+  margin: 4% 0 0 0;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
