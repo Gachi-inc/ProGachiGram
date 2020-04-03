@@ -23,7 +23,7 @@ export class Registrate extends Component{
     render() {
       return (
           <Router>
-            <form class="RegForm" onSubmit={this.handleSubmit}>
+            <form class="Form" onSubmit={this.handleSubmit}>
               <label>Регистрация</label>
               <div class="InputInformation">
                 <label>
@@ -31,16 +31,16 @@ export class Registrate extends Component{
                   <br/><input type="text" placeholder="Введите логин" name="login" value={this.state.value} onChange={this.handleChange} />
                 </label><br/>
                 <label>
+                <label>
+                  E-mail:
+                  <br/><input type="email" placeholder="Введите E-mail" name="Email" />
+                </label><br/>
                   Пароль:
-                  <br/><input type="text" placeholder="Введите пароль" name="password" />
+                  <br/><input type="password" placeholder="Введите пароль" name="password" />
                 </label><br/>
                 <label>
                   Повторите пароль:
-                  <br/><input type="text" name="password" />
-                </label><br/>
-                <label>
-                  E-mail:
-                  <br/><input type="text" placeholder="Введите E-mail" name="Email" />
+                  <br/><input type="password" placeholder="Введите пароль повторно" name="passwordrep" />
                 </label><br/>
               </div>
               <div>

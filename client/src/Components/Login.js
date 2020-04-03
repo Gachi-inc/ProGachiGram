@@ -23,20 +23,16 @@ export class Login extends Component{
     {
         return (
             <Router>
-            <form class="LogInForm" onSubmit={this.handleSubmit}>
+            <form class="Form" onSubmit={this.handleSubmit}>
               <label>Вход</label>
               <div class="InputInformation">
                 <label>
-                  Логин:
+                  Логин/E-mail:
                   <br/><input type="text" placeholder="Введите логин" name="login" value={this.state.value} onChange={this.handleChange} />
                 </label><br/>
                 <label>
                   Пароль:
-                  <br/><input type="text" placeholder="Введите пароль" name="password" />
-                </label><br/>
-                <label>
-                  E-mail:
-                  <br/><input type="text" placeholder="Введите E-mail" name="Email" />
+                  <br/><input type="password" placeholder="Введите пароль" name="password" />
                 </label><br/>
               </div>
               <div>
