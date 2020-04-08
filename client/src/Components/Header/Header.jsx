@@ -16,6 +16,10 @@ export class Header extends Component{
                 <Container>
                     <Logo>ProGachiGram</Logo>
                     <nav>
+                        <NavLink exact to="/" activeStyle={ActiveNavLink}>
+                            {'Start'}
+                        </NavLink>
+
                         <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
                             {'SingIn'}
                         </NavLink>

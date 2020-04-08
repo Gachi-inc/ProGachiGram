@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
 import {StyledMain} from './Main.styles';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {Registrate} from '../../Components/Registrate';
-import {Login} from '../../Components/Login';
-
+import {Switch, Route} from 'react-router-dom';
+import {Registrate} from '../Forms/Registrate';
+import {Login} from '../Forms/Login';
+import News from '../../Components/News/News';
 export class Main extends Component{
 
     render(){
@@ -12,8 +12,9 @@ export class Main extends Component{
         <StyledMain>
             <h1>Добро Пожаловать!</h1>
             <Switch>
-              <Route path="/login" component={Login}/>
-              <Route path="/registrate" component={Registrate}/>
+                <Route path="/login" component={Login}/>
+                <Route path="/registrate" component={Registrate}/>
+                <Route path="/" component={News}/>
             </Switch>
         </StyledMain>);
     }

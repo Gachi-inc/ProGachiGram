@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import './App.css';
 import {Header} from './Components/Header/Header';
 import {Main} from './Components/Main/Main';
+
 import {GlobalStyles} from './Components/GlobalStyles/GlobalStyles.js';
 //import {GlobalStyles, Header, Main} from './components';
 

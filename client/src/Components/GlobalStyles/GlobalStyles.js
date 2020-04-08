@@ -33,6 +33,17 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
   /* CSS Reset */
+  * {
+    vertical-align: baseline;
+    font-weight: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    border: 0 none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    }
   /* Box sizing rules */
   *,
   *::after,
