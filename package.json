@@ -19,6 +19,7 @@
   "homepage": "https://github.com/frontend-rtf-2020/team-2#readme",
   "dependencies": {
     "git": "^0.1.5",
+    "mongodb": "^3.5.5",
     "react-router-dom": "^5.1.2"
   }
 }

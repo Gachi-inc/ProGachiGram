@@ -17,11 +17,11 @@
   text-align: center;
 }
 
-.RegistrateButton{
+/* .RegistrateButton{
   /*margin-right: 2%;*/
-  display: flex;
+  /* display: flex;
   align-items: center;
-}
+} */ 
 
 /* .RegForm, .LogInForm{
   display:flex;
@@ -45,7 +45,7 @@
 /*=================================================*/
 
 
-@media (min-width: 1051px) {
+/* @media (min-width: 1051px) {
   .Form {
     width: 35%;
     margin: 0 auto;
@@ -104,6 +104,6 @@ input:invalid:not(:placeholder-shown) {
 }
 input:invalid:not(:placeholder-shown) + .form__error {
   display: block;
-}
+} */
 
 /*=================================================*/
