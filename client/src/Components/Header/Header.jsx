@@ -20,6 +20,10 @@ export class Header extends Component{
                             {'Start'}
                         </NavLink>
 
+                        <NavLink exact to="/app" activeStyle={ActiveNavLink}>
+                            {'Messenger'}
+                        </NavLink>
+
                         <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
                             {'SingIn'}
                         </NavLink>
@@ -27,6 +31,7 @@ export class Header extends Component{
                         <NavLink exact to="/login" activeStyle={ActiveNavLink}>
                             {'LogIn'}
                         </NavLink>
+                        
                     </nav>    
                 </Container>
             </StyledHeader>

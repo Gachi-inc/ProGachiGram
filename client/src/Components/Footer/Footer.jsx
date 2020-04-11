@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import {StyledFooter, Names, Name} from './Footer.styles'
+
+
 export class Footer extends Component{
   state = {users: []}
+  
+
+
+
 
   componentDidMount() {
     fetch('/api/users')
@@ -11,12 +17,12 @@ export class Footer extends Component{
   render(){
     return(
         <StyledFooter>
-            <Names>
-            <div className="admins">{this.state.users.map(user =>
-              <Name>
-                  <div key={user.id}>{user.username}</div>
+            <Names> {this.state.users.map(user =>
+            
+              <Name key={user.id}>
+                  {user.username}
               </Name>)}
-            </div>
+            
             </Names>
         </StyledFooter>
         
