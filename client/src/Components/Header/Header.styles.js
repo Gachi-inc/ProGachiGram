@@ -19,12 +19,10 @@ export const Logo = styled.div`
 font-size: var(--font-size-l);
 font-weight: 700;
 letter-spacing: -1px;
-border: 1px solid white;
 `;
 
 export const NavLink = styled(RouterLink)`
 margin-left: 20px;
-border: 1px solid white;
 `;
 
 export const StyledHeader = styled.header`
