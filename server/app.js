@@ -65,4 +65,6 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 });
 
+/*const handler1 = require('./routes/SendMailer');
+app.get('/first',  handler1.get.bind(handler1, {mail}));*/
 module.exports = app;

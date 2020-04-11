@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
-//import function send() from  '../../../server/routes/SendMailer.js';
-//const SendMailer = require('../../../server/routes/SendMailer.js');
+
 export class Registrate extends Component{
+  
     constructor(props) {
         super(props);
         this.state = {value: ''};
@@ -11,7 +11,14 @@ export class Registrate extends Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
-    
+
+      //Отправка данных на сервер для посылания сообщений на почту. Тестирую, пока в стадии написания. 
+      //Пока даже не в стадии тестирования отправки с сервера на email
+      //
+      handleSend(response){
+        response.send(Buffer.from(Email))
+      }
+
       handleChange(event) {
         this.setState({value: event.target.value});
       }
@@ -21,6 +28,7 @@ export class Registrate extends Component{
       }
     render() {
       return (
+        
           <Router>
 
             <StyledForms onSubmit={this.handleSubmit}>
@@ -34,7 +42,7 @@ export class Registrate extends Component{
               <label> Повторите пароль:</label>
               <FormInpt type="password" placeholder="Повторите пароль" name="password"/>
               
-              <FormSbmt value="Зарегистрироваться"/>
+              <FormSbmt value="Зарегистрироваться" /*onClick = {this.handleSend(email)}*//>
 
             </StyledForms>
 
