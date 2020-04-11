@@ -19,10 +19,12 @@ export const Logo = styled.div`
 font-size: var(--font-size-l);
 font-weight: 700;
 letter-spacing: -1px;
+border: 1px solid white;
 `;
 
 export const NavLink = styled(RouterLink)`
 margin-left: 20px;
+border: 1px solid white;
 `;
 
 export const StyledHeader = styled.header`
@@ -35,3 +37,14 @@ export const StyledHeader = styled.header`
   top: 0;
   z-index: 1;
 `;
+
+/*export const MenuForPhones = styled.label`
+  background-color: var(--color-dark-translucent);
+  position: fixed;
+  cursor: pointer;
+  transition: left .23s;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  z-index: 3;
+  width: 7%;
+`;*/

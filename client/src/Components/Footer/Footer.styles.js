@@ -15,6 +15,7 @@ export const Names = styled.div`
   margin: 0 auto;
   max-width: var(--content-width);
   padding: 0 var(--padding);
+  text-align: center;
 `;
 
 export const Name = styled.div`
@@ -22,11 +23,4 @@ export const Name = styled.div`
   border: 1px solid #333;
   padding: 1%;
   border-radius: 25px;
-`;
-
-
-// export const Name = styled.div
-//   `
-//   float: left;
-  
-//   `
+`; 

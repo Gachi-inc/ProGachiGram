@@ -19,8 +19,8 @@ export class Footer extends Component{
         <StyledFooter>
             <Names> {this.state.users.map(user =>
             
-              <Name key={user.id}>
-                  {user.username}
+            <Name key={user.id}>
+              <a href={user.vk} target="_blank" rel="noopener noreferrer">{user.username}</a>
               </Name>)}
             
             </Names>
