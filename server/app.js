@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://parenyuk2014:1234@cluster0-6rss2.azure.mongodb.net/test?retryWrites=true&w=majority";
@@ -24,6 +23,8 @@ client.connect(err => {
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var sendMailerRouter = require('./routes/SendMailerRoute')
+
 //var register = require('../client/src/Pages/Registrate');
 //app.use('/registrate');
 var app = express();
@@ -49,14 +50,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
-
 app.use('/api', indexRouter);
+app.use('/api', sendMailerRouter);
 app.use('/api/users', usersRouter);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+app.post('/sendmailer', function(request, response) {
+  if (!request.body) return response.sendStatus(400)
+  console.log(request.body)
+})
+
+
 
 // error handler
 app.use(function(err, req, res, next) {

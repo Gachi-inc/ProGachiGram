@@ -16,7 +16,7 @@ export class Registrate extends Component{
       //Пока даже не в стадии тестирования отправки с сервера на email
       //
       handleSend(response){
-        response.send(Buffer.from(Email))
+        response.send(Buffer.from(<FormInpt type ="email"></FormInpt>))
       }
 
       handleChange(event) {
@@ -31,14 +31,14 @@ export class Registrate extends Component{
         
           <Router>
 
-            <StyledForms onSubmit={this.handleSubmit}>
+            <StyledForms method="POST" action="api/sendmailer">
               <HLetters>Регистрация</HLetters>
               <label> Логин:</label>
               <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.value} onChange={this.handleChange}/>
               <label> E-mail:</label>
-              <FormInpt type="email" placeholder="Введите e-mail" name="Email"/>
+              <FormInpt type="email" placeholder="Введите e-mail" name="email"/>
               <label> Пароль:</label>
-              <FormInpt type="password" placeholder="Введите пароль" name="password"/>
+              <FormInpt  type="password" placeholder="Введите пароль" name="password"/>
               <label> Повторите пароль:</label>
               <FormInpt type="password" placeholder="Повторите пароль" name="password"/>
               

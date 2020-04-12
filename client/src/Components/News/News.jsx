@@ -37,7 +37,7 @@ class News extends Component{
     componentDidMount(){
         this.myInterval = setInterval(()=>{
             this.setState(() => ({
-                count: Math.floor(Math.floor(Math.random() * (6 - 0) + 0))
+                count: Math.floor(Math.floor(Math.random() * (5 - 0) + 0))
                 
             }))
         }, 20000)
