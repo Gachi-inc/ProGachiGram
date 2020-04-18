@@ -1,4 +1,4 @@
-const {register}= require('../workers/registrate.js');
+const {register}= require('../workers/Registrate.js');
 var express = require('express');
 var router = express.Router();
 
