@@ -31,7 +31,7 @@ export class Registrate extends Component{
         
           <Router>
 
-            <StyledForms method="POST" action="api/sendmailer">
+            <StyledForms method="POST" action="api/registrate">
               <HLetters>Регистрация</HLetters>
               <label> Логин:</label>
               <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.value} onChange={this.handleChange}/>
@@ -40,7 +40,7 @@ export class Registrate extends Component{
               <label> Пароль:</label>
               <FormInpt  type="password" placeholder="Введите пароль" name="password"/>
               <label> Повторите пароль:</label>
-              <FormInpt type="password" placeholder="Повторите пароль" name="password"/>
+              <FormInpt type="password" placeholder="Повторите пароль" name="passwordCheck"/>
               
               <FormSbmt value="Зарегистрироваться" /*onClick = {this.handleSend(email)}*//>
 

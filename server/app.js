@@ -3,44 +3,45 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var {uri} = require('./config');
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://parenyuk2014:1234@cluster0-6rss2.azure.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
 client.connect(err => {
-  const collection = client.db("Users").collection("UserData");
-  // perform actions on the collection object
-  if(err) return console.log(err);
-     
-    collection.find().toArray(function(err, results){
-                
-        console.log(results);
+
+  if(err) {
+    console.log('Oops!', err)
+    setTimeout(() => {
         
-    client.close();
-    });
+    }, 5000)
+     
+  } else {
+    console.log('Connected')
+  }
 });
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var sendMailerRouter = require('./routes/SendMailerRoute')
-
+var regRoute = require('./routes/RegRoute.js')
 //var register = require('../client/src/Pages/Registrate');
 //app.use('/registrate');
 var app = express();
 
-// const mongoose = require("mongoose");
-// const Schema = mongoose.Schema;
- 
-// // установка схемы
-// const userModelScheme = new Schema({
-//   email: String,  
-//   login: String,
-//   passwrod: String
-// });
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-// var UserModel = mongoose.model('UserModel', userModelScheme );
-// console.log(UserModel);
+// установка схемы
+const userModelScheme = new Schema({
+  email: String,  
+  login: String,
+  passwrod: String
+});
+
+
+var UserModel = mongoose.model('UserModel', userModelScheme );
+console.log(UserModel);
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');
@@ -52,6 +53,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use('/api', indexRouter);
 app.use('/api', sendMailerRouter);
+app.use('/api/registrate', regRoute);
 app.use('/api/users', usersRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -74,4 +76,4 @@ app.use(function(err, req, res, next) {
 
 /*const handler1 = require('./routes/SendMailer');
 app.get('/first',  handler1.get.bind(handler1, {mail}));*/
-module.exports = app;
+module.exports = app, client;
