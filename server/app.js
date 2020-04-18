@@ -3,10 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var {uri} = require('./config');
+//var {uri} = require('./config');
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(process.env.uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 client.connect(err => {
 
