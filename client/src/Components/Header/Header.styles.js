@@ -1,6 +1,5 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {NavLink as RouterLink} from 'react-router-dom';
-
 export const ActiveNavLink = {
     boxShadow: '0px 3px 0 0 var(--color-accent)',
   };
@@ -38,50 +37,74 @@ export const StyledHeader = styled.header`
 
 // MOBILE
 
-export const MenuForPhones = styled.label`
-  background-color: var(--color-dark-translucent);
-  padding: 2%;
-  position: fixed;
-  cursor: pointer;
-  transition: left .23s;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  z-index: 3;
-  width: 7%;
+export const MenuForPhones = styled.button`
+  display: block;
+  float: left;
+  margin-right: 20px;
+  margin-top: 8px;
+  outline: 0;
+  border: 0;
+  padding: 2px;
+  background: none;
 `;
 
-export const MenuInsides = styled.ul`
+export const MenuInsides = styled.nav`
+  position: absolute;
+  top: 59px;
+  left: 0px;
+  bottom: 0px;
+  width: 120px;
+  max-width: 100%;
+  margin: 0px;
+  padding-top: 200px;
+  padding-right: 0px;
+  background-color: #001698; /* Сделать норм цвет */
+  transform: translateX(-500%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  ${props =>
+    props.open &&
+    css`
+      transform: translateX(0);
+    `}
+`;
+
+export const NavLinkMobile = styled(RouterLink)`
+  position: relative;
   display: block;
-  position: fixed;
-  list-style:none;
-  padding: 3%;
-  margin: 0;
-  box-sizing: border-box;
-  width: 7%;
-  background-color: #eee;
-  height: 100%;
-  top: 0;
-  left: -7%;
-  transition: left .2s;
-  z-index: 2;
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
+  text-align: left;
+  padding-top: 5px;
+  margin-left: 10px;
 `;
 
 export const SpanStyle = styled.span`
   display: block;
+  width: 30px;
   height: 3px;
+  margin-bottom: 7px;
   background-color: #fff;
-  margin: 5px 0 0;
-  transition: all .1s linear .23s;
-  position: relative;
 `;
 
-export const In = styled.input`
-  &:checked {
-    left: 1.9%
-  }
-  display: none;
+export const Navbar = styled.div`
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  outline: currentcolor none medium;
+  max-width: 100%;
+  margin: 0px;
+  align-items: center;
+  background: var(--color-dark-translucent) none repeat scroll 0% 0%; /* Цвет для хедера */
+  color: rgb(248, 248, 248);
+  min-width: 0px;
+  min-height: 0px;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 6px 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 16px;
+  z-index: 500;
 `;
 
 
