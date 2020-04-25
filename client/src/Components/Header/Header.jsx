@@ -62,7 +62,7 @@ const HamburgerButton = () => {
 };
 
 
-export const MenuContext = createContext(
+const MenuContext = createContext(
     {
         isMenuOpen: true,
         toggleMenu: () => {},
@@ -81,7 +81,11 @@ const NavState = ({children}) => {
     );
 };
 
-export const SideMenu = () => {
+NavState.propTypes = {
+    children: PropTypes.node.isRequired,
+};
+
+const SideMenu = ({ children }) => {
     const {isMenuOpen} = useContext(MenuContext);
 
     return <MenuInsides open={isMenuOpen}>
@@ -92,11 +96,7 @@ export const SideMenu = () => {
            </MenuInsides>;
 }
 
-NavState.propTypes = {
-    children: PropTypes.node.isRequired,
-};
-
-  const MainMenu = () => {
+const MainMenu = () => {
     const node = useRef();
     const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
     return (  
