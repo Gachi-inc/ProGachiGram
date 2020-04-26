@@ -55,10 +55,9 @@ export const MenuInsides = styled.nav`
   bottom: 0px;
   width: 120px;
   max-width: 100%;
-  margin: 0px;
-  padding-top: 200px;
   padding-right: 0px;
-  background-color: #001698; /* Сделать норм цвет */
+  height: max-content;
+  background-color: var(--color-dark-translucent); /* Сделать норм цвет */
   transform: translateX(-500%);
   display: flex;
   flex-direction: column;
@@ -73,9 +72,11 @@ export const MenuInsides = styled.nav`
 export const NavLinkMobile = styled(RouterLink)`
   position: relative;
   display: block;
+  border-bottom: 1px solid #c2d6d6; 
   text-align: left;
-  padding-top: 5px;
-  margin-left: 10px;
+  padding-top: 12px;
+  padding-left: 10px;
+  text-decoration: none;
 `;
 
 export const SpanStyle = styled.span`
