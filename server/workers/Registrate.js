@@ -1,7 +1,7 @@
 const bcrypt =  require('bcryptjs')
-//const {uri} = require('../config')
+const uri = "";
 const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(process.env.uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 function register(req, res) {
    console.log('a');
@@ -13,32 +13,53 @@ function register(req, res) {
       } else {
          console.log('Connected');
          const {login, email, password, passwordCheck } = req.body;
-         
+         //Чек на пустые поля
          if (!login || !email || !password || !passwordCheck) {
-            console.log(req.body);
-            return res.redirect('localhost:3000/registrate')
+            res.send({
+               err: true,
+               errMessage: "Заполните все поля"
+            });
+            return;
+         }
+         //Чек пароля
+         if (password !== passwordCheck){
+            res.send({
+               err: true,
+               errMessage: "Пароли не совпадают! Проверьте введенные данные."
+            });
+            return
+         }
+         //Чек на повторяющееся имя в БД
+         const db = client.db('Users');
+         db.collection('UserData').findOne({
+            $or: [
+                    { login : login },
+                    { email: login }
+                ]
+        }, (err, result) => {
+            if (result) {
+                res.send({
+                    error: true,
+                    errorMessage: 'Пользователь с таким логином или данной почтой уже зарегистрирован.'
+                });
+                return;
             }
-         
+        });
 
-         /* 
-         Тут будем хешировать...
-         */     
+         //Хешируем пароль
          const salt = bcrypt.genSaltSync(10);
          const passwordToSave = bcrypt.hashSync(password, salt);
 
          const user  = {login, email, passwordToSave}
          
-         const db = client.db('Users');
          db.collection('UserData').insertOne(user, (err, result) => {
             
                if (err) {
-                  res.send(err);
-                  setTimeout(() => {
-                     res.redirect('localhost:3000/registrate');
-                  }, 5000)
+                  res.send(err);              
                }
+
+               res.send({...result.ops[0], passwordToSave: password});
          });
-         res.redirect('localhost:3000/login');
       }
    });
 }
