@@ -53,7 +53,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use('/api', indexRouter);
-app.use('/api', sendMailerRouter);
+app.use('/api/sendmailer', sendMailerRouter);
 app.use('/api/registrate', regRoute);
 app.use('/api/login', logRoute);
 app.use('/api/users', usersRouter);

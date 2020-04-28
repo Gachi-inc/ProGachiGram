@@ -8,7 +8,7 @@ router.use(express.urlencoded());
 //и здесь: https://nodemailer.com/smtp/
 //let testAccount = await nodemailer.createTestAccount();
 
-router.post('/sendmailer', SendMail);
+router.post('/', SendMail);
 
 //module.exports =  async function send(mail){
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
