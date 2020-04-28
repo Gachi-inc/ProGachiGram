@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import {
     StyledMessenger, 
+    NavLink,
+    SideBar,
+    Body,
+    ActiveNavLink,
+    User,
+    Avatar,
+    UserInfo,
+    Wrapper,
     Section,
     Chat,
-    SideBar,
-    Wrapper,
+    ChatField,
     MsgField,
-    ChatField
 
 } from './Messenger.styled';
 
+import ava from '../../Pictures/ava.jpg' 
 class Messenger extends Component{
 
     render(){
@@ -19,24 +26,66 @@ class Messenger extends Component{
                 <h1>Типо Мессенджер</h1>
                 <Wrapper>
                     <SideBar>
-                        <Section>
-                        Левое меню
-                        </Section>
+
+                        <User>
+                            <Avatar src = {ava} alt = 'user' ></Avatar>
+                            <UserInfo>
+                                Van Darkholme
+                            </UserInfo>
+                        </User>
+                        <NavLink exact to="/contacts" activeStyle={ActiveNavLink}>
+                            Контакты
+                        </NavLink>
+                        <NavLink exact to="/settings" activeStyle={ActiveNavLink}>
+                            Настройки
+                        </NavLink>
+                        <NavLink exact to="/invite" activeStyle={ActiveNavLink}>
+                            Добавить друга
+                        </NavLink>
+                        <NavLink exact to="/help" activeStyle={ActiveNavLink}>
+                            Помощь
+                        </NavLink>
                     </SideBar>
                 
                     <Chat>
-                    Чатик
-                        <ChatField>
-                            <MsgField/>
-                        </ChatField>
+                    
+                        <MsgField/>
                     </Chat>
                 
                     <SideBar>
-                        <Section>
+                        
                         Правое меню
-                        </Section>
+                        
                     </SideBar>
                 </Wrapper>
+
+                
+                {/* <SideBar>
+                    <User>
+                        <Avatar src = {ava} alt = 'user' ></Avatar>
+                        <UserInfo>
+                            Van Darkholme
+                        </UserInfo>
+                    </User>
+                    <NavLink exact to="/contacts" activeStyle={ActiveNavLink}>
+                        Контакты
+                    </NavLink>
+                    <NavLink exact to="/settings" activeStyle={ActiveNavLink}>
+                        Настройки
+                    </NavLink>
+                    <NavLink exact to="/invite" activeStyle={ActiveNavLink}>
+                        Добавить друга
+                    </NavLink>
+                    <NavLink exact to="/help" activeStyle={ActiveNavLink}>
+                        Помощь
+                    </NavLink>
+                </SideBar> */}
+            
+{/*                 
+                <Body>
+                    2
+                </Body> */}
+               
             </StyledMessenger>
         )
     }

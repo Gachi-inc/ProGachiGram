@@ -2,7 +2,7 @@ import styled from 'styled-components';
 //import {NavLink as RouterLink} from 'react-router-dom';
 
 export const StyledForms = styled.form`
-    margin: 10px auto;
+    margin: 0 auto;
     padding: 0 var(--padding);
     width: min-content;
     color: white;
@@ -15,7 +15,6 @@ export const FormInpt = styled.input`
     display: flex;
     height: 50%;
     margin: 2%;
-    padding: 0 var(--padding);
     background-color: var(--color-dark-translucent);
     color: white;
     border-bottom: 1px solid #333;
@@ -27,7 +26,7 @@ export const FormSbmt = styled.input.attrs({
     })`
     border-radius: 25px;
     padding: 3%;
-    margin: 10% auto;
+    margin: 10%;
     `;
 
 export const HLetters = styled.h1`

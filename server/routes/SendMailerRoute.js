@@ -1,5 +1,5 @@
 var express = require('express');
-const {SendMail}= require('../workers/SendMailer.js');
+const {SendMail}= require('../workers/sendMailer.js');
 var router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded());
