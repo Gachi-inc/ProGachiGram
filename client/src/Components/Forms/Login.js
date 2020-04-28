@@ -24,7 +24,7 @@ export class Login extends Component{
       return (
         <Router> 
           
-          <StyledForms onSubmit={this.handleSubmit}>
+          <StyledForms method="POST" action="api/login">
             <HLetters>Вход</HLetters>
             <label> Логин/E-mail:</label>
             <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.value} onChange={this.handleChange}/>
