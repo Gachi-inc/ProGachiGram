@@ -18,7 +18,14 @@ export const GlobalStyles = createGlobalStyle`
     --margin: 4%
   }
   html
+  
+
+
+
+
   body {
+    //background-image: url('https://www.nastol.com.ua/pic/201906/2560x1600/nastol.com.ua-346735.jpg'); 
+    //backdrop-filter: blur(10px);
     background-color: var(--color-dark);
     color: var(--color-light);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;

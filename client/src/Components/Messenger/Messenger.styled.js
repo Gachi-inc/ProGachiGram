@@ -2,22 +2,9 @@ import styled from 'styled-components';
 import {NavLink as RouterLink} from 'react-router-dom';
 export const StyledMessenger = styled.div`
   max-width: var(--content-width);
-  display: block;
+  display: inline-block;
   align-items: center;
-`;
-
-export const Wrapper = styled.div`
-    width: 100%;
-    display: inline-block;
-    max-width: var(--content-width);
-`;
-
-export const Section = styled.div`
-
-margin: 0 auto;
-max-width: var(--content-width);
-padding: 0 var(--padding);
-height: 300px;
+  width: 100%;
 `;
 
 export const Chat = styled.div`
@@ -26,48 +13,52 @@ background-color: #ddd;
 width: 50%;
 float: left;
 height: 400px;
-border: 1px solid #333;
-border-radius: 25px;
 `;
 
-export const ChatField = styled.div`
-width: 100%;
-position: absolute;
-display: flex;
+export const WrapperMsgField = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+`
+
+export const MsgField = styled.input`
+  margin: 4% 2%;
+  padding-left: 4%;
+  width: 80%;
+  border-radius: 25px;
 `;
 
-export const MsgField = styled.textarea`
-  margin: 0 auto;
-  padding: 0 var(--padding);
-  width: 80%; 
-`;
+export const SendButton = styled.button`
+display: inline-block;
+margin-right: 7%;
+width: 27px;
+height: 27px;
+background-color: var(--color-accent);
+cursor: pointer;
+border-radius: 50%;
+box-shadow: 0 3px 20px rgba(0,0,0,.25),
+inset 0 2px 0 rgba(255,255,255,.6),
+0 2px 0 rgba(0,0,0,.1),
+inset 0 0 20px rgba(0,0,0,.1);
+`
 
-// export const SideBar = styled.section`
-// background-color: #333;
-// width: 20%;
-// float: left;
-// border-bottom: 1px solid #333;
-// `;
+export const ButtonImg = styled.i`
+`
 
 export const SideBar = styled.section`
-
-  margin: 0 auto;
   width: 25%;
   color: white;
-  border: 1px solid #333;
-  border-radius: 25px;
   float: left; 
-  // padding: 0 var(--padding);
-`;
-export const Body = styled.div`
-  height: 100%;
-  width: 50%;
-  background-color: pink;
+  display: grid;
 `;
 
 export const NavLink = styled(RouterLink)`
-  display: block;
-  margin 10% auto;
+  justify-self: center;
+  align-self: center;
+  margin-top: 10%;
 `;
 
 export const ActiveNavLink = {
@@ -86,7 +77,7 @@ export const User = styled.div`
 
 export const Avatar = styled.img`
   margin: 0 var(--margin);
-  border-radius: 100px; 
+  border-radius: 100%; 
   border: 3px solid green; 
   box-shadow: 0 0 7px #666;
   width: 50px; 
@@ -96,6 +87,5 @@ export const Avatar = styled.img`
 
 export const UserInfo = styled.div`
   margin: 0 var(--margin);
-  top: 50%;
   font-size: var(--font-size-xs);
 `

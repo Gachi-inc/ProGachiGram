@@ -44,7 +44,7 @@ export class Header extends Component{
     }
 }
 
-{/* Для мобилок вспомогательный код */}
+/* Для мобилок вспомогательный код */
 
 const HamburgerButton = () => {
     const {isMenuOpen, toggleMenuMode} = useContext(MenuContext);

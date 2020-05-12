@@ -1,7 +1,7 @@
 const bcrypt =  require('bcryptjs')
-const uri = "";
+const {uri} = require('../config.js');
 const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(process.env.uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 function register(req, res) {
    console.log('a');
@@ -55,10 +55,13 @@ function register(req, res) {
          db.collection('UserData').insertOne(user, (err, result) => {
             
                if (err) {
-                  res.send(err);              
+                  return res.send(err);              
                }
 
-               res.send({...result.ops[0], passwordToSave: password});
+               return res.send({...result.ops[0], passwordToSave: passwordToSave});
+               setTimeout(() => {
+                  return res.redirect('../../')
+               }, 5000)
          });
       }
    });

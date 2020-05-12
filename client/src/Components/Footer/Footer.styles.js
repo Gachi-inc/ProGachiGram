@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
+
 export const StyledFooter = styled.footer`
   margin: 0 auto;
   max-width: var(--content-width);
   padding: 0 var(--padding);
   width: 100%;
+  flex: 0 0 auto;
 `;
 
 export const Names = styled.div`
@@ -16,6 +18,7 @@ export const Names = styled.div`
   max-width: var(--content-width);
   padding: 0 var(--padding);
   text-align: center;
+  
 `;
 
 export const Name = styled.div`

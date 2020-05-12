@@ -16,6 +16,7 @@ export class Footer extends Component{
   }
   render(){
     return(
+      
         <StyledFooter>
             <Names> {this.state.users.map(user =>
             

@@ -3,16 +3,15 @@ import {
     StyledMessenger, 
     NavLink,
     SideBar,
-    Body,
     ActiveNavLink,
     User,
     Avatar,
     UserInfo,
-    Wrapper,
-    Section,
     Chat,
-    ChatField,
     MsgField,
+    SendButton,
+    WrapperMsgField,
+    ButtonImg,
 
 } from './Messenger.styled';
 
@@ -23,8 +22,6 @@ class Messenger extends Component{
 
         return (
             <StyledMessenger>
-                <h1>Типо Мессенджер</h1>
-                <Wrapper>
                     <SideBar>
 
                         <User>
@@ -48,8 +45,13 @@ class Messenger extends Component{
                     </SideBar>
                 
                     <Chat>
-                    
-                        <MsgField/>
+                        <WrapperMsgField>
+                            <MsgField/>
+                            <SendButton>
+                                <ButtonImg>
+                                </ButtonImg>
+                            </SendButton>
+                        </WrapperMsgField>
                     </Chat>
                 
                     <SideBar>
@@ -57,7 +59,7 @@ class Messenger extends Component{
                         Правое меню
                         
                     </SideBar>
-                </Wrapper>
+                
 
                 
                 {/* <SideBar>

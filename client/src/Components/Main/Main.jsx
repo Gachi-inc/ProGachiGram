@@ -11,7 +11,6 @@ export class Main extends Component{
     render(){
         return (
         <StyledMain>
-            <h1>Добро Пожаловать!</h1>
             <Switch>
                 <Route path="/login" component={Login}/>
                 <Route path="/registrate" component={Registrate}/>
