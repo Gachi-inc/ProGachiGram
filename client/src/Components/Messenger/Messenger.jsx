@@ -12,6 +12,7 @@ import {
     SendButton,
     WrapperMsgField,
     ButtonImg,
+    ExportMsgField,
 
 } from './Messenger.styled';
 
@@ -45,13 +46,14 @@ class Messenger extends Component{
                     </SideBar>
                 
                     <Chat>
-                        <WrapperMsgField>
+                        <WrapperMsgField/>
+                        <ExportMsgField>
                             <MsgField/>
                             <SendButton>
                                 <ButtonImg>
                                 </ButtonImg>
                             </SendButton>
-                        </WrapperMsgField>
+                        </ExportMsgField>
                     </Chat>
                 
                     <SideBar>

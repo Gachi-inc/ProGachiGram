@@ -9,31 +9,45 @@ export const StyledMessenger = styled.div`
 
 export const Chat = styled.div`
 position: relative;
-background-color: #ddd;
+background-color: var(--color-dark);
 width: 50%;
 float: left;
-height: 400px;
+height: 500px;
+display: flex;
+align-items: center;
 `;
 
 export const WrapperMsgField = styled.div`
+  position: absolute;
+  background-color: #ddd;
+  top: 0;
+  border-radius: 5% 5% 0 0;
+  width: 100%;
+  height: 100%;
+  border 3px soid black;
+`
+
+export const ExportMsgField = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
   align-items: center;
   display: flex;
   justify-content: space-between;
+  background-color: #ddd;
+  box-shadow: 0px -1px 1px 2px rgba(100, 100, 100, 0.1);
 `
 
 export const MsgField = styled.input`
-  margin: 4% 2%;
+  margin: 4% 5%;
   padding-left: 4%;
-  width: 80%;
+  width: 84%;
   border-radius: 25px;
 `;
 
 export const SendButton = styled.button`
 display: inline-block;
-margin-right: 7%;
+margin-right: 5%;
 width: 27px;
 height: 27px;
 background-color: var(--color-accent);
