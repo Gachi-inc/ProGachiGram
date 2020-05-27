@@ -4,8 +4,9 @@ import {StyledMain} from './Main.styles';
 import {Switch, Route} from 'react-router-dom';
 import {Registrate} from '../Forms/Registrate';
 import {Login} from '../Forms/Login';
-import News from '../../Components/News/News';
+import News from './../News/News';
 import Messenger from './../Messenger/Messenger';
+import {Message} from './../Message/Message'
 export class Main extends Component{
 
     render(){

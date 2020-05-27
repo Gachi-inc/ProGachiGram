@@ -11,6 +11,7 @@ justify-content: space-between;
 height: 100%;
 margin: 0 auto;
 max-width: var(--content-width);
+padding: var(--padding);
 `;
 
 export const Logo = styled.div`

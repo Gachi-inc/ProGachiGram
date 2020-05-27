@@ -5,6 +5,4 @@ export const StyledMain = styled.main`
   max-width: var(--content-width);
   width: 100%;
   background-color: var(--color-dark);
-  border: 1px solid #333;
-  border-radius: 25px;
 `;

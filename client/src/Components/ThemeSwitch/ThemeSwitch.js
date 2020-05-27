@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 
 class ThemeSwitch extends Component {  
-    constructor(props) {  
+    
+    constructor(props) { 
+        ThemeSwitch.defaultProps = { preserveRasters: 'true' } 
         super(props);
         {this.isActive() ? this.css.trim() : this.css};
             this.state = {
             active: 'false'
             };
             this.css = `  
-                html { filter: invert(100%); background: #fefefe; }  
+                html { filter: invert(100%); background: #fefefe; }
                 * { background-color: inherit }
-                img:not([src*=".svg"]), video { filter: invert(100%) }`;
+            ${this.props.preserveRasters === 'true' ? `img:not([src*=".svg"]), video { filter: invert(100%) }` : ``}`;
             this.store = typeof localStorage === 'undefined' ? null : localStorage;
         };
 

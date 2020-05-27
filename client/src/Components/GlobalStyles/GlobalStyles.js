@@ -98,11 +98,8 @@ export const GlobalStyles = createGlobalStyle`
   a:not([class]) {
     text-decoration-skip-ink: auto;
   }
-  /* Make images easier to work with */
-  img {
-    display: block;
-    max-width: 100%;
-  }
+
+  
   /* Natural flow and rhythm in articles by default */
   article > * + * {
     margin-top: 1em;
