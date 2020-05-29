@@ -76,11 +76,11 @@ export const UserInfo = styled.div`
   font-size: var(--font-size-xs);
 `
 
-export const ChatWrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
-  max-height: 500px;
+  height: 500px;
 `
 export const ChatName = styled.div`
   display:flex;
@@ -102,16 +102,18 @@ export const Chat = styled.div`
   width: 100%;
   padding: var(--padding);
   overflow: auto;
+  
 `
 
 export const SideBar = styled.div`
-  margin-right: 10px;
   color: #fff;
   display: flex;
   flex-direction: column;
   margin-bottom: auto;
+  padding-right: 10px;
 `
 
 export const IsOnline = styled.span`
   font-size: 12px;
+  color: blue;
 `
