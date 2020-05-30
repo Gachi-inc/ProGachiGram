@@ -1,8 +1,7 @@
 import React from 'react';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import {Msg, Аvatar, Bubble, Text, MsgDate} from './Message.styled'
 import PropTypes from 'prop-types' 
-import { ru } from 'date-fns/locale';
+import  Time from '../Time/index'
 
 const Type = (isMe) =>{
     return(
@@ -24,7 +23,9 @@ const Message = ({avatar,user, text, date, isMe}) =>{
                     </Text>
                 </Bubble>
                 <MsgDate lassName ="msg__date">
-                    { formatDistanceToNow(date, {locale: ru},{addSuffix: true})} назад
+                    <span>
+                        <Time date = {date}/>
+                    </span>
                 </MsgDate>
             </div>
         </Msg>

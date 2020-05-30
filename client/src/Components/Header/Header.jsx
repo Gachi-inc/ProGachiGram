@@ -41,7 +41,7 @@ export class Header extends Component{
                                 {'Start'}
                             </NavLink>
 
-                            <NavLink exact to="/app" activeStyle={ActiveNavLink}>
+                            <NavLink exact to="/im" activeStyle={ActiveNavLink}>
                                 {'Messenger'}
                             </NavLink>
                             <CheckUser isLogIn={false}/>

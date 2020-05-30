@@ -6,7 +6,6 @@ import {Registrate} from '../Forms/Registrate';
 import {Login} from '../Forms/Login';
 import News from './../News/News';
 import Messenger from './../Messenger/Messenger';
-import {Message} from './../Message/Message'
 export class Main extends Component{
 
     render(){
@@ -15,7 +14,7 @@ export class Main extends Component{
             <Switch>
                 <Route path="/login" component={Login}/>
                 <Route path="/registrate" component={Registrate}/>
-                <Route path="/app" component={Messenger}/>
+                <Route path="/im" component={Messenger}/>
                 <Route path="/" component={News}/>
             </Switch>
         </StyledMain>);
