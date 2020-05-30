@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     --color-accent: hsl(49, 100%, 71%);
     --color-dark: hsl(0, 0%, 10%);
+    --color-online: rgb(0, 201, 128);
     --color-dark-translucent: hsla(0, 0%, 10%, 0.85);
     --color-light: hsl(70, 0%, 95%);
     --content-width: ${CONTENT_WIDTH}px;

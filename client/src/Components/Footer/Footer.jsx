@@ -25,8 +25,6 @@ export class Footer extends Component{
               </Name>)}
             
             </Names>
-            <inframe data-iframe-width="150" data-iframe-height="270" data-share-badge-id="434ed199-a446-4cee-91ba-3cc8a64bf18c" data-share-badge-host="https://www.youracclaim.com"></inframe>
-            <script type="text/javascript" async src="//cdn.youracclaim.com/assets/utilities/embed.js"></script>
         </StyledFooter>
         
     );

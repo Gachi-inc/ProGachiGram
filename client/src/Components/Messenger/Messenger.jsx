@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {ChatComponent} from "./components/Chat"
+import {ChatComponent} from "./components/Chat/Chat"
+import Dialogs from './components/Dialogs/Dialogs';
+
    import {Switch, Route} from 'react-router-dom';
 import {
     StyledMessenger, 
@@ -9,28 +11,29 @@ import {
     User,
     Avatar,
     UserInfo,
-    Wrapper
+    Wrapper,
+    Wrapper2,
 
 } from './Messenger.styled';
 
-import ava from '../../Pictures/ava.jpg' 
+
 class Messenger extends Component{
     
     render(){
         return (
             
             <StyledMessenger>
-                <SideBar>
+                {/* <SideBar>
                     <User>
-                        <Avatar src = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1" alt = 'user' />
+                        <Avatar src = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1" alt = 'user' />
                         <UserInfo>
-                            Komodood
+                            MIMOG
                         </UserInfo>
                     </User>
                     <NavLink to="/im/dialogs" activeStyle={ActiveNavLink}>
                         Диалоги
                     </NavLink>
-                    <NavLink to="im/contacts" activeStyle={ActiveNavLink}>
+                    <NavLink to="/im/contacts" activeStyle={ActiveNavLink}>
                         Контакты
                     </NavLink>
                     <NavLink to="/settings" activeStyle={ActiveNavLink}>
@@ -42,15 +45,52 @@ class Messenger extends Component{
                     <NavLink to="/help" activeStyle={ActiveNavLink}>
                         Помощь
                     </NavLink>
-                </SideBar>
+                </SideBar> */}
             
-            <Wrapper>
-                <Switch>
-                    <Route path ="/im/sid" component={ChatComponent}/>
-                    <Route path ="im/help" component={ChatComponent}/>
-                    <Route path ="/im/dialogs" component={ChatComponent}/>
-                </Switch>
-            </Wrapper>
+                <Wrapper>
+                    {/* <Switch>
+                        <Route path ="/im/sid" component={ChatComponent}/>
+                        <Route path ="/im/contacts" component={Dialogs}/>
+                        <Route path ="/im/dialogs" component={ChatComponent}/>
+                    </Switch> */}
+                    <Dialogs
+                        userId = {0}
+                        items = {[
+                                {
+                                    _id: Math.random(),
+                                    text: "Привет, Друх! Как дела?",
+                                    //isReaded: false,
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 1,
+                                        fullname: "Владимир Овчинников",
+                                        avatar: null,
+                                        isonline: true
+                                    }
+                                },
+
+                                {
+                                    _id: Math.random(),
+                                    text: "Привет, Друх! Как дела?",
+                                    //isReaded: false,
+                                    created_at: new Date(2020, 3,3),
+                                    user: {
+                                        _id: 1,
+                                        fullname: "Владимир Овчинников",
+                                        avatar: null,
+                                        isonline: true
+                                    }
+                                },
+
+                            ]
+                        }
+                    
+                    
+                    />
+                </Wrapper>
+                <Wrapper2>
+                    <ChatComponent/>
+                </Wrapper2>
             </StyledMessenger>
         )
     }

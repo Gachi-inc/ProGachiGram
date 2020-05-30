@@ -19,21 +19,6 @@ export const StyledMessenger = styled.div`
 // `;
 
 
-export const ExportMsgField = styled.div`
-  width: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  background-color: #333;
-`
-
-export const MsgField = styled.input`
-  margin: 2%;
-  padding-left: 2%;
-  height: 30px;
-  width: 84%;
-  border-radius: 10px;
-`;
 
 export const SendButton = styled.button`
 display: inline-block;
@@ -79,30 +64,15 @@ export const UserInfo = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 300px;
   height: 500px;
 `
-export const ChatName = styled.div`
-  display:flex;
-  flex-direction: column;
-  width: 100%;
-  border-bottom: 1px solid rgba(191, 202, 245, .5);
-  padding: 15px;
-  background-color: white;
-  text-align: center;
-  color: #202020;
-`
 
-
-export const Chat = styled.div`
+export const Wrapper2 = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #fff;
-  color: #202020;
-  width: 100%;
-  padding: var(--padding);
-  overflow: auto;
-  
+  width: calc(100% - 300px);
+  height: 500px;
 `
 
 export const SideBar = styled.div`
@@ -113,7 +83,3 @@ export const SideBar = styled.div`
   padding-right: 10px;
 `
 
-export const IsOnline = styled.span`
-  font-size: 12px;
-  color: blue;
-`

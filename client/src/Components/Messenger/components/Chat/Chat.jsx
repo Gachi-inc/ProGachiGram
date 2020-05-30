@@ -1,26 +1,35 @@
 import React, { Component} from 'react';
-import Message from "../../Message/Message"
+import Message from "../../../Message/Message"
 import { 
     Chat,
     MsgField,
     ExportMsgField,
     ChatName,
-    IsOnline
-} from '../Messenger.styled';
-import searchSvg from "../../../assets"
+    IsOnline,
+    SearchBar
+} from './Chat.styles';
+import searchSvg from "assets/svg/search.svg"
+import sendSvg from "assets/svg/send.svg"
+import voiceSendSvg from "assets/svg/microphone.svg"
 
 export class ChatComponent extends Component{
     
     render(){
-        const isOnline = false;
+        const isOnline = true;
         return(
             <React.Fragment>
                 <ChatName>
-                    Владимир
-                    <IsOnline>
-                    {isOnline? "online": ""}
-                    </IsOnline>
-                    <img src= {searchSvg} alt ="searcIcon"/>
+                    <div className = "chat__username">
+                        Владимир
+                        <IsOnline>
+                        {isOnline? "online": ""}
+                        </IsOnline>
+                    </div>
+                    <div className = "chat__searchbar">
+                        {/* <SearchBar/> */}
+                        <img src = {searchSvg} alt = "searchIcon"/>
+                    </div>
+                    
                 </ChatName>
                 
                 <Chat>
@@ -30,55 +39,43 @@ export class ChatComponent extends Component{
                         date = {new Date(2020, 4, 23)}
                     />
                     <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
+                        avatar = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1"
                         text = "Привет, другалёк, как у тебя дела? Сделал дз по Теории Сигналов?"
                         date = {new Date(2020, 4, 24)}
                         isMe = {true}
                     />
                     <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
+                        avatar = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1"
                         text = "Привет, другалёк, как у тебя дела? Сделал дз по Теории Сигналов?"
                         date = {new Date(2020, 4, 24)}
                         isMe = {true}
                     />
                     <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
+                        avatar = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1"
                         text = "Привет, другалёк, как у тебя дела? Сделал дз по Теории Сигналов?"
                         date = {new Date(2020, 4, 24)}
                         isMe = {true}
                     />
                     <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
+                        avatar = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1"
                         text = "Привет, другалёк, как у тебя дела? Сделал дз по Теории Сигналов?"
                         date = {new Date(2020, 4, 24)}
                         isMe = {true}
                     />
                     <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
+                        avatar = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1"
                         text = "Привет, другалёк, как у тебя дела? Сделал дз по Теории Сигналов?"
                         date = {new Date(2020, 4, 24)}
                         isMe = {true}
                     />
                     <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
+                        avatar = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1"
                         text = "Привет, другалёк, как у тебя дела? Сделал дз по Теории Сигналов?"
                         date = {new Date(2020, 4, 24)}
                         isMe = {true}
                     />
                     <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
-                        text = "Привет, другалёк, как у тебя дела? Сделал дз по Теории Сигналов?"
-                        date = {new Date(2020, 4, 24)}
-                        isMe = {true}
-                    />
-                    <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
-                        text = "Привет, другалёк, как у тебя дела? Сделал дз по Теории Сигналов?"
-                        date = {new Date(2020, 4, 24)}
-                        isMe = {true}
-                    />
-                    <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
+                        avatar = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1"
                         text = "Привет, другалёк, как у тебя дела? Сделал дз по Теории Сигналов?"
                         date = {new Date(2020, 4, 24)}
                         isMe = {true}
@@ -90,19 +87,19 @@ export class ChatComponent extends Component{
                         date = {new Date(2020, 4, 25)}
                     />
                     <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
+                        avatar = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1"
                         text = "Отлично поболтали"
                         date = {new Date(2020, 4, 25)}
                         isMe = {true}
                     />
                     <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
+                        avatar = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1"
                         text = "всегда приятно :)"
                         date = {new Date(2020, 4, 25)}
                         isMe = {true}
                     />
                     <Message
-                        avatar = "https://sun9-67.userapi.com/c850124/v850124033/aec0f/1GksRmx2cPg.jpg?ava=1"
+                        avatar = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1"
                         text = "чего молчишь?"
                         date = {new Date(2020, 4, 25)}
                         isMe = {true}
@@ -116,6 +113,10 @@ export class ChatComponent extends Component{
                 </Chat>
                 <ExportMsgField>
                     <MsgField/>
+                    
+                    <img src = {voiceSendSvg} alt = "voiceSendIcon" />
+                    <img src = {sendSvg} alt = "sendIcon" />
+
                 </ExportMsgField>
             </React.Fragment>
         )
