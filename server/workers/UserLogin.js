@@ -2,7 +2,7 @@ const bcrypt =  require('bcryptjs')
 const uri = "";
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(process.env.uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
+const LogInBool = false;
 function login (req, res) {
     console.log('a');
    client.connect(err => {
@@ -56,6 +56,7 @@ function login (req, res) {
                         login: dbLogin,
                         password
                     };
+                    LogInBool = true;
                 } else {
                     responseBody = {
                         error: true,
@@ -63,7 +64,7 @@ function login (req, res) {
                     };
                 }   
                 
-                res.send(responseBody);
+                res.send(responseBody); 
             }).catch(err => {
                 res.send({
                     error: true,
