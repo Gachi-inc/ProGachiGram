@@ -2,8 +2,7 @@ const bcrypt =  require('bcryptjs')
 const {uri} = require('./config.js');
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(process.env.uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-
+const LogInBool = false;
 function login (req, res) {
     console.log('a');
    client.connect(err => {
