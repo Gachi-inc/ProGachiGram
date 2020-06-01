@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const {uri} = require('./config.js');
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(process.env.uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -14,6 +14,7 @@ client.connect(err => {
     console.log('Oops!', err)
     setTimeout(() => {
         
+
     }, 5000)
      
   } else {
@@ -41,12 +42,13 @@ const userModelScheme = new Schema({
 });
 
 
+
 var UserModel = mongoose.model('UserModel', userModelScheme );
 console.log(UserModel);
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');
-
+require('./config-passport');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

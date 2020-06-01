@@ -1,91 +1,96 @@
 import React, { Component } from 'react';
+import {ChatComponent} from "./components/Chat/Chat"
+import Dialogs from './components/Dialogs/Dialogs';
+
+   import {Switch, Route} from 'react-router-dom';
 import {
     StyledMessenger, 
     NavLink,
     SideBar,
-    Body,
     ActiveNavLink,
     User,
     Avatar,
     UserInfo,
     Wrapper,
-    Section,
-    Chat,
-    ChatField,
-    MsgField,
+    Wrapper2,
 
 } from './Messenger.styled';
 
-import ava from '../../Pictures/ava.jpg' 
+
 class Messenger extends Component{
-
+    
     render(){
-
         return (
+            
             <StyledMessenger>
-                <h1>Типо Мессенджер</h1>
-                <Wrapper>
-                    <SideBar>
-
-                        <User>
-                            <Avatar src = {ava} alt = 'user' ></Avatar>
-                            <UserInfo>
-                                Van Darkholme
-                            </UserInfo>
-                        </User>
-                        <NavLink exact to="/contacts" activeStyle={ActiveNavLink}>
-                            Контакты
-                        </NavLink>
-                        <NavLink exact to="/settings" activeStyle={ActiveNavLink}>
-                            Настройки
-                        </NavLink>
-                        <NavLink exact to="/invite" activeStyle={ActiveNavLink}>
-                            Добавить друга
-                        </NavLink>
-                        <NavLink exact to="/help" activeStyle={ActiveNavLink}>
-                            Помощь
-                        </NavLink>
-                    </SideBar>
-                
-                    <Chat>
-                    
-                        <MsgField/>
-                    </Chat>
-                
-                    <SideBar>
-                        
-                        Правое меню
-                        
-                    </SideBar>
-                </Wrapper>
-
-                
                 {/* <SideBar>
                     <User>
-                        <Avatar src = {ava} alt = 'user' ></Avatar>
+                        <Avatar src = "https://sun9-3.userapi.com/c856024/v856024817/1ea646/lC0Q1b3PPzc.jpg?ava=1" alt = 'user' />
                         <UserInfo>
-                            Van Darkholme
+                            MIMOG
                         </UserInfo>
                     </User>
-                    <NavLink exact to="/contacts" activeStyle={ActiveNavLink}>
+                    <NavLink to="/im/dialogs" activeStyle={ActiveNavLink}>
+                        Диалоги
+                    </NavLink>
+                    <NavLink to="/im/contacts" activeStyle={ActiveNavLink}>
                         Контакты
                     </NavLink>
-                    <NavLink exact to="/settings" activeStyle={ActiveNavLink}>
+                    <NavLink to="/settings" activeStyle={ActiveNavLink}>
                         Настройки
                     </NavLink>
-                    <NavLink exact to="/invite" activeStyle={ActiveNavLink}>
+                    <NavLink to="/invite" activeStyle={ActiveNavLink}>
                         Добавить друга
                     </NavLink>
-                    <NavLink exact to="/help" activeStyle={ActiveNavLink}>
+                    <NavLink to="/help" activeStyle={ActiveNavLink}>
                         Помощь
                     </NavLink>
                 </SideBar> */}
             
-{/*                 
-                <Body>
-                    2
-                </Body> */}
-               
+                <Wrapper>
+                    {/* <Switch>
+                        <Route path ="/im/sid" component={ChatComponent}/>
+                        <Route path ="/im/contacts" component={Dialogs}/>
+                        <Route path ="/im/dialogs" component={ChatComponent}/>
+                    </Switch> */}
+                    <Dialogs
+                        userId = {0}
+                        items = {[
+                                {
+                                    _id: Math.random(),
+                                    text: "Привет, Друх! Как дела?",
+                                    //isReaded: false,
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 1,
+                                        fullname: "Владимир Овчинников",
+                                        avatar: null,
+                                        isonline: true
+                                    }
+                                },
+
+                                {
+                                    _id: Math.random(),
+                                    text: "Привет, Друх! Как дела?",
+                                    //isReaded: false,
+                                    created_at: new Date(2020, 3,3),
+                                    user: {
+                                        _id: 1,
+                                        fullname: "Владимир Овчинников",
+                                        avatar: null,
+                                        isonline: true
+                                    }
+                                },
+
+                            ]
+                        }
+                    
+                    
+                    />
+                </Wrapper>
+                <Wrapper2>
+                    <ChatComponent/>
+                </Wrapper2>
             </StyledMessenger>
         )
     }

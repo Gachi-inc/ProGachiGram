@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     --color-accent: hsl(49, 100%, 71%);
     --color-dark: hsl(0, 0%, 10%);
+    --color-online: rgb(0, 201, 128);
     --color-dark-translucent: hsla(0, 0%, 10%, 0.85);
     --color-light: hsl(70, 0%, 95%);
     --content-width: ${CONTENT_WIDTH}px;
@@ -18,7 +19,14 @@ export const GlobalStyles = createGlobalStyle`
     --margin: 4%
   }
   html
+  
+
+
+
+
   body {
+    //background-image: url('https://www.nastol.com.ua/pic/201906/2560x1600/nastol.com.ua-346735.jpg'); 
+    //backdrop-filter: blur(10px);
     background-color: var(--color-dark);
     color: var(--color-light);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -91,11 +99,8 @@ export const GlobalStyles = createGlobalStyle`
   a:not([class]) {
     text-decoration-skip-ink: auto;
   }
-  /* Make images easier to work with */
-  img {
-    display: block;
-    max-width: 100%;
-  }
+
+  
   /* Natural flow and rhythm in articles by default */
   article > * + * {
     margin-top: 1em;

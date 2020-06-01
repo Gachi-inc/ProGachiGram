@@ -6,9 +6,25 @@ import {
     MenuForPhones, MenuInsides, Navbar, NavLinkMobile, SpanStyle
 } from './Header.styles';
 
+function CheckUser(props){
+    const isLogIn = props.isLogIn;
+    if(isLogIn){
+        <NavLink activeStyle={ActiveNavLink}>
+            {'LogOut'}
+        </NavLink>
+    }
+    return <nav>
+            <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
+                {'SingIn'}
+            </NavLink>
+
+            <NavLink exact to="/login" activeStyle={ActiveNavLink}>
+                {'LogIn'}
+            </NavLink>
+</nav>
+}
 
 export class Header extends Component{
-
     render(){
         return(
         <StyledHeader>
@@ -25,17 +41,10 @@ export class Header extends Component{
                                 {'Start'}
                             </NavLink>
 
-                            <NavLink exact to="/app" activeStyle={ActiveNavLink}>
+                            <NavLink exact to="/im" activeStyle={ActiveNavLink}>
                                 {'Messenger'}
                             </NavLink>
-
-                            <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
-                                {'SingIn'}
-                            </NavLink>
-
-                            <NavLink exact to="/login" activeStyle={ActiveNavLink}>
-                                {'LogIn'}
-                            </NavLink>
+                            <CheckUser isLogIn={false}/>
                         </nav> 
                     </Container>
             </MediaQuery>
@@ -44,7 +53,7 @@ export class Header extends Component{
     }
 }
 
-{/* Для мобилок вспомогательный код */}
+/* Для мобилок вспомогательный код */
 
 const HamburgerButton = () => {
     const {isMenuOpen, toggleMenuMode} = useContext(MenuContext);
