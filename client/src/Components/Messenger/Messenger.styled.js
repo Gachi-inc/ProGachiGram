@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {NavLink as RouterLink} from 'react-router-dom';
+
 export const StyledMessenger = styled.div`
   max-width: var(--content-width);
   display: flex;
@@ -154,3 +155,17 @@ export const SideBar = styled.div`
   }
 `
 
+export const Empty=styled.div`
+text-align: center;
+
+img.dialogs-empty{
+  display: block;
+  margin: 50% auto 0 auto;
+  filter: brightness(0) invert(1);
+}
+
+img.messages-empty{
+  display: block;
+  margin: 50% auto 0 auto;
+}
+`
