@@ -6,23 +6,23 @@ import {
     MenuForPhones, MenuInsides, Navbar, NavLinkMobile, SpanStyle
 } from './Header.styles';
 
-function CheckUser(props){
-    const isLogIn = props.isLogIn;
-    if(isLogIn){
-        <NavLink activeStyle={ActiveNavLink}>
-            {'LogOut'}
-        </NavLink>
-    }
-    return <nav>
-            <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
-                {'SingIn'}
-            </NavLink>
+// function CheckUser(props){
+//     const isLogIn = props.isLogIn;
+//     if(isLogIn){
+//         <NavLink activeStyle={ActiveNavLink}>
+//             {'LogOut'}
+//         </NavLink>
+//     }
+//     return <nav>
+//             <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
+//                 {'SingIn'}
+//             </NavLink>
 
-            <NavLink exact to="/login" activeStyle={ActiveNavLink}>
-                {'LogIn'}
-            </NavLink>
-</nav>
-}
+//             <NavLink exact to="/login" activeStyle={ActiveNavLink}>
+//                 {'LogIn'}
+//             </NavLink>
+// </nav>
+//}
 
 export class Header extends Component{
     render(){
@@ -44,7 +44,7 @@ export class Header extends Component{
                             <NavLink exact to="/im" activeStyle={ActiveNavLink}>
                                 {'Messenger'}
                             </NavLink>
-                            <CheckUser isLogIn={false}/>
+                            {/* <CheckUser isLogIn={false}/> */}
                         </nav> 
                     </Container>
             </MediaQuery>

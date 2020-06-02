@@ -19,12 +19,12 @@ export class ChatComponent extends Component{
         return(
             <React.Fragment>
                 <ChatName>
-                    <div className = "chat__username">
+                    <b className = "chat__username">
                         Владимир
                         <IsOnline>
                         {isOnline? "online": ""}
                         </IsOnline>
-                    </div>
+                    </b>
                     <div className = "chat__searchbar">
                         {/* <SearchBar/> */}
                         <img src = {searchSvg} alt = "searchIcon"/>

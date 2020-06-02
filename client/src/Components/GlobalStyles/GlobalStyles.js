@@ -7,11 +7,12 @@ export const GlobalStyles = createGlobalStyle`
     --color-accent: hsl(49, 100%, 71%);
     --color-dark: hsl(0, 0%, 10%);
     --color-online: rgb(0, 201, 128);
+    --color-offline: #bfbfbf;
     --color-dark-translucent: hsla(0, 0%, 10%, 0.85);
     --color-light: hsl(70, 0%, 95%);
     --content-width: ${CONTENT_WIDTH}px;
-    --font-size-xs: 17px;
-    --font-size-s: 18px;
+    --font-size-xs: 12px;
+    --font-size-s: 16px;
     --font-size-m: 22px;
     --font-size-l: 30px;
     --font-size-xl: 46px;
@@ -25,6 +26,7 @@ export const GlobalStyles = createGlobalStyle`
 
 
   body {
+    
     //background-image: url('https://www.nastol.com.ua/pic/201906/2560x1600/nastol.com.ua-346735.jpg'); 
     //backdrop-filter: blur(10px);
     background-color: var(--color-dark);

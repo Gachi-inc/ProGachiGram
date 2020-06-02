@@ -3,9 +3,10 @@ import {NavLink as RouterLink} from 'react-router-dom';
 export const StyledMessenger = styled.div`
   max-width: var(--content-width);
   display: flex;
-  align-items: center;
   width: 100%;
-  padding: var(--padding);
+  background: #333;
+  box-shadow: 0px 0px 25px rgba(0,0,0,0.5);
+  height: 88vh;
 `;
 
 // export const Chat = styled.div`
@@ -64,22 +65,78 @@ export const UserInfo = styled.div`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
-  height: 500px;
+  width: calc(100% - 300px);
 `
 
-export const Wrapper2 = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: calc(100% - 300px);
-  height: 500px;
-`
+// export const Wrapper2 = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   width: calc(100% - 300px);
+//   height: 500px;
+// `
 
 export const SideBar = styled.div`
-  color: #fff;
   display: flex;
   flex-direction: column;
-  margin-bottom: auto;
-  padding-right: 10px;
+  color: #fff;
+  width: 320px;
+  z-index: 1000;
+  box-shadow: 5px 0 10px rgba(0,0,0,0.5);
+
+  .sidebar__header{
+    border-bottom: 1px solid white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    
+    span{
+      margin-left: 5px;
+    }
+    button{
+      background: #333;
+      cursor: pointer;
+    }
+    img{
+      display: inline-block;
+      height: 23px;
+      width: 23px;
+    }
+  }
+  .sidebar__search-dialog{
+    font-size: var(--font-size-s);
+    background-color: #333;
+    color: white;
+    line-height: 32px;
+    padding: 0 10px;
+    width: calc(100% - 40px);
+    margin: 0 20px 20px 20px;
+    border-bottom: 1px solid white;
+    :focus {
+      box-shadow: 0 0 10px 0 white;
+    }
+    :hover{
+      box-shadow: 0 0 10px 0 white;
+      transition: .3s;
+    }
+  }
+
+  .sidebar__dialogs{
+    overflow: auto;
+    height: 88vh;
+    .dialogs{
+      .dialogs__item{
+        padding: 10px 20px;
+        margin-bottom: 0;
+        cursor: pointer;
+        :active, :hover{
+          background-color: var(--color-light);
+          color: black;
+          box-shadow: 3px 0 5px rgba(255,255,255,.5);
+        }
+      }
+    }
+  }
 `
 
