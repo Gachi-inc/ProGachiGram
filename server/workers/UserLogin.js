@@ -4,8 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(process.env.uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 function login (req, res) {
-    
-   client.connect(err => {
+    client.connect(err => {
       if(err) {
         console.log('Oops!', err)
         setTimeout(() => {

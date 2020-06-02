@@ -9,12 +9,14 @@ import {
 
 function CheckUser(props){
      const isLogIn = props.isLogIn;
-     //if(isLogIn){
-     //    return 
-     //    <NavLink exact to="/" activeStyle={ActiveNavLink}>
-     //        {'LogOut'}
-     //    </NavLink>
-     //}
+     if(isLogIn){
+         return 
+         /*<nav>
+             <NavLink exact to="/" activeStyle={ActiveNavLink}>
+                {'LogOut'}
+            </NavLink>
+         </nav>*/
+     }
      return <nav>
              <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
                 {'SingIn'}
@@ -27,7 +29,14 @@ function CheckUser(props){
     }
 
 export class Header extends Component{
+    state = {LogBool: false};
+
     
+    componentDidMount() {
+        fetch('/api/login')
+          .then(res => res.json())
+          .then(LogBool => this.setState({ LogBool }));
+      }
     render(){
         return(
         <StyledHeader>
@@ -40,6 +49,7 @@ export class Header extends Component{
                     <Container>
                         <Logo>ProGachiGram</Logo>
                         <nav>
+                            <CheckUser isLogIn={this.state.LogBool}/>
                             <NavLink exact to="/" activeStyle={ActiveNavLink}>
                                 {'Start'}
                             </NavLink>
@@ -47,7 +57,6 @@ export class Header extends Component{
                             <NavLink exact to="/im" activeStyle={ActiveNavLink}>
                                 {'Messenger'}
                             </NavLink>
-                            <CheckUser isLogIn={false}/>
                         </nav> 
                     </Container>
             </MediaQuery>
