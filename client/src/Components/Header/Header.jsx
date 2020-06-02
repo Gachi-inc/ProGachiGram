@@ -5,26 +5,34 @@ import {
     ActiveNavLink, Container, Logo, NavLink, StyledHeader,
     MenuForPhones, MenuInsides, Navbar, NavLinkMobile, SpanStyle
 } from './Header.styles';
+//import login from '/server/workers/UserLogin';
 
-function CheckUser(props){
+/*function CheckUser(props){
     const isLogIn = props.isLogIn;
     if(isLogIn){
-        <NavLink activeStyle={ActiveNavLink}>
-            {'LogOut'}
-        </NavLink>
+        return(
+            <nav>
+                <NavLink exact to="/" activeStyle={ActiveNavLink}>
+                    {'LogOut'}
+                </NavLink>
+            </nav>
+        )
     }
-    return <nav>
-            <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
-                {'SingIn'}
-            </NavLink>
+    return (
+        <nav>
+        <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
+            {'SingIn'}
+        </NavLink>
 
-            <NavLink exact to="/login" activeStyle={ActiveNavLink}>
-                {'LogIn'}
-            </NavLink>
-</nav>
-}
+        <NavLink exact to="/login" activeStyle={ActiveNavLink}>
+            {'LogIn'}
+        </NavLink>
+    </nav>
+    )
+}*/
 
 export class Header extends Component{
+    
     render(){
         return(
         <StyledHeader>
@@ -44,7 +52,15 @@ export class Header extends Component{
                             <NavLink exact to="/im" activeStyle={ActiveNavLink}>
                                 {'Messenger'}
                             </NavLink>
-                            <CheckUser isLogIn={false}/>
+                            
+                            <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
+                                {'SingIn'}
+                            </NavLink>
+
+                            <NavLink exact to="/login" activeStyle={ActiveNavLink}>
+                                {'LogIn'}
+                            </NavLink>
+                            {/*<CheckUser isLogIn={false}/>*/}
                         </nav> 
                     </Container>
             </MediaQuery>

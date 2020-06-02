@@ -2,9 +2,9 @@ const bcrypt =  require('bcryptjs')
 const uri = "";
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(process.env.uri, { useNewUrlParser: true, useUnifiedTopology: true });
-const LogInBool = false;
+
 function login (req, res) {
-    console.log('a');
+    
    client.connect(err => {
       if(err) {
         console.log('Oops!', err)
@@ -55,8 +55,7 @@ function login (req, res) {
                     responseBody = {
                         login: dbLogin,
                         password
-                    };
-                    LogInBool = true;
+                    };      
                 } else {
                     responseBody = {
                         error: true,
