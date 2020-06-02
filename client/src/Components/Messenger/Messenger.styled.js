@@ -68,12 +68,26 @@ export const Wrapper = styled.div`
   width: calc(100% - 300px);
 `
 
-// export const Wrapper2 = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   width: calc(100% - 300px);
-//   height: 500px;
-// `
+export const Search = styled.input`
+  font-size: var(--font-size-s);
+  background-color: #333;
+  color: white;
+  line-height: 32px;
+  padding: 0 10px;
+  width: calc(100% - 40px);
+  margin: 0 20px 20px 20px;
+  border-bottom: 1px solid white;
+  :focus {
+    box-shadow: 0 0 10px 0 white;
+  }
+  :hover{
+    box-shadow: 0 0 10px 0 white;
+    transition: .3s;
+  }
+`
+
+
+
 
 export const SideBar = styled.div`
   display: flex;
