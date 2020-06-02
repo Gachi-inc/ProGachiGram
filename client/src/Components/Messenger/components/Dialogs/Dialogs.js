@@ -1,8 +1,7 @@
 import React from 'react';
 import DialogItem from './DialogItem'
 import orderBy from 'lodash/orderBy'
-import isToday from 'date-fns/isToday'
-const Dialogs = ({items, userId}) =>(  
+const Dialogs = ({items, userId, onSearch}) =>(  
         <div className = "dialogs">
 
             {orderBy(items, ["created_at"], ["desc"]).map(item =>(
@@ -16,4 +15,4 @@ const Dialogs = ({items, userId}) =>(
     );
 
 
-export default Dialogs
+export {Dialogs};

@@ -22,18 +22,43 @@ const getAvatar = (avatar, user) =>{
             alt= { `${user.fullname} avatar`} 
         />
       ) 
-      
-      
   } else {
-
+      return(
+        createDefaultAvatar(user)
+      )
   }
 }
+
+const createDefaultAvatar = (user) =>{
+    const colors = ["#71dadf", "#8c7ac8", "#119b89", "#fdcc17", "#e49737"];
+    const colorId = Math.floor(Math.random()*(5 - 0) + 0);
+    const firstChar = user.fullname[0].toUpperCase();
+    console.log(colorId)
+    return(
+        <div
+            style={{
+                background: `${colors[colorId]}`
+            }}
+            className="avatar--symbol"
+      >
+        {firstChar}
+      </div>
+    )
+
+}
+
+
+
+
+
+
+
 
 
 const DialogItem = ({ user, unreaded, created_at, text, isMe}) =>{  
     return(
         
-        <DlgItm >
+        <DlgItm className = "dialogs__item">
             <UserАvatar>
                 {getAvatar(user.avatar, user) }
                 {user.isonline? <IsOnline/> : ""}
