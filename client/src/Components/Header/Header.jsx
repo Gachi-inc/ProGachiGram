@@ -7,6 +7,7 @@ import {
 } from './Header.styles';
 //import login from '/server/workers/UserLogin';
 
+<<<<<<< HEAD
 /*function CheckUser(props){
     const isLogIn = props.isLogIn;
     if(isLogIn){
@@ -30,6 +31,25 @@ import {
     </nav>
     )
 }*/
+=======
+// function CheckUser(props){
+//     const isLogIn = props.isLogIn;
+//     if(isLogIn){
+//         <NavLink activeStyle={ActiveNavLink}>
+//             {'LogOut'}
+//         </NavLink>
+//     }
+//     return <nav>
+//             <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
+//                 {'SingIn'}
+//             </NavLink>
+
+//             <NavLink exact to="/login" activeStyle={ActiveNavLink}>
+//                 {'LogIn'}
+//             </NavLink>
+// </nav>
+//}
+>>>>>>> e95f3a6905e7b5c013e891fa4fc307f076d56be5
 
 export class Header extends Component{
     
@@ -52,6 +72,7 @@ export class Header extends Component{
                             <NavLink exact to="/im" activeStyle={ActiveNavLink}>
                                 {'Messenger'}
                             </NavLink>
+<<<<<<< HEAD
                             
                             <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
                                 {'SingIn'}
@@ -61,6 +82,9 @@ export class Header extends Component{
                                 {'LogIn'}
                             </NavLink>
                             {/*<CheckUser isLogIn={false}/>*/}
+=======
+                            {/* <CheckUser isLogIn={false}/> */}
+>>>>>>> e95f3a6905e7b5c013e891fa4fc307f076d56be5
                         </nav> 
                     </Container>
             </MediaQuery>

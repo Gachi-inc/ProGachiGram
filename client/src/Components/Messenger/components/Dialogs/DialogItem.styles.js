@@ -66,7 +66,14 @@ export const UserАvatar = styled.div`
         height: 100%;
         width: 100%;            
     }
-
+    div{
+        text-align: center;
+        padding-top: 2px;
+        font-size: var(--font-size-m);
+        border-radius: 50%;
+        height: 100%;
+        width: 100%;     
+    }
 
 `
 
@@ -80,7 +87,7 @@ export const IsOnline = styled.div.attrs (() => ({
         right: 0px;
         content: "";
         background-color: var(--color-online);
-        border: solid var(--color-dark);
+        border: solid #333;
         border-radius: 30px;
         width: 15px;
         height: 15px;
@@ -88,7 +95,7 @@ export const IsOnline = styled.div.attrs (() => ({
 `
 
 export const DlgItm = styled.div`
-    margin-bottom: 30px;
+    
     display: flex;
-    width: 280px;
+    
 `

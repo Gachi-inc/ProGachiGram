@@ -10,7 +10,7 @@ const Type = (isMe) =>{
 }
 
 
-const Message = ({avatar,user, text, date, isMe}) =>{  
+    const Message = ({avatar,user, text, date, isMe }) =>{  
     return(
         <Msg className = {Type(isMe)}>
             <Аvatar className ="msg__avatar">
