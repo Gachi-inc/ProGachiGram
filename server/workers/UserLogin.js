@@ -1,9 +1,9 @@
 const bcrypt =  require('bcryptjs')
-const uri = "";
+const {uri} = require('../config.js');
 const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(process.env.uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-function login (req, res) {
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+let responseBody = {}
+function login (req, res, next) {
     client.connect(err => {
       if(err) {
         console.log('Oops!', err)
@@ -22,7 +22,8 @@ function login (req, res) {
         }, (err, result) => {
             //Проверка на корректный ввод
             if (!result) {
-                res.send({
+                res.send(responseBody = {
+                    success: false,
                     error: true,
                     errorMessage: 'Не правильно указан логин.'
                 });
@@ -30,7 +31,8 @@ function login (req, res) {
             }
 
             if (err) {
-                res.send({
+                res.send(responseBody = {
+                    success: false,
                     error: true,
                     errorMessage: err
                 });
@@ -49,22 +51,23 @@ function login (req, res) {
             });
             
             passwordsAreEqual.then(result => {
-                let responseBody = {};
                 if (result) {
                     responseBody = {
                         login: dbLogin,
-                        password
-                    };      
+                        success: true
+                    };
+                    
                 } else {
                     responseBody = {
+                        success: false,
                         error: true,
                         errorMessage: 'Не правильный пароль!'
                     };
-                }   
-                
-                res.send(responseBody); 
+                }  
+                res.send(responseBody);            
             }).catch(err => {
                 res.send({
+                    success: false,
                     error: true,
                     errorMessage: err
                 });

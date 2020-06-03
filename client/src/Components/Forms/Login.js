@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-//import '../App.css';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
 export class Login extends Component{
     constructor(props) {

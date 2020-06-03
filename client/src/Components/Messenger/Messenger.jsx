@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Message from "../Message/Message"
 import Dialogs from './containers/Dialogs'
-
+import SocketChat from 'socket.io-client';
 import UsersSvg from '../../assets/svg/users.svg'
 import СreateDialSvg from '../../assets/svg/create.svg'
 import searchSvg from "assets/svg/search.svg"
@@ -24,6 +24,7 @@ import {
     IsOnline,
 } from './components/Chat/Chat.styles';
 
+//const socket = SocketChat('http://localhost:5000');
 
 class Messenger extends Component{
     

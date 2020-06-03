@@ -9,15 +9,15 @@ import {
 
 function CheckUser(props){
      const isLogIn = props.isLogIn;
-     if(isLogIn){
-         return 
-         /*<nav>
-             <NavLink exact to="/" activeStyle={ActiveNavLink}>
+     if(isLogIn.success)
+     {
+        return <nav>
+            <NavLink exact to="/" activeStyle={ActiveNavLink}>
                 {'LogOut'}
             </NavLink>
-         </nav>*/
+            </nav>
      }
-     return <nav>
+     else return <nav>
              <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
                 {'SingIn'}
              </NavLink>
@@ -29,14 +29,13 @@ function CheckUser(props){
     }
 
 export class Header extends Component{
-    state = {LogBool: false};
-
-    
+    state = {LogBool: {success: false}};
     componentDidMount() {
         fetch('/api/login')
           .then(res => res.json())
           .then(LogBool => this.setState({ LogBool }));
       }
+    
     render(){
         return(
         <StyledHeader>

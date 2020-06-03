@@ -1,7 +1,7 @@
 const bcrypt =  require('bcryptjs')
-//const {uri} = require('../config.js');
+const {uri} = require('../config.js');
 const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(process.env.uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 function register(req, res) {
    console.log('a');
