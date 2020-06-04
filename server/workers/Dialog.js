@@ -18,9 +18,7 @@ function showDialog (req, res) {
          const db = client.db('Dialogs');
 
          db.collection('DialogsData').findOne({
-             $or: [
-
-                ]
+            
          }, (err, result) => {
 
          });

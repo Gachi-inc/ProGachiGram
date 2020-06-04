@@ -49,18 +49,20 @@ function register(req, res) {
          const salt = bcrypt.genSaltSync(10);
          const passwordToSave = bcrypt.hashSync(password, salt);
 
-         const user  = {login, email, passwordToSave}
+         var confirmed = false;
+
+         const user  = {login, email, passwordToSave, confirmed}
          
          db.collection('UserData').insertOne(user, (err, result) => {
-            
                if (err) {
                   return res.send(err);              
+               } else {
+                  return res.send({
+                     ...result.ops[0], 
+                     passwordToSave: passwordToSave,
+                     confirmed
+                  });
                }
-
-               return res.send({...result.ops[0], passwordToSave: passwordToSave});
-               setTimeout(() => {
-                  return res.redirect('../../')
-               }, 5000)
          });
       }
    });

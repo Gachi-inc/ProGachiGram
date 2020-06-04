@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var app = express();
 var socket = require('socket.io');
 const uri = "mongodb+srv://MishNigGrishPuk:5XGH24h3xUlQzFSu@cluster0-6rss2.azure.mongodb.net/test?retryWrites=true&w=majority";
 //DataBase
@@ -38,7 +38,8 @@ const dialogModelScheme = new Schema({
   toUser: String,
   dateOfCreate: Date,
   whoCreate: String,
-  lastMessage: String
+  lastMessage: String,
+  unRead: Boolean
 });
 
 const messageModelScheme = new Schema({
