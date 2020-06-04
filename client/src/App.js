@@ -4,9 +4,12 @@ import {Header} from './Components/Header/Header';
 import {Main} from './Components/Main/Main';
 import {Footer} from './Components/Footer/Footer';
 import {GlobalStyles} from './Components/GlobalStyles/GlobalStyles.js';
-//import {GlobalStyles, Header, Main} from './components';
+import socket from "./core/socket";
+
 
 class App extends Component {
+  
+
   render() {
     return (
         <BrowserRouter>
@@ -20,3 +23,4 @@ class App extends Component {
 }
 
 export default App;
+

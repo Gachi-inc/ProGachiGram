@@ -66,7 +66,7 @@ export const UserАvatar = styled.div`
         height: 100%;
         width: 100%;            
     }
-    div{
+    div.avatar--symbol{
         text-align: center;
         padding-top: 2px;
         font-size: var(--font-size-m);

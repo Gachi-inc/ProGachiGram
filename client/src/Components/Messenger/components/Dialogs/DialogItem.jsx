@@ -5,6 +5,7 @@ import { format, isToday, isThisYear } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 const getMessageTime = created_at => {
+    created_at = new Date();
     if (isToday(created_at)) {
         return format(created_at, 'HH:mm')
     }else 
@@ -53,10 +54,12 @@ const createDefaultAvatar = (user) =>{
 
 
 
-const DialogItem = ({ user, unreaded, created_at, text, isMe}) =>{  
+const DialogItem = ({ _id, user, unreaded, created_at, text, isMe, onSelect}) =>{  
     return(
         
-        <DlgItm className = "dialogs__item">
+        <DlgItm className = "dialogs__item"
+        onClick = {onSelect.bind(this, _id)}
+        >
             <UserАvatar>
                 {getAvatar(user.avatar, user) }
                 {user.isonline? <IsOnline/> : ""}

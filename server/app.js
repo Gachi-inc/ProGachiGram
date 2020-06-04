@@ -4,6 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const {uri} = require('./config.js');
+//socket.io
+var app = express();
+
+
+
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -27,9 +32,12 @@ var usersRouter = require('./routes/users');
 var sendMailerRouter = require('./routes/SendMailerRoute')
 var regRoute = require('./routes/RegRoute.js')
 var logRoute = require('./routes/LogRoute.js');
+
+var dialogRoute = require('./routes/dialogRoute.js');
 //var register = require('../client/src/Pages/Registrate');
 //app.use('/registrate');
-var app = express();
+
+
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
@@ -58,7 +66,7 @@ app.use('/api', indexRouter);
 app.use('/api/registrate', regRoute);
 app.use('/api/login', logRoute);
 app.use('/api/users', usersRouter);
-
+app.use('/api/dialogs', dialogRoute);
 // Swagger UI
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
