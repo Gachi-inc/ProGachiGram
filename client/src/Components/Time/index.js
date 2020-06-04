@@ -6,7 +6,7 @@ import { ru } from 'date-fns/locale';
 const Time = ({date}) =>{
     return(
         <React.Fragment>
-            {formatDistanceToNow(date, {locale: ru},{addSuffix: true})}
+            {formatDistanceToNow(new Date(), {locale: ru},{addSuffix: true})}
         </React.Fragment>
     )
 }

@@ -1,7 +1,8 @@
 import React from 'react';
-import {Msg, Аvatar, Bubble, Text, MsgDate} from './Message.styled'
+import {Msg, MsgАvatar, Bubble, Text, MsgDate} from './Message.styled'
 import PropTypes from 'prop-types' 
 import  Time from '../Time/index'
+import Avatar from '../Messenger/components/Avatar'
 
 const Type = (isMe) =>{
     return(
@@ -10,12 +11,13 @@ const Type = (isMe) =>{
 }
 
 
-    const Message = ({avatar,user, text, date, isMe }) =>{  
+const Message = ({user, text, date, isMe, _id }) =>{
+
     return(
-        <Msg className = {Type(isMe)}>
-            <Аvatar className ="msg__avatar">
-                <img src = {avatar} alt = {`Avatar ${user}`}/>
-            </Аvatar>
+        <Msg className = {Type(isMe), _id}  >
+            <MsgАvatar className ="msg__avatar">
+                <Avatar user = {user}/>
+            </MsgАvatar>
             <div className = 'message__content' >
                 <Bubble className ="msg__bubble">
                     <Text lassName ="msg__text">
@@ -30,8 +32,8 @@ const Type = (isMe) =>{
             </div>
         </Msg>
     )   
-    
-    }
+
+}
 
 Message.defaultProps = {
     user: {}

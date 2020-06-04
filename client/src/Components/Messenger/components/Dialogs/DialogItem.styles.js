@@ -61,20 +61,12 @@ export const UserАvatar = styled.div`
     height: 40px;
     width: 40px;
     margin-right: 10px;
-    img{
+    .avatar--symbol, img{
         border-radius: 50%; 
         height: 100%;
-        width: 100%;            
+        width: 100%;    
+        line-height: 37px;   
     }
-    div.avatar--symbol{
-        text-align: center;
-        padding-top: 2px;
-        font-size: var(--font-size-m);
-        border-radius: 50%;
-        height: 100%;
-        width: 100%;     
-    }
-
 `
 
 export const IsOnline = styled.div.attrs (() => ({

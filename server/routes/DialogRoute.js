@@ -6,160 +6,119 @@ router.use(express.json());
 router.use(express.urlencoded());
 
 router.get('/', (req, res) => {
-    res.json([
+    res.json(
+      [
         {
-            _id: "5ed677050ab366sdaf828244",
-            text: "Привет, Друх! Как дела?",
-            //isReaded: false,
-            created_at: 'Thu Aug 29 2019 17:05:0',
-            user: {
-                _id: 1,
-                fullname: "Владимир Овчинников",
-                avatar: null,
-                isonline: true
-            }
-        },
-        {
-            _id: "5ed677050ab366f5efda8244",
-            text: "Привет, Друх! Как дела?",
-            //isReaded: false,
-            created_at: 'Thu Aug 29 2019 17:05:0',
-            user: {
-                _id: 1,
-                fullname: "Григорий Савин",
-                avatar: null,
-                isonline: true
-            }
-        },
-        {
-            _id: "5edd77050ab366f5ed828244",
-            text: "Привет, Друх! Как дела?",
-            //isReaded: false,
-            created_at: "new Date(2020, 3,3)",
-            user: {
-                _id: 1,
-                fullname: "NekitLnp",
-                avatar: null,
-                isonline: true
-            }
-        },
-        {
-            _id: "5ed677050afs66f5ed828244",
-            text: "Привет, Друх! Как дела?",
-            //isReaded: false,
-            created_at: "new Date(2020, 3,3)",
-            user: {
-                _id: 1,
-                fullname: "Камень",
-                avatar: null,
-                isonline: true
-            }
-        },
-
-        {
-            _id: "5ed677050ab366f5sdf28244",
-            text: "Как там с энергией?",
-            //isReaded: false,
-            created_at: "new Date(2020, 3,3)",
-            user: {
-                _id: 1,
-                fullname: "Альберт Энштейн",
-                avatar: "https://images.artwanted.com/large/98/31049_1460598.JPG",
-                isonline: true
-            }
-        },
-
-        {
-            "_id": "5ed677050ab366f5ed828244",
-            "text": "Ipsum do ut consectetur duis voluptate velit et do anim tempor. Velit do commodo do dolore tempor sunt sint laboris elit commodo ad Lorem dolore amet. Aliqua magna anim ad tempor elit consequat nostrud sint.",
-            "created_at": "new Date(2019, 0, 1)",
-            "user": {
-              "fullname": "Wilder",
-              "isonline": true
-            }
-          },
-          {
-            "_id": "5ed677055d90c71e19451162",
-            "text": "Non veniam ad exercitation sint eu ad do ullamco nostrud. Pariatur ipsum reprehenderit cillum exercitation nisi cillum. Quis aliquip eiusmod dolore veniam incididunt laborum enim dolore fugiat id.",
-            "created_at": "new Date(2017, 0, 1)",
-            "user": {
-              "fullname": "Bailey",
-              "isonline": false
-            }
-          },
-          {
-            "_id": "5ed67705ed90c80f1e633555",
-            "text": "Magna occaecat nisi aliquip do. Fugiat aute exercitation veniam eu exercitation. Qui amet voluptate nulla aliqua.",
-            "created_at": "new Date(2016, 4, 1)",
-            "user": {
-              "fullname": "Candice",
-              "isonline": true
-            }
-          },
-          {
-            "_id": "5ed677054cc52763acaca2d5",
-            "text": "Excepteur deserunt sit esse nulla cupidatat sint aliquip adipisicing voluptate tempor sunt laboris voluptate. Deserunt cillum nostrud veniam adipisicing mollit ut. Do nisi eu elit ex.",
-            "created_at": "new Date(2016, 0, 3)",
-            "user": {
-              "fullname": "Banks",
-              "isonline": false
-            }
-          },
-          {
-            "_id": "5ed6770561a867a852b597cf",
-            "text": "Labore nisi eiusmod est officia nulla. Officia consequat proident nulla magna esse ad. Quis ut excepteur sit sint.",
-            "created_at": "new Date(2016, 12, 1)",
-            "user": {
-              "fullname": "Wendi",
-              "isonline": false
-            }
-          },
-          {
-            "_id": "5ed677058838c4c0660ea190",
-            "text": "Et in elit dolor non veniam sit culpa nulla. Amet veniam occaecat magna aute non velit commodo sit dolore ullamco eu in. Proident laboris excepteur occaecat nostrud nostrud eu Lorem qui laborum labore.",
-            "created_at": "new Date(2016, 20, 34)",
-            "user": {
-              "fullname": "Eloise",
-              "isonline": true
-            }
-          },
-          {
-            "_id": "5ed67705f519f4aeasd069ee",
-            "text": "Quis proident ut excepteur proident aliquip pariatur eiusmod laborum. Aute sit velit veniam amet laborum sunt tempor eiusmod adipisicing duis sunt esse laboris. Sunt quis cupidatat consectetur esse adipisicing non sunt enim culpa ex dolore fugiat veniam.",
-            "created_at": "new Date(2016, 0, 1)",
-            "user": {
-              "fullname": "Latisha",
-              "isonline": false
-            }
-          },
-          {
-            "_id": "5ed6770asdbd8fb61d6a626d",
-            "text": "Nisi ad eu commodo cillum ut cillum. Aliqua reprehenderit commodo labore deserunt cillum magna nulla magna aliquip. Ipsum ullamco ad ipsum excepteur in minim laboris reprehenderit laborum ex fugiat officia.",
-            "created_at": "new Date(2016, 0, 1)",
-            "user": {
-              "fullname": "Shaffer",
-              "isonline": false
-            }
-          },
-          {
-            "_id": "5ed67706a39a6345b603f783",
-            "text": "Voluptate sunt aute velit ipsum fugiat magna irure sint esse cillum nostrud cillum commodo pariatur. Est pariatur ad mollit amet aliquip id dolor do elit laborum sit dolore ut ad. Eu et nulla cillum esse cillum id aliquip deserunt.",
-            "created_at": "new Date(2016, 0, 1)",
-            "user": {
-              "fullname": "Steele",
-              "isonline": false
-            }
-          },
-          {
-            "_id": "5ed67706a9a837cb22441d12",
-            "text": "Id eu proident irure elit eiusmod reprehenderit. Fugiat do adipisicing non irure nisi aliqua ipsum qui sunt tempor. Aute ipsum enim ea laborum irure ipsum fugiat do.",
-            "created_at": "new Date(2016, 0, 1)",
-            "user": {
-              "fullname": "Katy",
-              "isonline": true
-            }
+          "_id": "5ed92d44439b676fe66d7058",
+          "text": "Incididunt adipisicing commodo magna dolor sit exercitation sunt qui pariatur ea incididunt. Pariatur ex fugiat proident mollit ipsum. Esse qui elit velit cupidatat excepteur ea in cupidatat nisi. Pariatur deserunt aliquip dolore incididunt reprehenderit adipisicing pariatur Lorem qui dolore tempor irure sunt amet. Eiusmod ullamco aute dolor aliquip do.",
+          "created_at": 231232323,
+          "user": {
+            "_id": "5ed92d4492c79ee9fb2047ed",
+            "fullname": "Glenna Beard",
+            "avatar": null,
+            "isonline": false
           }
-    ])
+        },
+        {
+          "_id": "5ed92d44a38f936a3c82804f",
+          "text": "Consectetur exercitation consequat pariatur occaecat in incididunt. Nulla sint eu quis occaecat sit consectetur exercitation duis incididunt veniam exercitation labore et. Pariatur aute voluptate quis ad officia incididunt. Dolore non nisi proident labore magna officia sint incididunt ad laboris fugiat. Nulla laboris aliqua exercitation labore.",
+          "created_at": 231232323,
+          "user": {
+            "_id": "5ed92d44df31733c172c451d",
+            "fullname": "Robert Medina",
+            "avatar": null,
+            "isonline": false
+          }
+        },
+        {
+          "_id": "5ed92d44a679a651b5b92262",
+          "text": "Nostrud nulla veniam eiusmod voluptate aliquip tempor et amet et enim enim aliquip sit tempor. Deserunt tempor tempor cupidatat et ipsum fugiat consectetur ipsum proident est. Qui ea qui id duis cillum. Laboris ea amet aliqua ut sit in adipisicing commodo ullamco. Aliquip irure deserunt eu fugiat.",
+          "created_at": 231232323,
+          "user": {
+            "_id": "5ed92d44a2e41ec0815ece9b",
+            "fullname": "Goldie Cantrell",
+            "avatar": null,
+            "isonline": false
+          }
+        },
+        {
+          "_id": "5ed92d44e2706cb2e00b2f99",
+          "text": "Consectetur nostrud elit veniam aliquip. Est ut laborum et adipisicing exercitation quis Lorem aliqua fugiat. Fugiat labore dolor ullamco dolore eu dolor ea eiusmod amet. Sit voluptate ut mollit cupidatat. Elit velit eiusmod irure officia.",
+          "created_at": 231232323,
+          "user": {
+            "_id": "5ed92d4482153c07c1dd9642",
+            "fullname": "Erika Anderson",
+            "avatar": null,
+            "isonline": false
+          }
+        },
+        {
+          "_id": "5ed92d447bd28efc6315cf58",
+          "text": "Proident culpa labore consequat pariatur dolore mollit ullamco nisi cillum sit sint dolor. Ad dolor magna sit occaecat. Commodo ex aliquip reprehenderit anim non aute fugiat irure Lorem exercitation ad veniam. Ipsum culpa duis ad pariatur. Exercitation officia qui do duis adipisicing nisi pariatur culpa minim laboris et ullamco eu.",
+          "created_at": 231232323,
+          "user": {
+            "_id": "5ed92d44517306dcb8db985a",
+            "fullname": "Mandy Monroe",
+            "avatar": null,
+            "isonline": false
+          }
+        },
+        {
+          "_id": "5ed92d4492c79eaf9b0b6a97",
+          "text": "Dolor cillum tempor exercitation cupidatat velit occaecat et cupidatat labore eu elit eiusmod nostrud. Ad laborum non qui mollit Lorem magna reprehenderit labore. Eu Lorem qui enim commodo tempor minim officia. Aliqua ipsum do commodo minim velit culpa ipsum deserunt ea. Aute non eiusmod commodo velit dolor quis.",
+          "created_at": 231232323,
+          "user": {
+            "_id": "5ed92d445d20f3de3520bd6e",
+            "fullname": "Haley Camacho",
+            "avatar": null,
+            "isonline": false
+          }
+        },
+        {
+          "_id": "5ed92d44e9b40b865fa7fc50",
+          "text": "Velit nostrud elit nulla cupidatat do Lorem ea laboris occaecat aliqua nisi non sint esse. Do esse velit eiusmod ad aliqua aute duis. Ad magna laboris proident voluptate nulla non ut cillum aliqua proident veniam occaecat ad. Duis deserunt reprehenderit aute nisi velit qui nulla do do laboris ea eiusmod. Laborum deserunt eiusmod incididunt anim.",
+          "created_at": 231232323,
+          "user": {
+            "_id": "5ed92d441861fa861eb3b681",
+            "fullname": "Tanner Hale",
+            "avatar": null,
+            "isonline": true
+          }
+        },
+        {
+          "_id": "5ed92d44a3f02f6bb071b277",
+          "text": "Magna irure exercitation mollit consectetur aliquip minim in exercitation sit. Ullamco nisi fugiat in veniam adipisicing eiusmod magna nostrud. Qui reprehenderit cillum ad qui qui cupidatat nisi non laboris velit laborum magna veniam. Occaecat Lorem esse eiusmod qui. Ullamco velit adipisicing est dolore deserunt dolor adipisicing commodo culpa exercitation anim duis consequat minim.",
+          "created_at": 231232323,
+          "user": {
+            "_id": "5ed92d444ff6650900bdb5bb",
+            "fullname": "Shelia Chaney",
+            "avatar": null,
+            "isonline": false
+          }
+        },
+        {
+          "_id": "5ed92d449be4b7c56e116a77",
+          "text": "Nulla eiusmod sunt consequat quis officia ea velit elit. Commodo exercitation qui ullamco fugiat exercitation sit anim tempor magna anim. Consequat aliqua sit voluptate qui excepteur sunt. Minim Lorem in irure non occaecat magna ut elit in deserunt labore minim. Laborum aute commodo excepteur aliqua et mollit consectetur ex ullamco voluptate voluptate excepteur.",
+          "created_at": 231232323,
+          "user": {
+            "_id": "5ed92d44e6883ae7fa4a9668",
+            "fullname": "Burke Contreras",
+            "avatar": 'https://cdn.pricearchive.org/images/aliexpress.com/32811922958/DIY-Diamond-Embroidery-Egyptian-Pharaoh-Mask-Needlework-3D-square-Diamond-Painting-Cross-Stitch-Full-Drill-Rhinestones.jpg',
+            "isonline": true
+          }
+        },
+        {
+          "_id": "5ed92d4445346ab790aab0e5",
+          "text": "Dolor deserunt ex nulla qui ex reprehenderit in elit. Consectetur deserunt eiusmod laboris in et dolore voluptate adipisicing. Enim laborum elit labore consectetur. Tempor nostrud laboris adipisicing officia nostrud. Aliquip anim esse labore veniam fugiat reprehenderit ad Lorem nostrud minim cillum in.",
+          "created_at": 231232323,
+          "user": {
+            "_id": "5ed92d44eae49e88b13f5b79",
+            "fullname": "Jean Arnold",
+            "avatar": null,
+            "isonline": true
+          }
+        }
+      ])
 });
 
   

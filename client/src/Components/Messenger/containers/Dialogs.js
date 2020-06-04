@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import {dialogsActions} from 'redux/actions'
 import {Dialogs as BaseDialogs} from "../components/Dialogs/Dialogs"
 
-const Dialogs =({fetchDialogs, setCurrentDialog, items, userId})=>{
+const Dialogs =({fetchDialogs, setCurrentDialogId, items, userId})=>{
     const [inputValue, setValue] = useState('');
     const [filtered, setFilteredItems] = useState(Array.from(items));
 
@@ -31,7 +31,7 @@ const Dialogs =({fetchDialogs, setCurrentDialog, items, userId})=>{
             items = {filtered} 
             onSearch = {onChangeInput} 
             searchValue = {inputValue}
-            onSelectDialog = {setCurrentDialog}
+            onSelectDialog = {setCurrentDialogId}
         />
     );
 };
