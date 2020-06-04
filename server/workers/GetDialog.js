@@ -3,7 +3,7 @@ const uri = "mongodb+srv://MishNigGrishPuk:5XGH24h3xUlQzFSu@cluster0-6rss2.azure
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-function insertDialog (req, res) {
+function getDialog (req, res) {
     
     client.connect(err => {
        if(err) {
@@ -12,17 +12,20 @@ function insertDialog (req, res) {
          }, 5000);
        } else {
          console.log('Connected'); 
-         const {fromUser, toUser, whoCreate} = req.body;
+         const {user} = req.params;
          const db = client.db('Dialogs');
-        var dialogObj = {fromUser, toUser, whoCreate};
-        console.log('View Obj');
-         db.collection('DialogsData').insertOne(dialogObj, (err, result) =>{
-          console.log('Sup,', result);
+         db.collection('DialogsData').find({user}, (err, result) =>{
+            // {$or: [
+            //     { fromUser : user },
+            //     { toUser : user }
+            // ]}
+          console.log(result);
           if (err) {
+              console.log(err);
             return res.send(err);              
          } else {
             return res.send({
-               ...result.ops[0]
+               ...result.ops
             });
          }
 
@@ -31,5 +34,5 @@ function insertDialog (req, res) {
     });
  }
  module.exports =  {
-  insertDialog
+    getDialog
 }

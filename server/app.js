@@ -15,7 +15,7 @@ var usersRouter = require('./routes/users');
 var sendMailerRouter = require('./routes/SendMailerRoute')
 var regRoute = require('./routes/RegRoute.js')
 var logRoute = require('./routes/LogRoute.js');
-
+var userRouter = require('./routes/user');
 var dialogRoute = require('./routes/dialogRoute.js');
 //var register = require('../client/src/Pages/Registrate');
 //app.use('/registrate');
@@ -23,35 +23,9 @@ var dialogRoute = require('./routes/dialogRoute.js');
 
 
 //Socket setup
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-// установка схемы
-const userModelScheme = new Schema({
-  email: String,  
-  login: String,
-  passwrod: String
-});
 
-const dialogModelScheme = new Schema({
-  fromUser: String,  
-  toUser: String,
-  dateOfCreate: Date,
-  whoCreate: String,
-  lastMessage: String,
-  unRead: Boolean
-});
 
-const messageModelScheme = new Schema({
-  dialog: String,
-  from: String,  
-  to: String,
-  text: String,
-  sendDate: Date,
-  status: Boolean
-});
-
-var UserModel = mongoose.model('UserModel', userModelScheme );
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');
@@ -66,7 +40,8 @@ app.use('/api', indexRouter);
 app.use('/api/registrate', regRoute);
 app.use('/api/login', logRoute);
 app.use('/api/users', usersRouter);
-app.use('/api/dialogs', dialogRoute);
+app.use('/api/dialog', dialogRoute);
+app.use('/api/user', userRouter);
 // Swagger UI
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
