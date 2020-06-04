@@ -4,7 +4,6 @@ const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 function register(req, res) {
-   console.log('a');
    client.connect(err => {
       if(err) {
         console.log('Oops!', err)
