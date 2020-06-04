@@ -7,7 +7,6 @@ import {Login} from '../Forms/Login';
 import News from './../News/News';
 import Messenger from './../Messenger/Messenger';
 export class Main extends Component{
-
     render(){
         return (
         <StyledMain>

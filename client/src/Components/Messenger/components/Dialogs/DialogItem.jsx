@@ -5,6 +5,7 @@ import { format, isToday, isThisYear } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 const getMessageTime = created_at => {
+    created_at = new Date();
     if (isToday(created_at)) {
         return format(created_at, 'HH:mm')
     }else 
@@ -15,7 +16,7 @@ const getMessageTime = created_at => {
 
 
 const getAvatar = (avatar, user) =>{
-  if (avatar) {
+  if (typeof(avatar) === "string") {
       return(
         <img 
             src= {avatar} 
@@ -23,8 +24,16 @@ const getAvatar = (avatar, user) =>{
         />
       ) 
   } else {
-      return(
-        createDefaultAvatar(user)
+        const {currentColor, firstChar} = createDefaultAvatar(user)
+        return(
+            <div
+                style={{
+                    background: `${currentColor}`
+                }}
+                className="avatar--symbol"
+            >
+                {firstChar}
+            </div>
       )
   }
 }
@@ -33,18 +42,8 @@ const createDefaultAvatar = (user) =>{
     const colors = ["#71dadf", "#8c7ac8", "#119b89", "#fdcc17", "#e49737"];
     const colorId = Math.floor(Math.random()*(5 - 0) + 0);
     const firstChar = user.fullname[0].toUpperCase();
-    console.log(colorId)
-    return(
-        <div
-            style={{
-                background: `${colors[colorId]}`
-            }}
-            className="avatar--symbol"
-      >
-        {firstChar}
-      </div>
-    )
-
+    const currentColor = colors[colorId];
+    return {currentColor, firstChar}
 }
 
 
@@ -55,10 +54,12 @@ const createDefaultAvatar = (user) =>{
 
 
 
-const DialogItem = ({ user, unreaded, created_at, text, isMe}) =>{  
+const DialogItem = ({ _id, user, unreaded, created_at, text, isMe, onSelect}) =>{  
     return(
         
-        <DlgItm className = "dialogs__item">
+        <DlgItm className = "dialogs__item"
+        onClick = {onSelect.bind(this, _id)}
+        >
             <UserАvatar>
                 {getAvatar(user.avatar, user) }
                 {user.isonline? <IsOnline/> : ""}

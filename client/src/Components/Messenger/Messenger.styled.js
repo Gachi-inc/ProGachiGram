@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import {NavLink as RouterLink} from 'react-router-dom';
+
 export const StyledMessenger = styled.div`
   max-width: var(--content-width);
   display: flex;
   width: 100%;
   background: #333;
   box-shadow: 0px 0px 25px rgba(0,0,0,0.5);
-  height: 88vh;
+  height: calc(100vh - 80px);
 `;
 
 // export const Chat = styled.div`
@@ -68,12 +69,26 @@ export const Wrapper = styled.div`
   width: calc(100% - 300px);
 `
 
-// export const Wrapper2 = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   width: calc(100% - 300px);
-//   height: 500px;
-// `
+export const Search = styled.input`
+  font-size: var(--font-size-s);
+  background-color: #333;
+  color: white;
+  line-height: 32px;
+  padding: 0 10px;
+  width: calc(100% - 40px);
+  margin: 0 20px 20px 20px;
+  border-bottom: 1px solid white;
+  :focus {
+    box-shadow: 0 0 10px 0 white;
+  }
+  :hover{
+    box-shadow: 0 0 10px 0 white;
+    transition: .3s;
+  }
+`
+
+
+
 
 export const SideBar = styled.div`
   display: flex;
@@ -140,3 +155,17 @@ export const SideBar = styled.div`
   }
 `
 
+export const Empty=styled.div`
+text-align: center;
+
+img.dialogs-empty{
+  display: block;
+  margin: 50% auto 0 auto;
+  filter: brightness(0) invert(1);
+}
+
+img.messages-empty{
+  display: block;
+  margin: 50% auto 0 auto;
+}
+`

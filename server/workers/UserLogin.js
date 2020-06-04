@@ -23,7 +23,8 @@ function login (req, res) {
         }, (err, result) => {
             //Проверка на корректный ввод
             if (!result) {
-                res.send({
+                res.send(responseBody = {
+                    success: false,
                     error: true,
                     errorMessage: 'Не правильно указан логин.'
                 });
@@ -31,7 +32,8 @@ function login (req, res) {
             }
 
             if (err) {
-                res.send({
+                res.send(responseBody = {
+                    success: false,
                     error: true,
                     errorMessage: err
                 });
@@ -50,22 +52,23 @@ function login (req, res) {
             });
             
             passwordsAreEqual.then(result => {
-                let responseBody = {};
                 if (result) {
                     responseBody = {
                         login: dbLogin,
-                        password
-                    };      
+                        success: true
+                    };
+                    
                 } else {
                     responseBody = {
+                        success: false,
                         error: true,
                         errorMessage: 'Не правильный пароль!'
                     };
-                }   
-                
-                res.send(responseBody); 
+                }  
+                res.send(responseBody);            
             }).catch(err => {
                 res.send({
+                    success: false,
                     error: true,
                     errorMessage: err
                 });

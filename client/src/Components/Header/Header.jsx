@@ -7,25 +7,34 @@ import {
 } from './Header.styles';
 //import login from '/server/workers/UserLogin';
 
-// function CheckUser(props){
-//     const isLogIn = props.isLogIn;
-//     if(isLogIn){
-//         <NavLink activeStyle={ActiveNavLink}>
-//             {'LogOut'}
-//         </NavLink>
-//     }
-//     return <nav>
-//             <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
-//                 {'SingIn'}
-//             </NavLink>
+function CheckUser(props){
+     const isLogIn = props.isLogIn;
+     if(isLogIn.success)
+     {
+        return <nav>
+            <NavLink exact to="/" activeStyle={ActiveNavLink}>
+                {'LogOut'}
+            </NavLink>
+            </nav>
+     }
+     else return <nav>
+             <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
+                {'SingIn'}
+             </NavLink>
 
-//             <NavLink exact to="/login" activeStyle={ActiveNavLink}>
-//                 {'LogIn'}
-//             </NavLink>
-// </nav>
-//}
+             <NavLink exact to="/login" activeStyle={ActiveNavLink}>
+                 {'LogIn'}
+             </NavLink>
+            </nav>
+    }
 
 export class Header extends Component{
+    state = {LogBool: {success: false}};
+    componentDidMount() {
+        fetch('/api/login')
+          .then(res => res.json())
+          .then(LogBool => this.setState({ LogBool }));
+      }
     
     render(){
         return(
@@ -39,6 +48,7 @@ export class Header extends Component{
                     <Container>
                         <Logo>ProGachiGram</Logo>
                         <nav>
+                            <CheckUser isLogIn={this.state.LogBool}/>
                             <NavLink exact to="/" activeStyle={ActiveNavLink}>
                                 {'Start'}
                             </NavLink>
@@ -46,7 +56,6 @@ export class Header extends Component{
                             <NavLink exact to="/im" activeStyle={ActiveNavLink}>
                                 {'Messenger'}
                             </NavLink>
-                            {/* <CheckUser isLogIn={false}/> */}
                         </nav> 
                     </Container>
             </MediaQuery>
