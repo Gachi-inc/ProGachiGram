@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Messages from "../Message/Messages"
+import Messages from "./containers/Messages"
 import Dialogs from './containers/Dialogs'
 import SocketChat from 'socket.io-client';
 import UsersSvg from '../../assets/svg/users.svg'

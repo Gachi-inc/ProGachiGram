@@ -39,9 +39,7 @@ export const Chat = styled.div`
   background-color: #fff;
   color: #202020;
   width: 100%;
-  min-height: calc(100% - 156px);
-  padding: var(--padding);
-  overflow: auto;
+  height: calc(100% - 156px);
   
 `
 export const IsOnline = styled.span`

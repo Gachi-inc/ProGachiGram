@@ -160,12 +160,12 @@ text-align: center;
 
 img.dialogs-empty{
   display: block;
-  margin: 50% auto 0 auto;
+  margin: 20% auto 0 auto;
   filter: brightness(0) invert(1);
 }
 
 img.messages-empty{
   display: block;
-  margin: 50% auto 0 auto;
+  margin: 20% auto 0 auto;
 }
 `

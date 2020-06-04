@@ -26,7 +26,7 @@ export class ChatComponent extends Component{
                         </IsOnline>
                     </b>
                     <div className = "chat__searchbar">
-                        {/* <SearchBar/> */}
+                        <SearchBar/>
                         <img src = {searchSvg} alt = "searchIcon"/>
                     </div>
                     
