@@ -1,14 +1,10 @@
-const {login}= require('../workers/UserLogin.js');
+const {message}= require('../workers/Message.js');
 var express = require('express');
-const passport = require('passport');
 var router = express.Router();
 
 router.use(express.json());
 router.use(express.urlencoded());
 
-
-
-router.post('/', login);
-
+router.post('/message', message);
   
 module.exports = router;

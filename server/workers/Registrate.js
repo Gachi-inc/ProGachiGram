@@ -1,10 +1,9 @@
 const bcrypt =  require('bcryptjs')
-const {uri} = require('../config.js');
+const uri = "mongodb+srv://MishNigGrishPuk:5XGH24h3xUlQzFSu@cluster0-6rss2.azure.mongodb.net/test?retryWrites=true&w=majority";
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 function register(req, res) {
-   console.log('a');
    client.connect(err => {
       if(err) {
         console.log('Oops!', err)
@@ -50,18 +49,20 @@ function register(req, res) {
          const salt = bcrypt.genSaltSync(10);
          const passwordToSave = bcrypt.hashSync(password, salt);
 
-         const user  = {login, email, passwordToSave}
+         var confirmed = false;
+
+         const user  = {login, email, passwordToSave, confirmed}
          
          db.collection('UserData').insertOne(user, (err, result) => {
-            
                if (err) {
                   return res.send(err);              
+               } else {
+                  return res.send({
+                     ...result.ops[0], 
+                     passwordToSave: passwordToSave,
+                     confirmed
+                  });
                }
-
-               return res.send({...result.ops[0], passwordToSave: passwordToSave});
-               setTimeout(() => {
-                  return res.redirect('../../')
-               }, 5000)
          });
       }
    });

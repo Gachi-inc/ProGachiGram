@@ -3,29 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const {uri} = require('./config.js');
-//socket.io
 var app = express();
-
-
-
+var socket = require('socket.io');
+const uri = "mongodb+srv://MishNigGrishPuk:5XGH24h3xUlQzFSu@cluster0-6rss2.azure.mongodb.net/test?retryWrites=true&w=majority";
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-client.connect(err => {
-
-  if(err) {
-    console.log('Oops!', err)
-    setTimeout(() => {
-        
-
-    }, 5000)
-     
-  } else {
-    console.log('Connected')
-  }
-});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -39,6 +22,7 @@ var dialogRoute = require('./routes/dialogRoute.js');
 
 
 
+//Socket setup
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -49,13 +33,29 @@ const userModelScheme = new Schema({
   passwrod: String
 });
 
+const dialogModelScheme = new Schema({
+  fromUser: String,  
+  toUser: String,
+  dateOfCreate: Date,
+  whoCreate: String,
+  lastMessage: String,
+  unRead: Boolean
+});
+
+const messageModelScheme = new Schema({
+  dialog: String,
+  from: String,  
+  to: String,
+  text: String,
+  sendDate: Date,
+  status: Boolean
+});
 
 var UserModel = mongoose.model('UserModel', userModelScheme );
-console.log(UserModel);
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');
-
+require('./config-passport');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
