@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
 var socket = require('socket.io');
-const uri = "mongodb+srv://MishNigGrishPuk:5XGH24h3xUlQzFSu@cluster0-6rss2.azure.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "";
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, {
