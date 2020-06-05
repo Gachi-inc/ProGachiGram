@@ -8,7 +8,10 @@ var socket = require('socket.io');
 const uri = "mongodb+srv://MishNigGrishPuk:5XGH24h3xUlQzFSu@cluster0-6rss2.azure.mongodb.net/test?retryWrites=true&w=majority";
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,14 +28,15 @@ var dialogRoute = require('./routes/dialogRoute.js');
 //Socket setup
 
 
-
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');
 require('./config-passport');
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use('/api', indexRouter);
@@ -48,11 +52,11 @@ const swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
-app.post('/sendmailer', function(request, response) {
+app.post('/sendmailer', function (request, response) {
   if (!request.body) return response.sendStatus(400)
   console.log(request.body)
 })
@@ -60,7 +64,7 @@ app.post('/sendmailer', function(request, response) {
 
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
