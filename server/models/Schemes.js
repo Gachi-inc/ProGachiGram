@@ -5,7 +5,7 @@ var UserModel = mongoose.model('UserModel', userModelScheme);
 const userModelScheme = new Schema({
   email: String,
   login: String,
-  passwrod: String
+  password: String
 });
 
 const dialogModelScheme = new Schema({

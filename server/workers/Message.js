@@ -1,19 +1,20 @@
-const bcrypt = require('bcryptjs')
-const uri = "";
-const MongoClient = require('mongodb').MongoClient;
+const bcrypt = require("bcryptjs");
+const uri =
+  "";
+const MongoClient = require("mongodb").MongoClient;
+var moment = require("moment");
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
-function insertmessage(req, res) {
-
-  client.connect(err => {
+function insertMessage(req, res) {
+  client.connect((err) => {
     if (err) {
-      console.log('Oops!', err)
+      console.log("Oops!", err);
       setTimeout(() => {}, 5000);
     } else {
-      console.log('Connected');
+      console.log("Connected");
       const {
         dialog,
         from,
@@ -22,23 +23,24 @@ function insertmessage(req, res) {
         sendDate,
         status
       } = req.body;
-      const db = client.db('Dialogs');
+      const db = client.db("Dialogs");
+
       var messageObj = {
         dialog,
         from,
         to,
         text,
-        sendDate,
-        status
+        sendDate: moment().format("YYYY-MM-DD HH:mm:s"),
+        status,
       };
-      console.log('View Obj');
-      db.collection('MessageData').insertOne(messageObj, (err, result) => {
-        console.log('Sup,', result);
+      console.log("View Obj");
+      db.collection("MessageData").insertOne(messageObj, (err, result) => {
+        console.log("Sup,", result);
         if (err) {
           return res.send(err);
         } else {
           return res.send({
-            ...result.ops[0]
+            ...result.ops[0],
           });
         }
       });
@@ -46,5 +48,5 @@ function insertmessage(req, res) {
   });
 }
 module.exports = {
-  insertmessage
-}
+  insertMessage,
+};
