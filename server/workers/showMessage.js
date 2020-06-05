@@ -15,11 +15,11 @@ function showMessage(req, res) {
         } else {
             console.log('Connected');
             const {
-                user
+                dialogId
             } = req.params;
             const db = client.db('Dialogs');
             db.collection('MessageData').find({
-                fromUser: user
+                dialog: dialogId
             }).toArray((err, result) => {
                 // {user}, 
                 console.log(result);

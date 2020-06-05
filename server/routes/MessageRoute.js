@@ -10,7 +10,7 @@ var router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded());
 
-router.get('/:dialog', showMessage);
+router.get('/:dialogId', showMessage);
 router.post('/', insertMessage);
 
 module.exports = router;
