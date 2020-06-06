@@ -64,7 +64,7 @@ app.use(function (req, res, next) {
 //app.post('/sendmailer', sendMailerRouter);
 
 
-//app.post('/api/sendmailer', sendMailer.SendMail);
+app.post('/api/sendmailer', sendMailer.SendMail);
 
 
 
