@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
 var socket = require('socket.io');
-const uri = "";
+const {uri} = require('./config');
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, {
