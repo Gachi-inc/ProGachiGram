@@ -3,7 +3,7 @@ import DialogItem from './DialogItem'
 import orderBy from 'lodash/orderBy'
 import {Search, Empty} from '../../Messenger.styled'
 import povertyIcon from '../../../../assets/png/poverty.png'
-const Dialogs = ({items, userId, onSearch, inputValue}) =>(  
+const Dialogs = ({items, userId, onSearch, inputValue, onSelectDialog}) =>(  
         <div className = "dialogs">
             <Search className ="sidebar__search-dialog" 
                 placeholder = "Поиск по названию диалога" 
@@ -14,6 +14,7 @@ const Dialogs = ({items, userId, onSearch, inputValue}) =>(
             {items.length?
                 orderBy(items, ["created_at"], ["desc"]).map(item =>(
                     <DialogItem 
+                        onSelect = {onSelectDialog}
                         key = {item._id}
                         isMe ={item.user._id === userId}
                         {...item}

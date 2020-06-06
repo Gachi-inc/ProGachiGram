@@ -3,15 +3,17 @@ import styled from 'styled-components';
 
 
 
-export const Аvatar = styled.div`
+export const MsgАvatar = styled.div`
     display: flex;
     flex-direction: column-reverse;
     
-    img{
+    .avatar--symbol, img{
         border-radius: 50px; 
         height: 33px;
         width: 33px;            
         margin-bottom: 23px;
+        font-size: var(--font-size-s);
+        line-height: 31px;
     }
 `
 
@@ -45,8 +47,8 @@ export const Msg = styled.div`
     ${Text}{
         color: ${(props) => (props.className === "msg--isme" ? "#202020" : "#fff")};
     }
-    ${Аvatar}{
-        img{
+    ${MsgАvatar}{
+        .avatar--symbol, img{
             margin-right: ${(props) => (props.className === "msg--isme" ? "0" : "13px")};
             margin-left: ${(props) => (props.className === "msg--isme" ? "13px" : "0")};;
         }
@@ -58,3 +60,54 @@ export const Msg = styled.div`
  }
 `
 
+export const Loader = styled.div`
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    span{
+        margin-top: 100px;
+        margin-left: 20px;
+    }
+
+    div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid #333;
+        border-radius: 50%;
+        
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #333 transparent transparent transparent;
+    }
+    div:nth-child(1) {
+    animation-delay: -0.45s;
+    }
+    div:nth-child(2) {
+    animation-delay: -0.3s;
+    }
+    div:nth-child(3) {
+    animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+`
+export const MessagesWrap = styled.div`
+    padding: var(--padding);
+    overflow: auto;
+`

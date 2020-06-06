@@ -7,7 +7,7 @@ export const StyledMessenger = styled.div`
   width: 100%;
   background: #333;
   box-shadow: 0px 0px 25px rgba(0,0,0,0.5);
-  height: 88vh;
+  height: calc(100vh - 80px);
 `;
 
 // export const Chat = styled.div`
@@ -160,12 +160,12 @@ text-align: center;
 
 img.dialogs-empty{
   display: block;
-  margin: 50% auto 0 auto;
+  margin: 20% auto 0 auto;
   filter: brightness(0) invert(1);
 }
 
 img.messages-empty{
   display: block;
-  margin: 50% auto 0 auto;
+  margin: 20% auto 0 auto;
 }
 `
