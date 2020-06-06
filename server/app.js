@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
 var socket = require('socket.io');
-const uri = "mongodb+srv://MishNigGrishPuk:5XGH24h3xUlQzFSu@cluster0-6rss2.azure.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "";
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, {
@@ -21,6 +21,7 @@ var logRoute = require('./routes/LogRoute.js');
 var userRouter = require('./routes/user');
 var dialogRoute = require('./routes/dialogRoute.js');
 var VeryfyingHash = require('./routes/VeryfyingHash.js');
+var showMessageRouter = require('./routes/MessageRoute.js');
 //var register = require('../client/src/Pages/Registrate');
 //app.use('/registrate');
 
@@ -48,6 +49,8 @@ app.use('/api/users', usersRouter);
 app.use('/api/dialog', dialogRoute);
 app.use('/api/user', userRouter);
 app.use("/api/verify", VeryfyingHash);
+app.use('/api/messages', showMessageRouter);
+
 // Swagger UI
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');

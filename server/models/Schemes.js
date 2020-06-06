@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const userModelScheme = new Schema({
   email: String,
   login: String,
-  passwrod: String,
+  password: String,
   confirmed: Boolean,
   confirm_hash: String
 });
@@ -23,10 +23,9 @@ const dialogModelScheme = new Schema({
 });
 
 const messageModelScheme = new Schema({
-  _id: Number,
-  dialog: String,
-  from: String,
-  to: String,
+  dialog: mongoose.Types.ObjectId,
+  from: mongoose.Types.ObjectId,
+  to: mongoose.Types.ObjectId,
   text: String,
   sendDate: Date,
   status: Boolean
