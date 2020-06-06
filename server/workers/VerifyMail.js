@@ -59,7 +59,7 @@ function Verify(req, res){ //Сюда должна вести ссылка, ко
 
 
 
-db.collection('UserData').findOneAndUpdate(
+/* db.collection('UserData').findOneAndUpdate(
     { confirm_hash: hash }, 
     { $set: {confirmed: true}}, // параметр обновления
     //{ returnOriginal: false},   // доп. опции обновления
@@ -82,7 +82,7 @@ db.collection('UserData').findOneAndUpdate(
          message: 'Не удалось подтвердить аккаунт' ,
          user
    })};
- })}})}
+ }) */
 
 
 
