@@ -3,14 +3,14 @@ const {uri} = require('../config.js');
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 let responseBody = {}
-function login (req, res, next) {
+function login (req, res) {
     client.connect(err => {
       if(err) {
         console.log('Oops!', err)
         setTimeout(() => {
         }, 5000);
       } else {
-        console.log('Connected'); 
+        alert('Connected');
         const {login, password} = req.body;
         const db = client.db('Users');
         //Для входа либо по логину, либо по мылу

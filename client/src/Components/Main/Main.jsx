@@ -10,7 +10,7 @@ export class Main extends Component{
     render(){
         return (
         <StyledMain>
-            <Switch>
+            <Switch> 
                 <Route path="/login" component={Login}/>
                 <Route path="/registrate" component={Registrate}/>
                 <Route path="/im" component={Messenger}/>

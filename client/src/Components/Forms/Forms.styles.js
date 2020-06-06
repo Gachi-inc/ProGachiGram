@@ -22,11 +22,14 @@ export const FormInpt = styled.input`
 `;
 
 export const FormSbmt = styled.input.attrs({
-    type: 'submit',
+    type: 'input',
     })`
     border-radius: 25px;
     padding: 3%;
-    margin: 10%;
+    margin: 10% 0% 10% 30%;
+    width: 40%;
+    text-align: center;
+    cursor: pointer;
     `;
 
 export const HLetters = styled.h1`
