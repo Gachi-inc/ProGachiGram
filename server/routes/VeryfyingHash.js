@@ -1,10 +1,10 @@
-const {register}= require('../workers/Registrate.js');
+const {Verify}= require('../workers/VerifyMail.js');
 var express = require('express');
 var router = express.Router();
 
 router.use(express.json());
 router.use(express.urlencoded());
 
-router.post('/', register);
+router.get('/', Verify);
 
 module.exports = router;
