@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const uri = "";
+const {uri} = require('../config');
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, {
    useNewUrlParser: true,

@@ -1,13 +1,18 @@
 import React, { Redirect, Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
-
+import axios from '../../core/axios';
 export class Login extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          login: "",
-          password: ""
+          FormVar: {
+            login: "",
+            password: ""
+          },
+          DataRequest: {
+            success: false,
+          }
         };
         this.handleChangeLogin = this.handleChangeLogin.bind(this);
         this.handleChangePass = this.handleChangePass.bind(this);
@@ -15,38 +20,38 @@ export class Login extends Component{
     }
 
   handleChangeLogin(event) {
-    this.setState({login: event.target.value});
+    this.setState({FormVar: 
+      {
+        login: event.target.value,
+        password: this.state.FormVar.password
+      }});
   }
   handleChangePass(event) {
-    this.setState({password: event.target.value});
+    this.setState({FormVar: 
+      {
+        login: this.state.FormVar.login,
+        password: event.target.value
+      }});
   }
-  async GetPostAndRedirect(){
-    console.log(this.state);
-    return axios.post('api/login', this.state);
-    /*await fetch('api/login', {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/json'},
-      body: JSON.stringify(this.state)
-    }).then(res => {
-      console.log('Работаем');
-      res.json().then(data => {
-        console.log(data);
-        CheckLogIn = data;
-        alert('Вы успешно вошли в систему')}  
-      )}      
-    )*/
+  async GetPostAndRedirect(event){
+    event.preventDefault();
+    alert('Проверка введённых данных...');
+    await axios.post('api/login', this.state.FormVar)
+    .then(res => {
+      this.setState({DataRequest: res.data});
+      document.getElementById('Form').submit(); 
+    }).catch(err => console.log('error:', err));
   }
     render()
     {
       return (
         <Router> 
-          <StyledForms /*method="POST" action="api/login"*/>
+          <StyledForms id="Form" action={this.state.DataRequest.success ? "/im" : "/login"} >
             <HLetters>Вход</HLetters>
             <label> Логин/E-mail:</label>
-            <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.login} onChange={this.handleChangeLogin}/>
+            <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.login} onChange={this.handleChangeLogin}/>
             <label> Пароль:</label>
-            <FormInpt type="password" placeholder="Введите пароль" name="password" value={this.state.password} onChange={this.handleChangePass}/>
+            <FormInpt type="password" placeholder="Введите пароль" name="password" value={this.state.FormVar.password} onChange={this.handleChangePass}/>
             
             <FormSbmt value="Войти" onClick={this.GetPostAndRedirect} readOnly/>
 
@@ -58,4 +63,4 @@ export class Login extends Component{
     }
 }
 
-export var CheckLogIn = {success: true};
+export var CheckLogIn = {success: false};
