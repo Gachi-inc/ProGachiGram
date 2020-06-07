@@ -1,11 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-var UserModel = mongoose.model('UserModel', userModelScheme);
+
+
+
 // установка схемы
 const userModelScheme = new Schema({
   email: String,
   login: String,
-  password: String
+  password: String,
+  confirmed: Boolean,
+  confirm_hash: String
 });
 
 const dialogModelScheme = new Schema({
@@ -26,3 +30,15 @@ const messageModelScheme = new Schema({
   sendDate: Date,
   status: Boolean
 });
+
+userModelScheme.pre('save', function () {
+  if (this.isModified('password')) {
+    this.password = bcrypt.hashSync(this.password, 10);
+  }
+});
+
+const  UserModel = mongoose.model('User', userModelScheme);
+//const UserModel = mongoose.model('User', userModelScheme);
+module.exports = {
+  UserModel
+}

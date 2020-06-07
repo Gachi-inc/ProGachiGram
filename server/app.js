@@ -5,14 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
 var socket = require('socket.io');
-const uri = require('./config');
+const {uri} = require('./config');
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-
+var sendMailer = require('./workers/SendMailer')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var sendMailerRouter = require('./routes/SendMailerRoute')
@@ -20,6 +20,7 @@ var regRoute = require('./routes/RegRoute.js')
 var logRoute = require('./routes/LogRoute.js');
 var userRouter = require('./routes/user');
 var dialogRoute = require('./routes/dialogRoute.js');
+var VeryfyingHash = require('./routes/VeryfyingHash.js');
 var showMessageRouter = require('./routes/MessageRoute.js');
 //var register = require('../client/src/Pages/Registrate');
 //app.use('/registrate');
@@ -41,12 +42,13 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/build')));
 app.use('/api', indexRouter);
-// app.use('/api/sendmailer', sendMailerRouter);
+app.use('/api/sendmailer', sendMailerRouter);
 app.use('/api/registrate', regRoute);
 app.use('/api/login', logRoute);
 app.use('/api/users', usersRouter);
 app.use('/api/dialog', dialogRoute);
 app.use('/api/user', userRouter);
+app.use("/api/verify", VeryfyingHash);
 app.use('/api/messages', showMessageRouter);
 
 // Swagger UI
@@ -59,10 +61,10 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-app.post('/sendmailer', function (request, response) {
-  if (!request.body) return response.sendStatus(400)
-  console.log(request.body)
-})
+//app.post('/sendmailer', sendMailerRouter);
+
+
+app.post('/api/sendmailer', sendMailer.SendMail);
 
 
 
@@ -73,6 +75,5 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 });
 
-/*const handler1 = require('./routes/SendMailer');
-app.get('/first',  handler1.get.bind(handler1, {mail}));*/
+
 module.exports = app, client;

@@ -55,9 +55,10 @@ function register(req, res) {
             }
          });
 
-         //Хешируем пароль
+         //Хешируем пароль и создаем хэш для подтверждения
          const salt = bcrypt.genSaltSync(10);
          const passwordToSave = bcrypt.hashSync(password, salt);
+         const confirmed_hash = bcrypt.hashSync(passwordToSave, salt);
 
          var confirmed = false;
 
@@ -65,7 +66,8 @@ function register(req, res) {
             login,
             email,
             passwordToSave,
-            confirmed
+            confirmed,
+            confirmed_hash
          }
 
          db.collection('UserData').insertOne(user, (err, result) => {
@@ -75,7 +77,8 @@ function register(req, res) {
                return res.send({
                   ...result.ops[0],
                   passwordToSave: passwordToSave,
-                  confirmed
+                  confirmed,
+                  confirmed_hash: confirmed_hash
                });
             }
          });
