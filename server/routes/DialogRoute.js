@@ -7,8 +7,7 @@ var router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded());
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 router.get('/', (req, res) => {
     res.json(
       [
@@ -124,11 +123,8 @@ router.get('/', (req, res) => {
         }
       ])
 });
-=======
+
 router.post('/', insertDialog);
->>>>>>> 4a42ba5cb8631f6c8ec1eb1a7252318e7141ea1b
-=======
-router.post('/', insertDialog);
->>>>>>> 4a42ba5cb8631f6c8ec1eb1a7252318e7141ea1b
+
 
 module.exports = router;

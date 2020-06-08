@@ -46,22 +46,12 @@ app.use('/api/sendmailer', sendMailerRouter);
 app.use('/api/registrate', regRoute);
 app.use('/api/login', logRoute);
 app.use('/api/users', usersRouter);
-<<<<<<< HEAD
-<<<<<<< HEAD
-app.use('/api/dialogs', dialogRoute);
-app.use('/api', messagesRoute);
-=======
-=======
->>>>>>> 4a42ba5cb8631f6c8ec1eb1a7252318e7141ea1b
+
 app.use('/api/dialog', dialogRoute);
 app.use('/api/user', userRouter);
 app.use("/api/verify", VeryfyingHash);
 app.use('/api/messages', showMessageRouter);
 
-<<<<<<< HEAD
->>>>>>> 4a42ba5cb8631f6c8ec1eb1a7252318e7141ea1b
-=======
->>>>>>> 4a42ba5cb8631f6c8ec1eb1a7252318e7141ea1b
 // Swagger UI
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
