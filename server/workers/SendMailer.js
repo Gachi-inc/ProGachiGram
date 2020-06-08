@@ -1,39 +1,45 @@
-// const nodemailer = require("nodemailer");
-
-// async function SendMail(req, res, next){
-
-
-//     const {name, email, password, password2 } = req.body;
-//     let testEmailAccount = await nodemailer.createTestAccount();
-//     let transporter = nodemailer.createTransport({
-//       host: 'smtp.ethereal.email',
-//       port: 587,
-//       secure: false,
-//       auth: {
-//         user: testEmailAccount.user,
-//         pass: testEmailAccount.pass
-//       }
-//     });
-    
-//     let result = await transporter.sendMail({
-//       from: '"Node js" <nodejs@example.com>',
-//       to: email,
-//       subject: "I hope this is work!",
-//       text: "This message was sent from Node js server.",
-//       html: "This <i>message</i> was sent from <strong>Node js</strong> server."
-//     });
-    
-//     console.log("Message sent: %s", result.messageId);
-//       // Preview only available when sending through an Ethereal account
-//       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(result));
-//       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-    
+const nodemailer = require("nodemailer");
+// Сюда из фронта при регистрации нужно отправлять данные для отправки сообщения на почту зарегистрировавшемуся человеку.
+// Мы пока сделали рабочий вариант без привязки к фронту, он работает в тестовом режиме
+// Так что, над доделать
 
 
 
-// }
+async function SendMail(req, res){
+  //console.log(req.body);
+    const {email, confirmed_hash} = req.body;
+    //let testEmailAccount = await nodemailer.createTestAccount();
+    let transporter = nodemailer.createTransport({
+      //host: 'smtp.ethereal.email',
+      //port: 587,
+      service: 'Yandex',
+      auth: {
+        user: 'team2messenger@yandex.ru', //Данная почта считается спам почтой бота(Oh wait...)
+        pass: 'CheckThisout'
+      }
+    });
+    console.log(email);
+    console.log(confirmed_hash);
+    let result = await transporter.sendMail({
+      from: '"ProGachiGram" <savin-grigosha@yandex.ru>',
+      to: email,
+      subject: "Подтверждение регистрации",
+      //text: "Здравствуйте\nДля завершения регистрации на ProGachiGram пройдите по ссылке ниже в течение 24 часов.",
+      html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/api/verify?hash=${confirmed_hash}">по этой ссылке</a>`
+    });
+    console.log("Message sent: %s", email);
+}
 
 
-// module.exports =  {
-//     SendMail
-// }
+
+//const user = new UserModel(req);
+
+
+
+
+
+
+
+module.exports =  {
+    SendMail
+}

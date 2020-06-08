@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
+import socket from "core/socket"
+
 import {dialogsActions} from 'redux/actions'
 import {Dialogs as BaseDialogs} from "../components/Dialogs/Dialogs"
 
@@ -24,6 +26,10 @@ const Dialogs =({fetchDialogs, setCurrentDialogId, items, userId})=>{
            setFilteredItems(items) 
         }
     }, [items]);
+
+    socket.on('SERVER:DIALOG_CREATED', () => {
+        fetchDialogs();
+    });
 
     return (
         <BaseDialogs 

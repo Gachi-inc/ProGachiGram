@@ -1,9 +1,14 @@
+const {
+    insertDialog
+} = require('../workers/Dialog.js');
 var express = require('express');
 var router = express.Router();
 
 router.use(express.json());
 router.use(express.urlencoded());
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 router.get('/', (req, res) => {
     res.json(
       [
@@ -85,7 +90,7 @@ router.get('/', (req, res) => {
           }
         },
         {
-          "_id": "5ed92d44a3f02f6bb071b277",
+          "_id": "5ed6770asdbd8fb61d6a626d",
           "text": "Magna irure exercitation mollit consectetur aliquip minim in exercitation sit. Ullamco nisi fugiat in veniam adipisicing eiusmod magna nostrud. Qui reprehenderit cillum ad qui qui cupidatat nisi non laboris velit laborum magna veniam. Occaecat Lorem esse eiusmod qui. Ullamco velit adipisicing est dolore deserunt dolor adipisicing commodo culpa exercitation anim duis consequat minim.",
           "created_at": 231232323,
           "user": {
@@ -119,6 +124,11 @@ router.get('/', (req, res) => {
         }
       ])
 });
+=======
+router.post('/', insertDialog);
+>>>>>>> 4a42ba5cb8631f6c8ec1eb1a7252318e7141ea1b
+=======
+router.post('/', insertDialog);
+>>>>>>> 4a42ba5cb8631f6c8ec1eb1a7252318e7141ea1b
 
-  
 module.exports = router;

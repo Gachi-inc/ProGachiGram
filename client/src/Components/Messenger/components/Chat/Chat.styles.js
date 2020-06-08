@@ -68,6 +68,7 @@ export const MsgField = styled.input`
 
 export const ExportMsgField = styled.div`
   width: 100%;
+  height: 80px;
   position: relative;
   align-items: center;
   display: flex;
@@ -79,7 +80,8 @@ export const ExportMsgField = styled.div`
     height: 21px;
     position: absolute;
     left: 37px;
-    top: 34px;
+    top: 30px;
+    
     cursor: pointer;
     background: #fff;
   }

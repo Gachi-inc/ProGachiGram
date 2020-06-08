@@ -6,7 +6,7 @@ const client = new MongoClient(uri, {
    useUnifiedTopology: true
 });
 
-function insertDialog(req, res) {
+function getDialog(req, res) {
 
    client.connect(err => {
       if (err) {
@@ -15,30 +15,24 @@ function insertDialog(req, res) {
       } else {
          console.log('Connected');
          const {
-            fromUser,
-            toUser,
-            whoCreate
-         } = req.body;
+            user
+         } = req.params;
          const db = client.db('Dialogs');
-         var dialogObj = {
-            fromUser,
-            toUser,
-            whoCreate
-         };
-         console.log('View Obj');
-         db.collection('DialogsData').insertOne(dialogObj, (err, result) => {
-            console.log('Sup,', result);
+         db.collection('DialogsData').find({
+            fromUser: user
+         }).toArray((err, result) => {
+            // {user}, 
+            console.log(result);
             if (err) {
+               console.log(err);
                return res.send(err);
             } else {
-               return res.send({
-                  ...result.ops[0]
-               });
+               return res.send(result);
             }
          });
       }
    });
 }
 module.exports = {
-   insertDialog
+   getDialog
 }

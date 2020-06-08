@@ -16,7 +16,7 @@ class App extends Component {
           <GlobalStyles/>
           <Header/>
           <Main/>
-          {/* <Footer/>       */}
+          <Footer/>
         </BrowserRouter> 
     );
   }

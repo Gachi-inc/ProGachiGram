@@ -1,11 +1,11 @@
-import React, { Component, createContext, useState, useContext, useRef} from 'react';
+import React, {Component, createContext, useState, useContext, useRef} from 'react';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import { 
     ActiveNavLink, Container, Logo, NavLink, StyledHeader,
     MenuForPhones, MenuInsides, Navbar, NavLinkMobile, SpanStyle
 } from './Header.styles';
-//import login from '/server/workers/UserLogin';
+import {CheckLogIn} from '../Forms/Login';
 
 function CheckUser(props){
      const isLogIn = props.isLogIn;
@@ -29,13 +29,8 @@ function CheckUser(props){
     }
 
 export class Header extends Component{
-    state = {LogBool: {success: false}};
-    componentDidMount() {
-        fetch('/api/login')
-          .then(res => res.json())
-          .then(LogBool => this.setState({ LogBool }));
-      }
-    
+    state = {LogBool: CheckLogIn}
+
     render(){
         return(
         <StyledHeader>
@@ -49,9 +44,6 @@ export class Header extends Component{
                         <Logo>ProGachiGram</Logo>
                         <nav>
                             <CheckUser isLogIn={this.state.LogBool}/>
-                            <NavLink exact to="/" activeStyle={ActiveNavLink}>
-                                {'Start'}
-                            </NavLink>
 
                             <NavLink exact to="/im" activeStyle={ActiveNavLink}>
                                 {'Messenger'}
@@ -61,6 +53,7 @@ export class Header extends Component{
             </MediaQuery>
         </StyledHeader> 
         )
+
     }
 }
 

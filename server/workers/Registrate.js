@@ -1,17 +1,24 @@
-const bcrypt =  require('bcryptjs')
-const uri = "mongodb+srv://MishNigGrishPuk:5XGH24h3xUlQzFSu@cluster0-6rss2.azure.mongodb.net/test?retryWrites=true&w=majority";
+const bcrypt = require('bcryptjs')
+const {uri} = require('../config');
 const MongoClient = require('mongodb').MongoClient;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, {
+   useNewUrlParser: true,
+   useUnifiedTopology: true
+});
 
 function register(req, res) {
    client.connect(err => {
-      if(err) {
-        console.log('Oops!', err)
-        setTimeout(() => {
-        }, 5000);
+      if (err) {
+         console.log('Oops!', err)
+         setTimeout(() => {}, 5000);
       } else {
          console.log('Connected');
-         const {login, email, password, passwordCheck } = req.body;
+         const {
+            login,
+            email,
+            password,
+            passwordCheck
+         } = req.body;
          //Чек на пустые поля
          if (!login || !email || !password || !passwordCheck) {
             res.send({
@@ -21,7 +28,7 @@ function register(req, res) {
             return;
          }
          //Чек пароля
-         if (password !== passwordCheck){
+         if (password !== passwordCheck) {
             res.send({
                err: true,
                errMessage: "Пароли не совпадают! Проверьте введенные данные."
@@ -31,43 +38,53 @@ function register(req, res) {
          //Чек на повторяющееся имя в БД
          const db = client.db('Users');
          db.collection('UserData').findOne({
-            $or: [
-                    { login : login },
-                    { email: login }
-                ]
-        }, (err, result) => {
+            $or: [{
+                  login: login
+               },
+               {
+                  email: login
+               }
+            ]
+         }, (err, result) => {
             if (result) {
-                res.send({
-                    error: true,
-                    errorMessage: 'Пользователь с таким логином или данной почтой уже зарегистрирован.'
-                });
-                return;
+               res.send({
+                  error: true,
+                  errorMessage: 'Пользователь с таким логином или данной почтой уже зарегистрирован.'
+               });
+               return;
             }
-        });
+         });
 
-         //Хешируем пароль
+         //Хешируем пароль и создаем хэш для подтверждения
          const salt = bcrypt.genSaltSync(10);
          const passwordToSave = bcrypt.hashSync(password, salt);
+         const confirmed_hash = bcrypt.hashSync(passwordToSave, salt);
 
          var confirmed = false;
 
-         const user  = {login, email, passwordToSave, confirmed}
-         
+         const user = {
+            login,
+            email,
+            passwordToSave,
+            confirmed,
+            confirmed_hash
+         }
+
          db.collection('UserData').insertOne(user, (err, result) => {
-               if (err) {
-                  return res.send(err);              
-               } else {
-                  return res.send({
-                     ...result.ops[0], 
-                     passwordToSave: passwordToSave,
-                     confirmed
-                  });
-               }
+            if (err) {
+               return res.send(err);
+            } else {
+               return res.send({
+                  ...result.ops[0],
+                  passwordToSave: passwordToSave,
+                  confirmed,
+                  confirmed_hash: confirmed_hash
+               });
+            }
          });
       }
    });
 }
-  module.exports =  {
-     register
- }
- 
+module.exports = {
+   register
+}
