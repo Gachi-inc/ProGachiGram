@@ -1,21 +1,17 @@
-import React, {Component, createContext, useState, useContext, useRef} from 'react';
+import React, {Component, createContext, useState, useContext} from 'react';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 import { 
     ActiveNavLink, Container, Logo, NavLink, StyledHeader,
     MenuForPhones, MenuInsides, Navbar, NavLinkMobile, SpanStyle
 } from './Header.styles';
-import {CheckLogIn} from '../Forms/Login';
+import News from './../News/News';
 
 function CheckUser(props){
      const isLogIn = props.isLogIn;
-     if(isLogIn.success)
+     if(isLogIn === "/im")
      {
-        return <nav>
-            <NavLink exact to="/" activeStyle={ActiveNavLink}>
-                {'LogOut'}
-            </NavLink>
-            </nav>
+        return <nav><a href="/">LogOut</a></nav>
      }
      else return <nav>
              <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
@@ -29,7 +25,13 @@ function CheckUser(props){
     }
 
 export class Header extends Component{
-    state = {LogBool: CheckLogIn}
+    constructor(props){
+        super(props);
+        this.state = {
+            LogBool: window.location.pathname
+        };
+    }
+    
 
     render(){
         return(
@@ -42,13 +44,7 @@ export class Header extends Component{
             <MediaQuery minDeviceWidth={1000}>
                     <Container>
                         <Logo>ProGachiGram</Logo>
-                        <nav>
-                            <CheckUser isLogIn={this.state.LogBool}/>
-
-                            <NavLink exact to="/im" activeStyle={ActiveNavLink}>
-                                {'Messenger'}
-                            </NavLink>
-                        </nav> 
+                        <CheckUser isLogIn={this.state.LogBool}/>
                     </Container>
             </MediaQuery>
         </StyledHeader> 
@@ -110,8 +106,6 @@ const SideMenu = ({ children }) => {
 }
 
 const MainMenu = () => {
-    const node = useRef();
-    const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
     return (  
     <StyledHeader>
         <Container>

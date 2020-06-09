@@ -27,7 +27,6 @@ import {
 //const socket = SocketChat('http://localhost:5000');
 
 class Messenger extends Component{
-    
     render(){
         const isOnline = true;
         return (

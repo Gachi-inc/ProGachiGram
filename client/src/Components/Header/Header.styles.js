@@ -3,7 +3,7 @@ import {NavLink as RouterLink} from 'react-router-dom';
 export const ActiveNavLink = {
     boxShadow: '0px 3px 0 0 var(--color-accent)',
   };
-  
+
 export const Container = styled.div`
 align-items: center;
 display: flex;

@@ -1,6 +1,7 @@
-import React, { Redirect, Component } from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
+import React, { Component } from 'react';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
+import Messenger from './../Messenger/Messenger';
 import axios from '../../core/axios';
 export class Login extends Component{
     constructor(props) {
@@ -46,21 +47,19 @@ export class Login extends Component{
     {
       return (
         <Router> 
-          <StyledForms id="Form" action={this.state.DataRequest.success ? "/im" : "/login"} >
+          <StyledForms id="Form" action= {this.state.DataRequest.success ? "/im" : "/login"}>
             <HLetters>Вход</HLetters>
             <label> Логин/E-mail:</label>
             <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.login} onChange={this.handleChangeLogin}/>
             <label> Пароль:</label>
-            <FormInpt type="password" placeholder="Введите пароль" name="password" value={this.state.FormVar.password} onChange={this.handleChangePass}/>
-            
+            <FormInpt type="password" placeholder="Введите пароль" name="password" value={this.state.FormVar.password} onChange={this.handleChangePass}/> 
             <FormSbmt value="Войти" onClick={this.GetPostAndRedirect} readOnly/>
-
           </StyledForms>
 
-
+        {/*<Switch>
+          <Route path="/LogInCheck" render={(props) => this.state.DataRequest.success ? <Messenger {...props} /> : <Login/>}/>
+        </Switch>*/}
         </Router>
       );
     }
 }
-
-export var CheckLogIn = {success: false};

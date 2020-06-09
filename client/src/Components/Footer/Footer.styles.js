@@ -14,7 +14,7 @@ export const Names = styled.div`
   display: flex;
   justify-content: space-between;
   height: 100%;
-  margin: 0 auto;
+  margin: 5% auto auto 0;
   max-width: var(--content-width);
   padding: 0 var(--padding);
   text-align: center;
