@@ -5,6 +5,7 @@ var reduce = require("lodash");
 
 
 module.exports = createJWToken = (user) => {
+  console.log(user);
   const token = jwt.sign(
     {
       data: reduce(
@@ -18,7 +19,7 @@ module.exports = createJWToken = (user) => {
         {}
       ),
     },
-    process.env.JWT_SECRET || "",
+    process.env.JWT_SECRET || "Lulu",
     {
       expiresIn: process.env.JWT_MAX_AGE || "2d",
       algorithm: "HS256",

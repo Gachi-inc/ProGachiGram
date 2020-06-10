@@ -77,44 +77,42 @@ class UserController {
       fullname: req.body.fullname,
       password: req.body.password
     };
-    console.log("Cr..");
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
 
-    const user = new userModelScheme(postData);
+    const user = new UserModel(postData);
 
     user
       .save()
-    //   .then((obj) => {
-    //     res.json(obj);
-    //     mailer.sendMail(
-    //       {
-    //         from: "admin@test.com",
-    //         to: postData.email,
-    //         subject: "Подтверждение почты ",
-    //         html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/signup/verify?hash=${obj.confirm_hash}">по этой ссылке</a>`,
-    //       },
-    //       function (err, info) {
-    //         if (err) {
-    //           console.log(err);
-    //         } else {
-    //           console.log(info);
-    //         }
-    //       }
-    //     );
-    //   })
-    //   .catch((reason) => {
-    //     res.status(500).json({
-    //       status: "error",
-    //       message: reason,
-    //     });
-    //   });
-    // }
+      .then((obj) => {
+          res.json(obj)})
+      //   mailer.sendMail(
+      //     {
+      //       from: "admin@test.com",
+      //       to: postData.email,
+      //       subject: "Подтверждение почты ",
+      //       html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/signup/verify?hash=${obj.confirm_hash}">по этой ссылке</a>`,
+      //     },
+      //     function (err, info) {
+      //       if (err) {
+      //         console.log(err);
+      //       } else {
+      //         console.log(info);
+      //       }
+      //     }
+      //   );
+      // })
+      .catch((reason) => {
+        res.status(500).json({
+          status: "error",
+          message: reason,
+        });
+      });
+    }
 
-  };
 
   verify = (req, res) => {
     const hash = req.query.hash;
