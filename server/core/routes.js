@@ -8,11 +8,15 @@
 //   } from "../controllers";
   
   var bodyParser = require('body-parser');
-  var {
-      UserCtrl,
+  var 
+      {UserCtrl,
       DialogCtrl,
-      MessageCtrl
-    } = require('../controllers');
+      MessageCtrl}
+    = require('../controllers');
+
+
+
+    
 
   const createRoutes = (app, io) => {
     const UserController = new UserCtrl(io);
@@ -30,8 +34,8 @@
   
     app.get("/api/user/me", UserController.getMe);
     app.get("/api/user/verify", UserController.verify);
-    // app.post("/user/signup", registerValidation, UserController.create);
-    // app.post("/user/signin", loginValidation, UserController.login);
+    app.post("/api/user/signup",  UserController.create);
+    app.post("/api/user/signin",  UserController.login);
     app.get("/api/user/find", UserController.findUsers);
     app.get("/api/user/:id", UserController.show);
     app.delete("/api/user/:id", UserController.delete);

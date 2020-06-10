@@ -1,7 +1,7 @@
 
 // import { MessageModel, DialogModel } from "../models/Schemes";
-var MessageModel = require('../models/Schemes');
-var DialogModel = require('../models/Schemes');
+var {MessageModel} = require('../models/Schemes');
+var {DialogModel} = require('../models/Schemes');
 
 class MessageController {
   constructor(io) {

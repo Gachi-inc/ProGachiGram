@@ -2,11 +2,11 @@
 //import { validationResult } from 'express-validator';
 //import mailer from '../core/mailer';
 
-var UserModel = require('../models/Schemes');
+var {UserModel} = require('../models/Schemes');
 var bcrypt = require('bcryptjs');
 
-
-
+var { validationResult } = require('express-validator');
+var createJWToken = require('../utils/createJWToken')
 // import { createJWToken } from '../utils';
 
 class UserController {
@@ -77,7 +77,7 @@ class UserController {
       fullname: req.body.fullname,
       password: req.body.password
     };
-
+    console.log("Cr..");
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -88,7 +88,31 @@ class UserController {
 
     user
       .save()
-      // тут можно подвязать отправку на почту
+    //   .then((obj) => {
+    //     res.json(obj);
+    //     mailer.sendMail(
+    //       {
+    //         from: "admin@test.com",
+    //         to: postData.email,
+    //         subject: "Подтверждение почты ",
+    //         html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/signup/verify?hash=${obj.confirm_hash}">по этой ссылке</a>`,
+    //       },
+    //       function (err, info) {
+    //         if (err) {
+    //           console.log(err);
+    //         } else {
+    //           console.log(info);
+    //         }
+    //       }
+    //     );
+    //   })
+    //   .catch((reason) => {
+    //     res.status(500).json({
+    //       status: "error",
+    //       message: reason,
+    //     });
+    //   });
+    // }
 
   };
 

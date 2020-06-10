@@ -2,8 +2,8 @@
 // import socket from 'socket.io';
 
 //import { MessageModel, DialogModel } from '../models/Schemes';
-var MessageModel = require('../models/Schemes');
-var DialogModel = require('../models/Schemes');
+var {MessageModel} = require('../models/Schemes');
+var {DialogModel} = require('../models/Schemes');
 
 class DialogController {
 
@@ -14,7 +14,7 @@ class DialogController {
 
   index = (req, res) => {
     const userId = req.user._id;
-
+    console.log('Index');
     DialogModel.find()
       .or([{ author: userId }, { partner: userId }])
       .populate(['author', 'partner'])
@@ -35,6 +35,7 @@ class DialogController {
   };
 
   create = (req, res) => {
+    console.log('Create');
     const postData = {
       author: req.user._id,
       partner: req.body.partner,
