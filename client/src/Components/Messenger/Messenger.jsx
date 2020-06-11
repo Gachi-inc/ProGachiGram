@@ -27,6 +27,12 @@ import {
 //const socket = SocketChat('http://localhost:5000');
 
 class Messenger extends Component{
+    constructor(props){
+        super(props);
+        this.state ={
+            User: props.DataRequest,
+        }
+    }
     render(){
         const isOnline = true;
         return (
@@ -54,7 +60,7 @@ class Messenger extends Component{
                     <ChatName className = "chat__dialog-header">
                         <div/>
                         <div className = "chat__dialog-header-center">
-                            <b className = "chat__dialog-header-username">Владимир</b>
+                            <b className = "chat__dialog-header-username">{this.state.User}</b>
                             <div className = "chat__dialog-header-status">
                                 <IsOnline className = {isOnline? "status-online" : "status"}>
                                     {isOnline? "online" : "offline"}

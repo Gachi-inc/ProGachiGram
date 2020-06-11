@@ -1,51 +1,104 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
+import axios from '../../core/axios';
 
 export class Registrate extends Component{
   
     constructor(props) {
         super(props);
-        this.state = {value: ''};
-    
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+          FormVarR: {
+            login: "",
+            email: "",
+            password: "",
+            passwordCheck: ""
+          },
+          DataRequestR: {}
+        };
+        this.GetPost = this.GetPost.bind(this);
+        this.handleChangeLogin = this.handleChangeLogin.bind(this);
+        this.handleChangeEmail = this.handleChangeEmail.bind(this);
+        this.handleChangePass = this.handleChangePass.bind(this);
+        this.handleChangePassCh = this.handleChangePassCh.bind(this);
       }
-
+      handleChangeLogin(event) {
+        this.setState({FormVarR: 
+          {
+            login: event.target.value,
+            email: this.state.FormVarR.email,
+            password: this.state.FormVarR.password,
+            passwordCheck: this.state.FormVarR.passwordCheck
+          }});
+          console.log(this.state.FormVarR);
+      }
+      handleChangeEmail(event) {
+        this.setState({FormVarR: 
+          {
+            login: this.state.FormVarR.login,
+            email: event.target.value,
+            password: this.state.FormVarR.password,
+            passwordCheck: this.state.FormVarR.passwordCheck
+          }});
+      }
+      handleChangePass(event) {
+        this.setState({FormVarR: 
+          {
+            login: this.state.FormVarR.login,
+            email: this.state.FormVarR.email,
+            password: event.target.value,
+            passwordCheck: this.state.FormVarR.passwordCheck
+          }});
+      }
+      handleChangePassCh(event) {
+        this.setState({FormVarR: 
+          {
+            login: this.state.FormVarR.login,
+            email: this.state.FormVarR.email,
+            password: this.state.FormVarR.password,
+            passwordCheck: event.target.value
+          }});
+      }
       //Отправка данных на сервер для посылания сообщений на почту. Тестирую, пока в стадии написания. 
       //Пока даже не в стадии тестирования отправки с сервера на email
       //
       handleSend(response){
         response.send(Buffer.from(<FormInpt type ="email"></FormInpt>))
       }
-
-      handleChange(event) {
-        this.setState({value: event.target.value});
-      }
-    
-      handleSubmit(event) {
+      async GetPost(event){
         event.preventDefault();
+        console.log(this.state);
+        alert('Проверка введённых данных...Подождите...');
+        await axios.post('api/registrate', this.state.FormVarR)
+        .then(res => {
+          this.setState({DataRequestR: res.data});
+          if(res.data.error)
+            alert(res.data.errorMessage);
+          else {
+            /*сюда пихай функцию для письма */
+            document.getElementById('FormR').submit();
+          }
+        }).catch(err => console.log('error:', err));
       }
+
     render() {
       return (
         
           <Router>
 
-            <StyledForms method="POST" action="api/registrate">
+            <StyledForms id="FormR" action="/login">
               <HLetters>Регистрация</HLetters>
               <label> Логин:</label>
-              <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.value} onChange={this.handleChange}/>
+              <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVarR.login} onChange={this.handleChangeLogin}/>
               <label> E-mail:</label>
-              <FormInpt type="email" placeholder="Введите e-mail" name="email"/>
+              <FormInpt type="email" placeholder="Введите e-mail" name="email" value={this.state.FormVarR.email} onChange={this.handleChangeEmail}/>
               <label> Пароль:</label>
-              <FormInpt  type="password" placeholder="Введите пароль" name="password"/>
+              <FormInpt  type="password" placeholder="Введите пароль" name="password" value={this.state.FormVarR.password} onChange={this.handleChangePass}/>
               <label> Повторите пароль:</label>
-              <FormInpt type="password" placeholder="Повторите пароль" name="passwordCheck"/>
+              <FormInpt type="password" placeholder="Повторите пароль" name="passwordCheck" value={this.state.FormVarR.passwordCheck} onChange={this.handleChangePassCh}/>
               
-              <FormSbmt value="Зарегистрироваться" /*onClick = {this.handleSend(email)}*//>
-
+              <FormSbmt value="Зарегистрироваться" onClick={this.GetPost} readOnly/>
             </StyledForms>
-
           </Router>
       );
     }

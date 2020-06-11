@@ -75,10 +75,7 @@ function register(req, res) {
                return res.send(err);
             } else {
                return res.send({
-                  ...result.ops[0],
-                  passwordToSave: passwordToSave,
-                  confirmed,
-                  confirmed_hash: confirmed_hash
+                  error: false
                });
             }
          });

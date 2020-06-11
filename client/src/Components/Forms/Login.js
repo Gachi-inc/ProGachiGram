@@ -11,9 +11,7 @@ export class Login extends Component{
             login: "",
             password: ""
           },
-          DataRequest: {
-            success: false,
-          }
+          DataRequest: {}
         };
         this.handleChangeLogin = this.handleChangeLogin.bind(this);
         this.handleChangePass = this.handleChangePass.bind(this);
@@ -36,18 +34,20 @@ export class Login extends Component{
   }
   async GetPostAndRedirect(event){
     event.preventDefault();
-    alert('Проверка введённых данных...');
+    alert('Проверка введённых данных...Подождите...');
     await axios.post('api/login', this.state.FormVar)
     .then(res => {
       this.setState({DataRequest: res.data});
-      document.getElementById('Form').submit(); 
+      if(!res.data.success)
+        alert(res.data.errorMessage);
+      else document.getElementById('Form').submit(); 
     }).catch(err => console.log('error:', err));
   }
     render()
     {
       return (
         <Router> 
-          <StyledForms id="Form" action= {this.state.DataRequest.success ? "/im" : "/login"}>
+          <StyledForms id="Form" action= /*"/LogInCheck"*/"/im">
             <HLetters>Вход</HLetters>
             <label> Логин/E-mail:</label>
             <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.login} onChange={this.handleChangeLogin}/>
@@ -57,7 +57,7 @@ export class Login extends Component{
           </StyledForms>
 
         {/*<Switch>
-          <Route path="/LogInCheck" render={(props) => this.state.DataRequest.success ? <Messenger {...props} /> : <Login/>}/>
+          <Route exact path="/LogInCheck" render={() => this.state.DataRequest.success ? <Messenger {...this.state.DataRequest} /> : <Login/>}/>
         </Switch>*/}
         </Router>
       );
