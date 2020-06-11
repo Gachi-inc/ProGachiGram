@@ -17,7 +17,7 @@ var {
 
 var loginValidation = require('../utils/validations/signin');
 var registerValidation = require('../utils/validations/signup');
-  
+var sendMailerRouter = require('../routes/SendMailerRoute')
 
     
 
@@ -43,6 +43,7 @@ const createRoutes = (app, io) => {
   app.get("/api/user/:id", UserController.show);
   app.delete("/api/user/:id", UserController.delete);
 
+  app.use('/api/sendmailer', sendMailerRouter);
   app.get("/api/dialogs", DialogController.index);
   app.delete("/api/dialogs/:id", DialogController.delete);
   app.post("/api/dialogs", DialogController.create);
