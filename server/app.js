@@ -8,7 +8,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
 var io = require('socket.io');
-const {uri} = require('./config');
+const {
+  uri
+} = require('./config');
+var bodyParser = require('body-parser');
+
+app.use(bodyParser());
 //DataBase
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(uri, {

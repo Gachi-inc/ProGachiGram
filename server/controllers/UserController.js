@@ -1,10 +1,19 @@
-const {log, pass} = require("../config");
+const {
+  log,
+  pass
+} = require("../config");
 const nodemailer = require("nodemailer");
-var {UserModel} = require('../models/Schemes');
+var {
+  UserModel
+} = require('../models/Schemes');
 const bcrypt = require('bcryptjs')
-var { validationResult } = require('express-validator');
+var {
+  validationResult
+} = require('express-validator');
 var createJWToken = require('../utils/createJWToken');
-const { user } = require("../config");
+const {
+  user
+} = require("../config");
 
 class UserController {
   constructor(io) {
@@ -37,11 +46,9 @@ class UserController {
 
   findUsers = (req, res) => {
     const query = req.query.query;
-    UserModel.find()
-      .or([
-        { fullname: new RegExp(query, 'i') },
-        { email: new RegExp(query, 'i') }
-      ])
+    UserModel.find({
+        fullname: new RegExp(query, 'i')
+      })
       .then((users) => res.json(users))
       .catch((err) => {
         return res.status(404).json({
@@ -51,9 +58,11 @@ class UserController {
       });
   };
 
-  delete = (req, res) => {a
+  delete = (req, res) => {
     const id = req.params.id;
-    UserModel.findOneAndRemove({ _id: id })
+    UserModel.findOneAndRemove({
+        _id: id
+      })
       .then(user => {
         if (user) {
           res.json({
@@ -80,7 +89,9 @@ class UserController {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({
+        errors: errors.array()
+      });
     }
 
     const user = new UserModel(postData);
@@ -88,64 +99,76 @@ class UserController {
     user
       .save()
       .then((obj) => {
-          res.json(obj)})
-          let transporter = nodemailer.createTransport({
-            host: "smtp.mailtrap.io",
-            port: 2525,
-            auth: {
-              user: log,
-              pass: pass
-            }
-          });
-          //console.log(user);
-          let result = transporter.sendMail({
-            from: '"ProGachiGram"<team2-6300b4@inbox.mailtrap.io>',
-            to: postData.email,
-            subject: "Подтверждение регистрации",
-            html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/api/user/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`
-          }).then(function(){
-            res.json({
-              status: 'success',
-              message: 'Вам отправлено письмо для подтверждения аккаунта!'
-            });
-          }, function(error){
-            res.json({
-              status: 'failed',
-              message: error
-            })
-          })
+        res.json(obj)
+      })
+    let transporter = nodemailer.createTransport({
+      host: "smtp.mailtrap.io",
+      port: 2525,
+      auth: {
+        user: log,
+        pass: pass
+      }
+    });
+    //console.log(user);
+    let result = transporter.sendMail({
+        from: '"ProGachiGram"<team2-6300b4@inbox.mailtrap.io>',
+        to: postData.email,
+        subject: "Подтверждение регистрации",
+        html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/api/user/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`
+      }).then(function () {
+        res.json({
+          status: 'success',
+          message: 'Вам отправлено письмо для подтверждения аккаунта!'
+        });
+      }, function (error) {
+        res.json({
+          status: 'failed',
+          message: error
+        })
+      })
       .catch((reason) => {
         res.status(500).json({
           status: "error",
           message: reason,
         });
-        });
-      console.log("Message not sent: %s", postData.email);
-    }
+      });
+    console.log("Message not sent: %s", postData.email);
+  }
 
 
   verify = (req, res) => {
     const hash = req.query.hash;
     console.log(hash);
     if (!hash) {
-      return res.status(420).json({ errors: 'Данная ссылка недействительна' });
+      return res.status(420).json({
+        errors: 'Данная ссылка недействительна'
+      });
     }
 
-    UserModel.findOneAndUpdate({confirmed_hash: hash}, {$set : {confirmed: true}}).then(function(){
-      UserModel.findOne({confirmed_hash: hash}).then(function(result){                 //Для меня некоторая загадка, почему нельзя после первого
-          if( !result || result.confirmed === false){                                  // .then получать result для подтверждения значения 
-            return res.status(404).json({                                              // confirmed. Но в таком виде оно работает
-              hash: hash,
-              status: 'error',
-              message: 'Не удалось подтвердить аккаунт'                                             
-          })} else {
-            res.json({                                                                   
+    UserModel.findOneAndUpdate({
+      confirmed_hash: hash
+    }, {
+      $set: {
+        confirmed: true
+      }
+    }).then(function () {
+      UserModel.findOne({
+        confirmed_hash: hash
+      }).then(function (result) { //Для меня некоторая загадка, почему нельзя после первого
+        if (!result || result.confirmed === false) { // .then получать result для подтверждения значения
+          return res.status(404).json({ // confirmed. Но в таком виде оно работает
+            hash: hash,
+            status: 'error',
+            message: 'Не удалось подтвердить аккаунт'
+          })
+        } else {
+          res.json({
             status: 'success',
-            message: 'Аккаунт успешно подтвержден!'    
-            });
-          }
+            message: 'Аккаунт успешно подтвержден!'
+          });
+        }
       });
-  });
+    });
   };
 
   login = (req, res) => {
@@ -157,10 +180,14 @@ class UserController {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({
+        errors: errors.array()
+      });
     }
 
-    UserModel.findOne({ email: postData.email }, (err, user) => {
+    UserModel.findOne({
+      email: postData.email
+    }, (err, user) => {
       if (err || !user) {
         return res.status(404).json({
           message: 'User not found'
