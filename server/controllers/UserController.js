@@ -1,13 +1,10 @@
-
-//import { validationResult } from 'express-validator';
-//import mailer from '../core/mailer';
-
+const {log, pass} = require("../config");
+const nodemailer = require("nodemailer");
 var {UserModel} = require('../models/Schemes');
-var bcrypt = require('bcryptjs');
-
+const bcrypt = require('bcryptjs')
 var { validationResult } = require('express-validator');
-var createJWToken = require('../utils/createJWToken')
-// import { createJWToken } from '../utils';
+var createJWToken = require('../utils/createJWToken');
+const { user } = require("../config");
 
 class UserController {
   constructor(io) {
@@ -72,11 +69,14 @@ class UserController {
   };
 
   create = (req, res) => {
+    const salt = bcrypt.genSaltSync(10);
+    const confirmed_hash = bcrypt.hashSync(req.body.password, salt);
     const postData = {
       email: req.body.email,
       fullname: req.body.fullname,
-      password: req.body.password
+      password: req.body.password,
     };
+
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -84,66 +84,68 @@ class UserController {
     }
 
     const user = new UserModel(postData);
-
+    user.confirmed_hash = confirmed_hash;
     user
       .save()
       .then((obj) => {
           res.json(obj)})
-      //   mailer.sendMail(
-      //     {
-      //       from: "admin@test.com",
-      //       to: postData.email,
-      //       subject: "Подтверждение почты ",
-      //       html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/signup/verify?hash=${obj.confirm_hash}">по этой ссылке</a>`,
-      //     },
-      //     function (err, info) {
-      //       if (err) {
-      //         console.log(err);
-      //       } else {
-      //         console.log(info);
-      //       }
-      //     }
-      //   );
-      // })
+          let transporter = nodemailer.createTransport({
+            host: "smtp.mailtrap.io",
+            port: 2525,
+            auth: {
+              user: log,
+              pass: pass
+            }
+          });
+          //console.log(user);
+          let result = transporter.sendMail({
+            from: '"ProGachiGram"<team2-6300b4@inbox.mailtrap.io>',
+            to: postData.email,
+            subject: "Подтверждение регистрации",
+            html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/api/user/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`
+          }).then(function(){
+            res.json({
+              status: 'success',
+              message: 'Вам отправлено письмо для подтверждения аккаунта!'
+            });
+          }, function(error){
+            res.json({
+              status: 'failed',
+              message: error
+            })
+          })
       .catch((reason) => {
         res.status(500).json({
           status: "error",
           message: reason,
         });
-      });
+        });
+      console.log("Message not sent: %s", postData.email);
     }
 
 
   verify = (req, res) => {
     const hash = req.query.hash;
-
+console.log(hash);
     if (!hash) {
-      return res.status(422).json({ errors: 'Invalid hash' });
+      return res.status(420).json({ errors: 'Данная ссылка недействительна' });
     }
 
-    UserModel.findOne({ confirm_hash: hash }, (err, user) => {
-      if (err || !user) {
-        return res.status(404).json({
-          status: 'error',
-          message: 'Hash not found'
-        });
-      }
-
-      user.confirmed = true;
-      user.save(err => {
-        if (err) {
-          return res.status(404).json({
-            status: 'error',
-            message: err
-          });
-        }
-
-        res.json({
-          status: 'success',
-          message: 'Аккаунт успешно подтвержден!'
-        });
+    UserModel.findOneAndUpdate({confirmed_hash: hash}, {$set : {confirmed: true}}).then(function(){
+      UserModel.findOne({confirmed_hash: hash}).then(function(result){                 //Для меня некоторая загадка, почему нельзя после первого
+          if( !result || result.confirmed === false){                                  // .then получать result для подтверждения значения 
+            return res.status(404).json({                                              // confirmed. Но в таком виде оно работает
+              hash: hash,
+              status: 'error',
+              message: 'Не удалось подтвердить аккаунт'                                             
+          })} else {
+            res.json({                                                                   
+            status: 'success',
+            message: 'Аккаунт успешно подтвержден!'    
+            });
+          }
       });
-    });
+  });
   };
 
   login = (req, res) => {

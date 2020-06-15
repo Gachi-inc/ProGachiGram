@@ -36,15 +36,18 @@ class DialogController {
 
   create = (req, res) => {
     console.log('Create');
+    console.log(req.body.author);
+    console.log(req.body.partner);
     const postData = {
-      author: req.user._id,
+      author: req.body.user,
       partner: req.body.partner,
     };
-
+console.log(postData.author);
+console.log(postData.partner);
     DialogModel.findOne(
       {
-        author: req.user._id,
-        partner: req.body.partner,
+        author: postData.author,
+        partner: postData.partner,
       },
       (err, user) => {
         if (err) {
@@ -53,6 +56,7 @@ class DialogController {
             message: err,
           });
         }
+        console.log("Мы еще тут")
         if (user) {
           return res.status(403).json({
             status: 'error',
@@ -69,7 +73,7 @@ class DialogController {
                 user: req.user._id,
                 dialog: dialogObj._id,
               });
-
+console.log("Мы уже тут")
               message
                 .save()
                 .then(() => {

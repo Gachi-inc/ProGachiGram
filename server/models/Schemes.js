@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // import generatePasswordHash from "../utils"
 var generatePasswordHash = require("../utils")
 var differenceInMinutes = require('date-fns/differenceInMinutes');
-
+const { parseISO } = require("date-fns");
 const Schema = mongoose.Schema;
 
 
@@ -30,7 +30,7 @@ const userModelScheme = new Schema(
       default: false,
     },
     avatar: String,
-    confirm_hash: String,
+    confirmed_hash: String,
     last_seen: {
       type: Date,
       default: new Date(),
@@ -54,7 +54,8 @@ userModelScheme.pre('save', async function (next) {
     return next();
   }
   user.password = await generatePasswordHash(user.password);
-  user.confirm_hash = await generatePasswordHash(new Date().toString());
+  //user.confirmed_hash = await generatePasswordHash(new Date().toString());
+  //return (user.confirmed_hash, user.password);
 });
 
 
