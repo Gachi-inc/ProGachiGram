@@ -63,6 +63,7 @@ class DialogController {
             message: err,
           });
         }
+        console.log("Мы еще тут")
         if (user) {
           return res.status(403).json({
             status: "error",
@@ -79,7 +80,7 @@ class DialogController {
                 user: req.user._id,
                 dialog: dialogObj._id,
               });
-
+              console.log("Мы уже тут")
               message
                 .save()
                 .then(() => {
