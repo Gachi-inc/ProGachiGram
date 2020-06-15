@@ -41,7 +41,7 @@ const userModelScheme = new Schema({
 });
 
 userModelScheme.virtual('isOnline').get(function () {
-  return differenceInMinutes(parseISO(new Date().toISOString(), this.last_seen)) < 5;
+  return differenceInMinutes(parseISO(new Date()), this.last_seen) < 5;
 })
 
 userModelScheme.set('toJSON', {
@@ -96,7 +96,10 @@ const messageModelScheme = new Schema({
     require: Boolean
   },
   sendDate: Date,
-  status: Boolean
+  status: {
+    type: Boolean,
+    default: false
+  }
 });
 
 

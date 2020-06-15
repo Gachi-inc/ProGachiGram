@@ -40,7 +40,7 @@ class MessageController {
 
   index = (req, res) => {
     const dialogId = req.query.dialog;
-    const userId = req.user._id;
+    const userId = req.body;
 
     this.updateReadStatus(res, userId, dialogId);
 
@@ -60,7 +60,7 @@ class MessageController {
   };
 
   create = (req, res) => {
-    const userId = req.user._id;
+    const userId = req.body.user;
 
     const postData = {
       text: req.body.text,
