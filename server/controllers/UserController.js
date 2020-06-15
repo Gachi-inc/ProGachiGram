@@ -99,7 +99,11 @@ class UserController {
     user
       .save()
       .then((obj) => {
-        res.json(obj)
+        res.json({
+         _id: obj._id,
+         fullname: obj.fullname,
+         last_seen: obj.last_seen
+        })
       })
     let transporter = nodemailer.createTransport({
       host: "smtp.mailtrap.io",
@@ -116,6 +120,7 @@ class UserController {
         subject: "Подтверждение регистрации",
         html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/api/user/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`
       }).then(function () {
+        console.log("Message sent: %s", postData.email);
         res.json({
           status: 'success',
           message: 'Вам отправлено письмо для подтверждения аккаунта!'
@@ -126,13 +131,12 @@ class UserController {
           message: error
         })
       })
-      .catch((reason) => {
+      .catch((reason) => {      ///Я хз, нужен здесь вообще catch или нет.
         res.status(500).json({
           status: "error",
           message: reason,
         });
       });
-    console.log("Message not sent: %s", postData.email);
   }
 
 
