@@ -126,7 +126,7 @@ class UserController {
 
   verify = (req, res) => {
     const hash = req.query.hash;
-console.log(hash);
+    console.log(hash);
     if (!hash) {
       return res.status(420).json({ errors: 'Данная ссылка недействительна' });
     }
@@ -166,7 +166,11 @@ console.log(hash);
           message: 'User not found'
         });
       }
-
+      if (!user.confirmed) {
+        return res.status(404).json({
+          message: 'User not activated'
+        });
+      }
       if (bcrypt.compareSync(postData.password, user.password)) {
         const token = createJWToken(user);
         res.json({
