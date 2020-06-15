@@ -1,11 +1,14 @@
-
 //import { validationResult } from 'express-validator';
 //import mailer from '../core/mailer';
 
-var {UserModel} = require('../models/Schemes');
+var {
+  UserModel
+} = require('../models/Schemes');
 var bcrypt = require('bcryptjs');
 
-var { validationResult } = require('express-validator');
+var {
+  validationResult
+} = require('express-validator');
 var createJWToken = require('../utils/createJWToken')
 // import { createJWToken } from '../utils';
 
@@ -41,9 +44,12 @@ class UserController {
   findUsers = (req, res) => {
     const query = req.query.query;
     UserModel.find()
-      .or([
-        { fullname: new RegExp(query, 'i') },
-        { email: new RegExp(query, 'i') }
+      .or([{
+          fullname: new RegExp(query, 'i')
+        },
+        {
+          email: new RegExp(query, 'i')
+        }
       ])
       .then((users) => res.json(users))
       .catch((err) => {
@@ -54,9 +60,12 @@ class UserController {
       });
   };
 
-  delete = (req, res) => {a
+  delete = (req, res) => {
+    a
     const id = req.params.id;
-    UserModel.findOneAndRemove({ _id: id })
+    UserModel.findOneAndRemove({
+        _id: id
+      })
       .then(user => {
         if (user) {
           res.json({
@@ -80,7 +89,9 @@ class UserController {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({
+        errors: errors.array()
+      });
     }
 
     const user = new UserModel(postData);
@@ -88,7 +99,8 @@ class UserController {
     user
       .save()
       .then((obj) => {
-          res.json(obj)})
+        res.json(obj)
+      })
       //   mailer.sendMail(
       //     {
       //       from: "admin@test.com",
@@ -111,17 +123,21 @@ class UserController {
           message: reason,
         });
       });
-    }
+  }
 
 
   verify = (req, res) => {
     const hash = req.query.hash;
 
     if (!hash) {
-      return res.status(422).json({ errors: 'Invalid hash' });
+      return res.status(422).json({
+        errors: 'Invalid hash'
+      });
     }
 
-    UserModel.findOne({ confirm_hash: hash }, (err, user) => {
+    UserModel.findOne({
+      confirm_hash: hash
+    }, (err, user) => {
       if (err || !user) {
         return res.status(404).json({
           status: 'error',
@@ -155,10 +171,14 @@ class UserController {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({
+        errors: errors.array()
+      });
     }
 
-    UserModel.findOne({ email: postData.email }, (err, user) => {
+    UserModel.findOne({
+      email: postData.email
+    }, (err, user) => {
       if (err || !user) {
         return res.status(404).json({
           message: 'User not found'

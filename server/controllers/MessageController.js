@@ -1,17 +1,27 @@
-
 // import { MessageModel, DialogModel } from "../models/Schemes";
-var {MessageModel} = require('../models/Schemes');
-var {DialogModel} = require('../models/Schemes');
+var {
+  MessageModel
+} = require('../models/Schemes');
+var {
+  DialogModel
+} = require('../models/Schemes');
 
 class MessageController {
   constructor(io) {
     this.io = io;
   }
 
-  updateReadStatus = (res, userId, dialogId)=> {
-    MessageModel.updateMany(
-      { dialog: dialogId, user: { $ne: userId } },
-      { $set: { read: true } },
+  updateReadStatus = (res, userId, dialogId) => {
+    MessageModel.updateMany({
+        dialog: dialogId,
+        user: {
+          $ne: userId
+        }
+      }, {
+        $set: {
+          read: true
+        }
+      },
       (err) => {
         if (err) {
           res.status(500).json({
@@ -34,7 +44,9 @@ class MessageController {
 
     this.updateReadStatus(res, userId, dialogId);
 
-    MessageModel.find({ dialog: dialogId })
+    MessageModel.find({
+        dialog: dialogId
+      })
       .populate(["dialog", "user"])
       .exec(function (err, messages) {
         if (err) {
@@ -74,10 +86,13 @@ class MessageController {
               });
             }
 
-            DialogModel.findOneAndUpdate(
-              { _id: postData.dialog },
-              { lastMessage: message._id },
-              { upsert: true },
+            DialogModel.findOneAndUpdate({
+                _id: postData.dialog
+              }, {
+                lastMessage: message._id
+              }, {
+                upsert: true
+              },
               function (err) {
                 if (err) {
                   return res.status(500).json({
@@ -115,10 +130,13 @@ class MessageController {
         const dialogId = message.dialog;
         message.remove();
 
-        MessageModel.findOne(
-          { dialog: dialogId },
-          {},
-          { sort: { created_at: -1 } },
+        MessageModel.findOne({
+            dialog: dialogId
+          }, {}, {
+            sort: {
+              created_at: -1
+            }
+          },
           (err, lastMessage) => {
             if (err) {
               res.status(500).json({
