@@ -2,7 +2,7 @@ import React from 'react';
 import DialogItem from './DialogItem'
 import orderBy from 'lodash/orderBy'
 import {Search, Empty} from '../../Messenger.styled'
-import povertyIcon from '../../../../assets/png/poverty.png'
+import mailboxIcon from '../../../../assets/svg/mailbox.svg'
 const Dialogs = ({items, userId, onSearch, inputValue, onSelectDialog}) =>(  
         <div className = "dialogs">
             <Search className ="sidebar__search-dialog" 
@@ -21,7 +21,7 @@ const Dialogs = ({items, userId, onSearch, inputValue, onSelectDialog}) =>(
                     />
             )):(
                 <Empty>
-                    <img className = "dialogs-empty" src = {povertyIcon} alt = "empty-icon"/>
+                    <img className = "dialogs-empty" src = {mailboxIcon} alt = "empty-icon"/>
                     <span>Нет результатов</span>
                 </Empty>
             )}

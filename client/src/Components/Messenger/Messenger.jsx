@@ -9,6 +9,8 @@ import sendSvg from "assets/svg/send.svg"
 import voiceSendSvg from "assets/svg/microphone.svg"
 import smileSvg from "assets/svg/smile.svg"
 
+import SearchMsg from "../SearchMsg/SearchMsg"
+
 import {
     StyledMessenger, 
     SideBar,
@@ -27,12 +29,15 @@ import {
 //const socket = SocketChat('http://localhost:5000');
 
 class Messenger extends Component{
+
     constructor(props){
         super(props);
         this.state ={
             User: props.DataRequest,
+            isModalOpen: false
         }
     }
+
     render(){
         const isOnline = true;
         return (
@@ -57,6 +62,8 @@ class Messenger extends Component{
                     
                 </SideBar>
                 <Wrapper className = "chat__dialog">
+
+                    {this.state.isModalOpen === false ? 
                     <ChatName className = "chat__dialog-header">
                         <div/>
                         <div className = "chat__dialog-header-center">
@@ -68,9 +75,23 @@ class Messenger extends Component{
                             </div>
                         </div>
                         <div className = "chat__searchbar">
-                            <button className = "chat__searchbar-button"><img className = "chat__searchbar-icon" src = {searchSvg} alt = "searchIcon"/></button>
+                            <button className = "chat__searchbar-button" 
+                                onClick={() => this.openModal()}>
+                                <img className = "chat__searchbar-icon" src = {searchSvg} alt = "searchIcon"/>
+                            </button>
                         </div>
                     </ChatName>
+                :        
+                    <ChatName>
+                        <SearchMsg 
+                        isOpen={this.state.isModalOpen}
+                        onClose={() => this.closeModal()}>
+                            <input type="text" placeholder = "введите текст сообщения"/> 
+                        </SearchMsg>
+                    </ChatName>
+                }
+
+                    
                     
                     <Chat>
                         <Messages />
@@ -88,6 +109,14 @@ class Messenger extends Component{
             </StyledMessenger>
         )
     }
+
+    openModal() {
+        this.setState({ isModalOpen: true });
+      }
+    
+      closeModal() {
+        this.setState({ isModalOpen: false });
+      }
 }
 
 export default Messenger;

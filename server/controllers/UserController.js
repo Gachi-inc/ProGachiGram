@@ -1,13 +1,10 @@
-
-//import { validationResult } from 'express-validator';
-//import mailer from '../core/mailer';
-
+const {log, pass} = require("../config");
+const nodemailer = require("nodemailer");
+const bcrypt = require('bcryptjs')
 var {UserModel} = require('../models/Schemes');
-var bcrypt = require('bcryptjs');
-
-var { validationResult } = require('express-validator');
-var createJWToken = require('../utils/createJWToken')
-// import { createJWToken } from '../utils';
+var {validationResult} = require('express-validator');
+var {createJWToken} = require('../utils/createJWToken');
+//const {user} = require("../config");
 
 class UserController {
   constructor(io) {
@@ -40,11 +37,9 @@ class UserController {
 
   findUsers = (req, res) => {
     const query = req.query.query;
-    UserModel.find()
-      .or([
-        { fullname: new RegExp(query, 'i') },
-        { email: new RegExp(query, 'i') }
-      ])
+    UserModel.find({
+        fullname: new RegExp(query, 'i')
+      })
       .then((users) => res.json(users))
       .catch((err) => {
         return res.status(404).json({
@@ -54,9 +49,11 @@ class UserController {
       });
   };
 
-  delete = (req, res) => {a
+  delete = (req, res) => {
     const id = req.params.id;
-    UserModel.findOneAndRemove({ _id: id })
+    UserModel.findOneAndRemove({
+        _id: id
+      })
       .then(user => {
         if (user) {
           res.json({
@@ -72,76 +69,99 @@ class UserController {
   };
 
   create = (req, res) => {
+    const salt = bcrypt.genSaltSync(10);
+    const confirmed_hash = bcrypt.hashSync(req.body.password, salt);
     const postData = {
       email: req.body.email,
       fullname: req.body.fullname,
-      password: req.body.password
+      password: req.body.password,
     };
+
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({
+        errors: errors.array()
+      });
     }
 
     const user = new UserModel(postData);
-
+    user.confirmed_hash = confirmed_hash;
     user
       .save()
       .then((obj) => {
-          res.json(obj)})
-      //   mailer.sendMail(
-      //     {
-      //       from: "admin@test.com",
-      //       to: postData.email,
-      //       subject: "Подтверждение почты ",
-      //       html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/signup/verify?hash=${obj.confirm_hash}">по этой ссылке</a>`,
-      //     },
-      //     function (err, info) {
-      //       if (err) {
-      //         console.log(err);
-      //       } else {
-      //         console.log(info);
-      //       }
-      //     }
-      //   );
-      // })
-      .catch((reason) => {
+        res.json({
+         _id: obj._id,
+         fullname: obj.fullname,
+         last_seen: obj.last_seen
+        })
+      })
+    let transporter = nodemailer.createTransport({
+      host: "smtp.mailtrap.io",
+      port: 2525,
+      auth: {
+        user: log,
+        pass: pass
+      }
+    });
+    //console.log(user);
+    let result = transporter.sendMail({
+        from: '"ProGachiGram"<team2-6300b4@inbox.mailtrap.io>',
+        to: postData.email,
+        subject: "Подтверждение регистрации",
+        html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/api/user/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`
+      }).then(function () {
+        console.log("Message sent: %s", postData.email);
+        res.json({
+          status: 'success',
+          message: 'Вам отправлено письмо для подтверждения аккаунта!'
+        });
+      }, function (error) {
+        res.json({
+          status: 'failed',
+          message: error
+        })
+      })
+      .catch((reason) => {      ///Я хз, нужен здесь вообще catch или нет.
         res.status(500).json({
           status: "error",
           message: reason,
         });
       });
-    }
+  }
 
 
   verify = (req, res) => {
     const hash = req.query.hash;
-
+    console.log(hash);
     if (!hash) {
-      return res.status(422).json({ errors: 'Invalid hash' });
+      return res.status(420).json({
+        errors: 'Данная ссылка недействительна'
+      });
     }
 
-    UserModel.findOne({ confirm_hash: hash }, (err, user) => {
-      if (err || !user) {
-        return res.status(404).json({
-          status: 'error',
-          message: 'Hash not found'
-        });
+    UserModel.findOneAndUpdate({
+      confirmed_hash: hash
+    }, {
+      $set: {
+        confirmed: true
       }
-
-      user.confirmed = true;
-      user.save(err => {
-        if (err) {
-          return res.status(404).json({
+    }).then(function () {
+      UserModel.findOne({
+        confirmed_hash: hash
+      }).then(function (result) {                     //Для меня некоторая загадка, почему нельзя после первого
+        if (!result || result.confirmed === false) {  // .then получать result для подтверждения значения
+          return res.status(404).json({               // confirmed. Но в таком виде оно работает
+            hash: hash,
             status: 'error',
-            message: err
+            message: 'Не удалось подтвердить аккаунт'
+          })
+        } else {
+          res.json({
+            status: 'success',
+            message: 'Аккаунт успешно подтвержден!'
           });
         }
-
-        res.json({
-          status: 'success',
-          message: 'Аккаунт успешно подтвержден!'
-        });
       });
     });
   };
@@ -155,19 +175,30 @@ class UserController {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({
+        errors: errors.array()
+      });
     }
 
-    UserModel.findOne({ email: postData.email }, (err, user) => {
+    UserModel.findOne({
+      email: postData.email
+    }, (err, user) => {
       if (err || !user) {
         return res.status(404).json({
           message: 'User not found'
         });
       }
-
+      
       if (bcrypt.compareSync(postData.password, user.password)) {
+        
+        if (!user.confirmed) {
+          return res.status(404).json({
+            message: 'User not activated'
+          });
+        }
+
         const token = createJWToken(user);
-        res.json({
+        res.json({  
           status: 'success',
           token
         });
