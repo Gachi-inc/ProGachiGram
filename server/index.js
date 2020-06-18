@@ -2,6 +2,9 @@
 var express = require('express');
 console.log('Server is starting...');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 var createRoutes = require('./core/routes');
 var createSocket = require('./core/socket');
 require('./core/db');
@@ -13,8 +16,7 @@ const io = createSocket(server);
 createRoutes(app, io);
 
 
-
-server.listen(5000, ()=>{
-    console.log(`Server is running on http://localhost:5000`);
+server.listen(process.env.PORT, ()=>{
+    console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
 

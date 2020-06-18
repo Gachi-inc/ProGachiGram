@@ -1,19 +1,10 @@
-const {
-  log,
-  pass
-} = require("../config");
+const {log, pass} = require("../config");
 const nodemailer = require("nodemailer");
-var {
-  UserModel
-} = require('../models/Schemes');
 const bcrypt = require('bcryptjs')
-var {
-  validationResult
-} = require('express-validator');
-var createJWToken = require('../utils/createJWToken');
-const {
-  user
-} = require("../config");
+var {UserModel} = require('../models/Schemes');
+var {validationResult} = require('express-validator');
+var {createJWToken} = require('../utils/createJWToken');
+//const {user} = require("../config");
 
 class UserController {
   constructor(io) {
@@ -158,9 +149,9 @@ class UserController {
     }).then(function () {
       UserModel.findOne({
         confirmed_hash: hash
-      }).then(function (result) { //Для меня некоторая загадка, почему нельзя после первого
-        if (!result || result.confirmed === false) { // .then получать result для подтверждения значения
-          return res.status(404).json({ // confirmed. Но в таком виде оно работает
+      }).then(function (result) {                     //Для меня некоторая загадка, почему нельзя после первого
+        if (!result || result.confirmed === false) {  // .then получать result для подтверждения значения
+          return res.status(404).json({               // confirmed. Но в таком виде оно работает
             hash: hash,
             status: 'error',
             message: 'Не удалось подтвердить аккаунт'
@@ -197,14 +188,17 @@ class UserController {
           message: 'User not found'
         });
       }
-      if (!user.confirmed) {
-        return res.status(404).json({
-          message: 'User not activated'
-        });
-      }
+      
       if (bcrypt.compareSync(postData.password, user.password)) {
+        
+        if (!user.confirmed) {
+          return res.status(404).json({
+            message: 'User not activated'
+          });
+        }
+
         const token = createJWToken(user);
-        res.json({
+        res.json({  
           status: 'success',
           token
         });

@@ -11,7 +11,7 @@ var {
   DialogCtrl,
   MessageCtrl
 } = require('../controllers');
-
+var checkAuth = require('../middlewares/CheckAuth');
 var loginValidation = require('../utils/validations/signin');
 var registerValidation = require('../utils/validations/signup');
 var sendMailerRouter = require('../routes/SendMailerRoute')
@@ -25,7 +25,7 @@ const createRoutes = (app, io) => {
   //const UploadFileController = new UploadFileCtrl();
 
   app.use(bodyParser.json());
-  // app.use(checkAuth);
+  app.use(checkAuth);
   // app.use(updateLastSeen);
 
   app.get("/", (_, res) => {
