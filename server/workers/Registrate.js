@@ -75,7 +75,7 @@ function register(req, res) {
                return res.send(err);
             } else {
                return res.send({
-                  error: false
+                  error: false,
                });
             }
          });
