@@ -23,7 +23,7 @@ class UserController {
     });
   };
 
-  getMe = (req, res) => {
+  getMe = (req, res) => {                               ///НУЖНО ОПР ДЛЯ ЧЕГО БУДЕТ ИСПОЛЬЗОВАТЬСЯ
     const id = req.user && req.user._id;
     UserModel.findById(id, (err, user) => {
       if (err || !user) {

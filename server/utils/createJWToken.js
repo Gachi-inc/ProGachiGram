@@ -15,13 +15,13 @@ function createJWToken(user) {
         {}
       ),
     },
-    process.env.JWT_SECRET,
+    process.env.JWT_SECRET || "",
     {
-      expiresIn: process.env.JWT_MAX_AGE || "2d",
+      expiresIn: process.env.JWT_MAX_AGE,
       algorithm: "HS256",
     }
   );
-
+  //console.log("process.env.JWT_SECRET: ", process.env.JWT_SECRET);
   return token;
 }
 
