@@ -35,29 +35,8 @@ function Verify(req, res){ //Сюда должна вести ссылка, ко
             });
           }
       });
-  });
-
-    /*db.collection('UserData').findOneAndUpdate(
-      { confirm_hash: hash }, 
-      { $inc: { confirmed : true }}, // параметр обновления
-      //{ returnOriginal: false},   // доп. опции обновления
-      (err, result) =>  {           //по полю confirm_hash в схеме из бд мы ищем значение. Далее идет код...
-   if (err || !result) {
-     return res.status(404).json({
-       status: 'error',
-       message: 'Hash not found',
-     });
-   }
-   console.log(result);
-   
-   //if(user.confirmed == true && user.confirm_hash == hash){
-     res.json({
-       status: 'success',
-       message: 'Аккаунт успешно подтвержден!'    
-
-     })})*/
-    
-    }})}
+  });    
+}})}
     
   
   module.exports =  {
