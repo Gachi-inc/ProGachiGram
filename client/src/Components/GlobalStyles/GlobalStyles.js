@@ -33,7 +33,7 @@ export const GlobalStyles = createGlobalStyle`
     color: var(--color-light);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: var(--font-size-s);
-    padding-top: 80px;
+    padding-top: 60px;
     
     @media (max-width: ${MEDIA_BREAK}) {
       font-size: var(--font-size-xs);

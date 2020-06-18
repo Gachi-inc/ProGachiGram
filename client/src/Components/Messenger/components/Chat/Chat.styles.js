@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { MsgDate } from '../../../Message/Message.styled';
 
 export const ChatName = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -24,6 +25,9 @@ export const ChatName = styled.div`
   button{
     cursor: pointer;
     background: #fff;
+  }
+  input{
+    width: 100%;
   }
 
 `
