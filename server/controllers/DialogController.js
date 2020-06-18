@@ -16,7 +16,10 @@ class DialogController {
   }
 
   index = (req, res) => {
-    const userId = req.body;
+    const userId = req.params;
+    console.log(userId);
+    console.log(userId.fromUser);
+    console.log(userId.toUser);
     console.log("Index");
     DialogModel.find()
       .or([{
@@ -26,7 +29,7 @@ class DialogController {
           toUser: userId.partner,
         },
       ])
-      .populate(["author", "partner"])
+      .populate(["fromUser", "toUser"])
       .populate({
         path: "lastMessage",
         populate: {
@@ -72,12 +75,14 @@ class DialogController {
         } else {
           const dialog = new DialogModel(postData);
 
+          console.log(req.body.text)
+          
           dialog
             .save()
             .then((dialogObj) => {
               const message = new MessageModel({
                 text: req.body.text,
-                user: req.user._id,
+                user: req.body.author,
                 dialog: dialogObj._id,
               });
               console.log("Мы уже тут")
@@ -94,7 +99,10 @@ class DialogController {
                   });
                 })
                 .catch((reason) => {
-                  res.json(reason);
+                  res.json({
+                    status: "catch",
+                    message: err
+                  });
                 });
             })
             .catch((err) => {
@@ -108,7 +116,7 @@ class DialogController {
     );
   };
 
-  delete = (req, res) => {
+  delete = (req, res) => {            //По id диалога
     const id = req.params.id;
     DialogModel.findOneAndRemove({
         _id: id,
