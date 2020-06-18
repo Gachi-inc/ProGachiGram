@@ -104,7 +104,7 @@ class UserController {
         pass: pass
       }
     });
-    //console.log(user);
+    
     let result = transporter.sendMail({
         from: '"ProGachiGram"<team2-6300b4@inbox.mailtrap.io>',
         to: postData.email,
@@ -133,7 +133,6 @@ class UserController {
 
   verify = (req, res) => {
     const hash = req.query.hash;
-    console.log(hash);
     if (!hash) {
       return res.status(420).json({
         errors: 'Данная ссылка недействительна'
