@@ -35,10 +35,12 @@ const userModelScheme = new Schema({
   last_seen: {
     type: Date,
     default: new Date(),
-  },
-
-  //timestamps: true,
-});
+  },  
+},
+{
+  timestamps: true
+}
+);
 
 userModelScheme.virtual('isOnline').get(function(){
   return differenceInMinutes(parseISO(new Date()), this.last_seen) < 5;
@@ -78,6 +80,9 @@ const dialogModelScheme = new Schema({
     ref: 'Message'
   },
   unRead: Boolean
+},
+{
+  timestamps: true
 });
 
 const messageModelScheme = new Schema({
@@ -96,10 +101,14 @@ const messageModelScheme = new Schema({
     require: Boolean
   },
   sendDate: Date,
-  status: {
+  readed: {
     type: Boolean,
     default: false
-  }
+  },
+  
+},
+{
+  timestamps: true,
 });
 
 

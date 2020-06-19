@@ -21,7 +21,7 @@ class MessageController {
       }, 
       {
         $set: {
-          read: true
+          readed: true
         }
       },
       (err) => {
@@ -165,7 +165,7 @@ class MessageController {
                 });
               }
 
-              dialog.lastMessage = lastMessage ? lastMessage.toString() : "";
+              dialog.lastMessage = lastMessage /*? lastMessage.toString() : ""*/;
               dialog.save();
             });
           }
