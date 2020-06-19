@@ -12,12 +12,14 @@ class MessageController {
   }
 
   updateReadStatus = (res, userId, dialogId) => {
-    MessageModel.updateMany({
-        dialog: dialogId,
-        user: {
-          $ne: userId
-        }
-      }, {
+    console.log("Мы вошли 2");
+    MessageModel.updateMany(
+      {
+        user: { $ne: userId },
+        dialog: dialogId
+        
+      }, 
+      {
         $set: {
           read: true
         }
@@ -29,9 +31,10 @@ class MessageController {
             message: err,
           });
         } else {
+          console.log("Мы вошли 3");
           this.io.emit("SERVER:MESSAGES_READED", {
             userId,
-            dialogId,
+            dialogId
           });
         }
       }
@@ -40,14 +43,16 @@ class MessageController {
 
   index = (req, res) => {
     const dialogId = req.query.dialog;
-    const userId = req.body;
-
+    const userId = req.user._id;
+    console.log("Мы вошли 1");
+    console.log("dialogId: ", dialogId);
+    console.log("userId: ", userId);
     this.updateReadStatus(res, userId, dialogId);
-
+    console.log("Мы вошли 4");
     MessageModel.find({
         dialog: dialogId
       })
-      .populate(["dialog", "user"])
+      .populate(["dialogs", "users"])
       .exec(function (err, messages) {
         if (err) {
           return res.status(404).json({
@@ -55,13 +60,13 @@ class MessageController {
             message: "Messages not found",
           });
         }
+        console.log("Мы вошли 5: ", messages);
         res.json(messages);
       });
   };
 
-  create = (req, res) => {
-    const userId = req.body.user;
-
+  create = (req, res) => {            //проверено
+    const userId = req.user._id
     const postData = {
       text: req.body.text,
       dialog: req.body.dialog_id,
@@ -115,7 +120,7 @@ class MessageController {
   };
 
   delete = (req, res) => {
-    const id = req.query.id;
+    const id = req.query.id;// сообщ
     const userId = req.user._id;
 
     MessageModel.findById(id, (err, message) => {

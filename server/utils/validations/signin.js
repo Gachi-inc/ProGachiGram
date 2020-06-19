@@ -7,15 +7,16 @@ module.exports = [
         .exists()
         .isLength({ min: 3 }),
     oneOf([
+      check('fullname')
+          .exists()
+          .withMessage('fullname is required')
+          .isEmail()
+          .withMessage('fullname not valid'),
         check('fullname')
           .exists()
           .withMessage('fullname is required')
           .isLength({ min: 2 })
-          .withMessage('wrong fullname length'),
-        check('fullname')
-          .exists()
-          .withMessage('fullname is required')
-          .isEmail()
-          .withMessage('fullname not valid')
+          .withMessage('wrong fullname length')
+        
     ])
 ];
