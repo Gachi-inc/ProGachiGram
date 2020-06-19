@@ -24,6 +24,7 @@ const Actions = {
       });
   },
   fetchUserLogin: postData => dispatch => {
+    console.log('В fetchUserLogin перед return');
     return userApi
       .signIn(postData)
       .then(({ data }) => {
@@ -37,6 +38,7 @@ const Actions = {
       })
       .catch(({ response }) => {
         console.log('Что-то пошло не так');
+        console.log(response.data.message);
       });
   },
   fetchUserRegister: postData => dispatch => {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
-import axios from '../../core/axios';
 import { userActions } from 'redux/actions';
 import store from 'redux/store';
 
@@ -77,15 +76,6 @@ export class Registrate extends Component{
       async GetPost(event){
         event.preventDefault();
         alert('Проверка введённых данных...Нажмите "ОК" и подождите');
-        /*await axios.post('api/user/signup', this.state.FormVar)
-        .then(res => {
-          this.setState({DataRequestR: res.data});
-          if(res.data.error)
-            alert(res.data.errorMessage);
-          else {
-            document.getElementById('FormR').submit();
-          }
-        }).catch(err => console.log('error:', err));*/
         store
         .dispatch(userActions.fetchUserRegister(this.state.FormVar))
         .then(data => {

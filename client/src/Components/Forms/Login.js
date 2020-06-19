@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
-import axios from '../../core/axios';
+import { userActions } from 'redux/actions';
+import store from 'redux/store';
 
 export class Login extends Component{
     constructor(props) {
@@ -34,7 +35,7 @@ export class Login extends Component{
   async GetPostAndRedirect(event){
     event.preventDefault();
     alert('Проверка введённых данных...Подождите...');
-    await axios.post('/api/user/signin', this.state.FormVar)
+    /*await axios.post('/api/user/signin', this.state.FormVar)
     .then(res => {
       if(res.data.status === 'success')
       {
@@ -45,7 +46,16 @@ export class Login extends Component{
       
       document.getElementById('Form').submit();
     } 
-    )
+    )*/
+    store
+        .dispatch(userActions.fetchUserLogin(this.state.FormVar))
+        .then(data => {
+          document.getElementById('Form').submit();
+        })
+        .catch(err => {
+          alert('Непредвиденная ошибка');
+          console.log(err);
+        })
   }
     render()
     {
