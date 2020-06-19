@@ -1,56 +1,76 @@
 import React from 'react';
 import {DlgItm, UserАvatar, DlgItmInfo, DlgItmInfoTop, DlgItmInfoBottom, IsOnline} from './DialogItem.styles';
 // import  Time from '../../../Time/index'
-import { format, isToday, isThisYear } from 'date-fns';
+import { format, isToday, isThisYear, parseISO } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import Avatar from "../Avatar"
+import { Link } from 'react-router-dom';
 
 
 
-
-const getMessageTime = created_at => {
-    created_at = new Date(created_at);
-    if (isToday(created_at)) {
-        return format(created_at, 'HH:mm')
+const getMessageTime = createdAt => {
+    createdAt = parseISO(createdAt);
+    if (isToday(createdAt)) {
+        return format(createdAt, 'HH:mm')
     }else 
-        if(isThisYear(created_at)){
-            return format(created_at, 'd MMM', {locale: ru})
-    }else return format(created_at, 'd.M.yyyy')
+        if(isThisYear(createdAt)){
+            return format(createdAt, 'd MMM', {locale: ru})
+    }else return format(createdAt, 'd.M.yyyy')
 }
 
+const renderLastMessage = (message, userId) => {
+    let text = message.text;
+    return `${message.user._id === userId ? 'Вы: ' : ''}${text}`;
+  };
 
 
 
-const DialogItem = ({ _id, user, unreaded, created_at, text, isMe, onSelect}) =>{  
+
+const DialogItem = ({ 
+    _id,
+    unreaded,
+    created_at,
+    text,
+    //isMe,
+    //currentDialogId,
+    lastMessage,
+    userId,
+    toUser,
+
+    }) =>{  
     return(
-        
-        <DlgItm className = "dialogs__item"
-        onClick = {onSelect.bind(this, _id)}
-        >
-            <UserАvatar>
-                <Avatar user = {user}/> 
-                {user.isonline? <IsOnline/> : ""}
-            </UserАvatar>
-            <DlgItmInfo>
-                <DlgItmInfoTop>
-                    <b>
-                        {user.fullname}
-                    </b>
-                    <span>
-                        {getMessageTime(created_at)}
-                        {/* <Time date = {message.created_at}/> */}
-                    </span>
-                </DlgItmInfoTop>
-                <DlgItmInfoBottom>
-                    <p>
-                        {text}
-                    </p>
-                    {/* иконка прочитанного сообщения */}
-                    {/* {isMe && <IconReaded isMe = {true} isReaded = {false}/>} */}
-                    {unreaded > 0 && (<div className= "dlgitminfo__bottom--counter">{unreaded > 99? "+99": unreaded}</div>)}
-                </DlgItmInfoBottom>
-            </DlgItmInfo>
-        </DlgItm>
+        <Link to={`/dialog/${_id}`}>
+            <DlgItm className = "dialogs__item"
+            //onClick = {onSelect.bind(this, _id)}
+            >
+                <UserАvatar>
+                    <Avatar user = {lastMessage.user}/> 
+                    {lastMessage.user.isOnline? <IsOnline/> : ""}
+                </UserАvatar>
+                <DlgItmInfo>
+                    <DlgItmInfoTop>
+                        <b>
+                            {lastMessage.user.fullname}
+                        </b>
+                        <span>
+                            {console.log(lastMessage.createdAt)}
+                            {getMessageTime(lastMessage.createdAt)}
+                        </span>
+                    </DlgItmInfoTop>
+                    <DlgItmInfoBottom>
+                        <p>
+                            {renderLastMessage(lastMessage, userId)}
+                        </p>
+                        {/* isReaded = {lastMessage.readed} */}
+                        {/* {isMe && <IconReaded isMe = {isMe} />} */}
+                        {lastMessage.unreaded > 0 && (
+                        <div className= "dlgitminfo__bottom--counter">
+                            {unreaded > 99? "+99": lastMessage.unreaded}
+                        </div>)}
+                    </DlgItmInfoBottom>
+                </DlgItmInfo>
+            </DlgItm>
+        </Link>
     )   
     
 }

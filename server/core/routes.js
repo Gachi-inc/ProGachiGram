@@ -15,7 +15,7 @@ var checkAuth = require('../middlewares/CheckAuth');
 var loginValidation = require('../utils/validations/signin');
 var registerValidation = require('../utils/validations/signup');
 var sendMailerRouter = require('../routes/SendMailerRoute')
-
+var updateLastSeen = require('../middlewares/UpdateLastSeen')
 
 
 const createRoutes = (app, io) => {
@@ -26,7 +26,7 @@ const createRoutes = (app, io) => {
 
   app.use(bodyParser.json());
   app.use(checkAuth);
-  // app.use(updateLastSeen);
+  app.use(updateLastSeen);
 
   app.get("/", (_, res) => {
     res.send("Hello, World!");
