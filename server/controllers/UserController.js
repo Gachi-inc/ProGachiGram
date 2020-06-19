@@ -183,10 +183,10 @@ class UserController {
 
     UserModel.findOne({
       $or: [{
-        fullname: email
+        fullname: postData.email
           },
             {
-        email: email
+        email: postData.email
           }
     ]
     }, (err, user) => {
