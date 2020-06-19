@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
-//import Messenger from './../Messenger/Messenger';
 import axios from '../../core/axios';
-import validateForm from "utils/validate";
-import validateField from "utils/helpers/validateField";
+
 export class Login extends Component{
     constructor(props) {
         super(props);
@@ -33,24 +31,6 @@ export class Login extends Component{
         password: event.target.value
       }});
   }
-
-  validate = (values) => {
-    let errors = {};
-
-    validateForm({isAuth: true, values, errors});
-
-    return errors;
-  }
-
-  /*handleSubmit = (values, {setSubmitting}) => {
-    return axios.post('/api/user/signin', values)
-    .then(({data}) => {
-      setSubmitting(false);
-    })
-    .catch(() => {
-      setSubmitting(false);
-    })
-  }*/
   async GetPostAndRedirect(event){
     event.preventDefault();
     alert('Проверка введённых данных...Подождите...');
@@ -74,7 +54,7 @@ export class Login extends Component{
           <StyledForms id="Form" /*action="/im"*/>
             <HLetters>Вход</HLetters>
             <label> Логин/E-mail:</label>
-            <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.fullname} onChange={this.handleChangeLogin}/>
+            <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.fullname} onChange={this.handleChangeLogin}/>        
             <label> Пароль:</label>
             <FormInpt type="password" placeholder="Введите пароль" name="password" value={this.state.FormVar.password} onChange={this.handleChangePass}/> 
             <FormSbmt value="Войти" onClick={this.GetPostAndRedirect} readOnly/>

@@ -8,8 +8,7 @@ import {
 //import News from './../News/News';
 
 function CheckUser(props){
-     const isLogIn = props.isLogIn;
-     if(isLogIn === "/im")
+     if(props.isLogIn === "/im")
      {
         return <nav><a href="/">LogOut</a></nav>
      }
