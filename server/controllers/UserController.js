@@ -1,4 +1,3 @@
-const {log, pass} = require("../config");
 const nodemailer = require("nodemailer");
 const bcrypt = require('bcryptjs')
 var {UserModel} = require('../models/Schemes');
@@ -102,8 +101,8 @@ class UserController {
       host: "smtp.mailtrap.io",
       port: 2525,
       auth: {
-        user: log,
-        pass: pass
+        user: process.env.log,
+        pass: process.env.pass
       }
     });
     console.log("Creating!!!", postData);
