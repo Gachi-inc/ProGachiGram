@@ -1,9 +1,10 @@
-import {combineReducers } from "redux"
+import { combineReducers } from "redux";
 
-import dialogs from "./dialogs"
-import messages from "./messages"
+const reducers = ["messages", "dialogs", "user"];
 
-export default combineReducers({
-    dialogs,
-    messages,
-});
+export default combineReducers(
+  reducers.reduce((initial, value) => {
+    initial[value] = require(`./${value}`).default;
+    return initial;
+  }, {})
+);
