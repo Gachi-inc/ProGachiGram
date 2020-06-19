@@ -15,18 +15,17 @@ class DialogController {
     this.io = io;
   }
 
-  index = (req, res) => {
-    const userId = req.body;
-    console.log("Index");
+  index = (req, res) => {                         //поиск диалогов всех в которых состоит юзер из токена.
+    const userId = req.user._id;
     DialogModel.find()
       .or([{
-          fromUser: userId.author,
+          fromUser: userId,
         },
         {
-          toUser: userId.partner,
+          toUser: userId,
         },
       ])
-      .populate(["author", "partner"])
+      .populate(["fromUser", "toUser"])
       .populate({
         path: "lastMessage",
         populate: {
@@ -46,14 +45,14 @@ class DialogController {
   create = (req, res) => {
     console.log("Create");
     const postData = {
-      fromUser: req.body.author,
+      fromUser: req.user._id,
       toUser: req.body.partner,
       dateOfCreate: Date(),
       updateDate: moment().format("YYYY-MM-DD HH:mm:s")
     };
 
     DialogModel.findOne({
-        fromUser: req.body.author,
+        fromUser: req.user._id,
         toUser: req.body.partner,
       },
       (err, user) => {
@@ -63,7 +62,6 @@ class DialogController {
             message: err,
           });
         }
-        console.log("Мы еще тут")
         if (user) {
           return res.status(403).json({
             status: "error",
@@ -71,7 +69,7 @@ class DialogController {
           });
         } else {
           const dialog = new DialogModel(postData);
-
+          
           dialog
             .save()
             .then((dialogObj) => {
@@ -80,7 +78,6 @@ class DialogController {
                 user: req.user._id,
                 dialog: dialogObj._id,
               });
-              console.log("Мы уже тут")
               message
                 .save()
                 .then(() => {
@@ -94,7 +91,10 @@ class DialogController {
                   });
                 })
                 .catch((reason) => {
-                  res.json(reason);
+                  res.json({
+                    status: "catch",
+                    message: err
+                  });
                 });
             })
             .catch((err) => {
@@ -108,7 +108,7 @@ class DialogController {
     );
   };
 
-  delete = (req, res) => {
+  delete = (req, res) => {            //По id диалога
     const id = req.params.id;
     DialogModel.findOneAndRemove({
         _id: id,

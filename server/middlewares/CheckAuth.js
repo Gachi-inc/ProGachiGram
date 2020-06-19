@@ -8,15 +8,14 @@ module.exports = (req, res, next) => {
         req.path === "/api/user/signup" ||
         req.path === "/api/user/verify"
       ) {
-          console.log("Выходим нахер потому что один из 3 путей.")
         return next();
     }
 const token = "token" in req.headers ? (req.headers.token) : null;
 if(token){
 verifyJWToken(token).then((user)=>{             //Декодируем вытянутый из хэдера токен и обрабатываем
-    req.user = user;                            //Возвращаем информацию
+    req.user = user.data._doc;                  //Возвращаем информацию
     next();
-}).catch((err)=>{
+}).catch(()=>{
     res.status(403).json({
         message:"Получен не действительный аутентификационный токен."
     })

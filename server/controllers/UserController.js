@@ -23,7 +23,7 @@ class UserController {
     });
   };
 
-  getMe = (req, res) => {
+  getMe = (req, res) => {                               ///НУЖНО ОПР ДЛЯ ЧЕГО БУДЕТ ИСПОЛЬЗОВАТЬСЯ
     const id = req.user && req.user._id;
     UserModel.findById(id, (err, user) => {
       if (err || !user) {
@@ -104,7 +104,7 @@ class UserController {
         pass: pass
       }
     });
-    //console.log(user);
+    
     let result = transporter.sendMail({
         from: '"ProGachiGram"<team2-6300b4@inbox.mailtrap.io>',
         to: postData.email,
@@ -133,7 +133,6 @@ class UserController {
 
   verify = (req, res) => {
     const hash = req.query.hash;
-    console.log(hash);
     if (!hash) {
       return res.status(420).json({
         errors: 'Данная ссылка недействительна'
