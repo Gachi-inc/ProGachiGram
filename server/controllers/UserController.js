@@ -69,6 +69,7 @@ class UserController {
   };
 
   create = (req, res) => {
+    
     const salt = bcrypt.genSaltSync(10);
     const confirmed_hash = bcrypt.hashSync(req.body.password, salt);
     const postData = {
@@ -77,7 +78,7 @@ class UserController {
       password: req.body.password,
     };
 
-    const errors = validationResult(req);
+    const errors = validationResult(postData);
 
     if (!errors.isEmpty()) {
       return res.status(422).json({
@@ -96,6 +97,7 @@ class UserController {
          last_seen: obj.last_seen
         })
       })
+
     let transporter = nodemailer.createTransport({
       host: "smtp.mailtrap.io",
       port: 2525,
@@ -104,8 +106,8 @@ class UserController {
         pass: pass
       }
     });
-    
-    let result = transporter.sendMail({
+    console.log("Creating!!!", postData);
+    transporter.sendMail({
         from: '"ProGachiGram"<team2-6300b4@inbox.mailtrap.io>',
         to: postData.email,
         subject: "Подтверждение регистрации",
