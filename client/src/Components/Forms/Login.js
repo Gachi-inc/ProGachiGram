@@ -36,22 +36,22 @@ export class Login extends Component{
     alert('Проверка введённых данных...Подождите...');
     await axios.post('/api/user/signin', this.state.FormVar)
     .then(res => {
-      if(res.status === 'success')
+      if(res.data.status === 'success')
       {
-        window.localStorage.token = res.token;
+        window.localStorage.token = res.data.token;
         console.log(window.localStorage.token);
       } 
-      else alert(res.message);
+      else alert(res.data.message);
       
       document.getElementById('Form').submit();
     } 
-    ).catch(err => console.log('error:', err));
+    )
   }
     render()
     {
       return (
         <Router> 
-          <StyledForms id="Form" /*action="/im"*/>
+          <StyledForms id="Form" action="/im">
             <HLetters>Вход</HLetters>
             <label> Логин/E-mail:</label>
             <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.fullname} onChange={this.handleChangeLogin}/>        

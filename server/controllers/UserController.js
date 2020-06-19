@@ -168,7 +168,7 @@ class UserController {
 
   login = (req, res) => {
     const postData = {
-      email: req.body.email,
+      email: req.body.fullname,
       password: req.body.password
     };
 
@@ -182,7 +182,13 @@ class UserController {
     }
 
     UserModel.findOne({
-      email: postData.email
+      $or: [{
+        fullname: postData.email
+          },
+            {
+        email: postData.email
+          }
+    ]
     }, (err, user) => {
       if (err || !user) {
         return res.status(404).json({
