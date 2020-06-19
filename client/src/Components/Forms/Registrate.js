@@ -3,6 +3,10 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
 import axios from '../../core/axios';
 
+function  GetVallidateMessage(props) {
+        
+}
+
 export class Registrate extends Component{
   
     constructor(props) {
@@ -30,7 +34,6 @@ export class Registrate extends Component{
             password: this.state.FormVarR.password,
             //passwordCheck: this.state.FormVarR.passwordCheck
           }});
-          console.log(this.state.FormVarR);
       }
       handleChangeEmail(event) {
         this.setState({FormVarR: 
@@ -67,21 +70,17 @@ export class Registrate extends Component{
       }
       async GetPost(event){
         event.preventDefault();
-        console.log(this.state);
         alert('Проверка введённых данных...Подождите...');
-        console.log(this.state.FormVarR);
         await axios.post('api/user/signup', this.state.FormVarR)
         .then(res => {
           this.setState({DataRequestR: res.data});
           if(res.data.error)
             alert(res.data.errorMessage);
           else {
-            /*await axios.post('/api/sendmailer', )*/
             document.getElementById('FormR').submit();
           }
         }).catch(err => console.log('error:', err));
       }
-
     render() {
       return (
         

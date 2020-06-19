@@ -10,29 +10,26 @@ export class Login extends Component{
         super(props);
         this.state = {
           FormVar: {
-            login: "",
-            password: ""
+            fullname: '',
+            password: ''
           },
-          DataRequest: {},
         };
         this.handleChangeLogin = this.handleChangeLogin.bind(this);
         this.handleChangePass = this.handleChangePass.bind(this);
-        /*this.GetPostAndRedirect = this.GetPostAndRedirect.bind(this)*/;
-        this.validate = this.validate.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.GetPostAndRedirect = this.GetPostAndRedirect.bind(this);
     }
 
   handleChangeLogin(event) {
     this.setState({FormVar: 
       {
-        login: event.target.value,
+        fullname: event.target.value,
         password: this.state.FormVar.password
       }});
   }
   handleChangePass(event) {
     this.setState({FormVar: 
       {
-        login: this.state.FormVar.login,
+        fullname: this.state.FormVar.fullname,
         password: event.target.value
       }});
   }
@@ -59,37 +56,28 @@ export class Login extends Component{
     alert('Проверка введённых данных...Подождите...');
     await axios.post('/api/user/signin', this.state.FormVar)
     .then(res => {
-      this.setState({DataRequest: res.data});
-      window.localStorage = this.DataRequest
-      if(!res.data.success)
-        alert(res.data.errorMessage);
-      else {
-        axios.post('/api/sendmailer').
-        then(res => {
-          if(res.status === 'success')
-          {
-            alert(res.message);
-          }
-          else
-            {
-              alert(res.message);
-            }
-        })
-        document.getElementById('Form').submit();
+      if(res.status === 'success')
+      {
+        window.localStorage.token = res.token;
+        console.log(window.localStorage.token);
       } 
-    }).catch(err => console.log('error:', err));
+      else alert(res.message);
+      
+      document.getElementById('Form').submit();
+    } 
+    ).catch(err => console.log('error:', err));
   }
     render()
     {
       return (
         <Router> 
-          <StyledForms id="Form" action= /*"/LogInCheck"*/"/im">
+          <StyledForms id="Form" /*action="/im"*/>
             <HLetters>Вход</HLetters>
             <label> Логин/E-mail:</label>
-            <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.login} onChange={this.handleChangeLogin} /*validateStatus={validateField("email", touched, errord)}*//>
+            <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.fullname} onChange={this.handleChangeLogin}/>
             <label> Пароль:</label>
             <FormInpt type="password" placeholder="Введите пароль" name="password" value={this.state.FormVar.password} onChange={this.handleChangePass}/> 
-            <FormSbmt value="Войти" onClick={this.handleSubmit} readOnly/>
+            <FormSbmt value="Войти" onClick={this.GetPostAndRedirect} readOnly/>
           </StyledForms>
         </Router>
       );
