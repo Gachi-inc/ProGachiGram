@@ -177,6 +177,7 @@ class UserController {
 
     if (!errors.isEmpty()) {
       return res.status(422).json({
+        status: 'error',
         errors: errors.array()
       });
     }
@@ -186,6 +187,7 @@ class UserController {
     }, (err, user) => {
       if (err || !user) {
         return res.status(404).json({
+          status: 'error',
           message: 'User not found'
         });
       }
@@ -194,6 +196,7 @@ class UserController {
         
         if (!user.confirmed) {
           return res.status(404).json({
+            status: 'error',
             message: 'User not activated'
           });
         }
