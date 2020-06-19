@@ -9,7 +9,7 @@ export const DlgItmInfo = styled.div`
     justify-content: center;   
     flex: 1;
 `
-export const DlgItmInfo__top = styled.div`
+export const DlgItmInfoTop = styled.div`
     display: flex;
     margin-bottom: 5px;
     b{
@@ -22,7 +22,7 @@ export const DlgItmInfo__top = styled.div`
         opacity: 0.5;
     }
 `
-export const DlgItmInfo__bottom = styled.div`
+export const DlgItmInfoBottom = styled.div`
         position: relative;
         p{
             white-space: nowrap;

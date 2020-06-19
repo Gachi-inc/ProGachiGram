@@ -25,7 +25,7 @@ const createRoutes = (app, io) => {
   //const UploadFileController = new UploadFileCtrl();
 
   app.use(bodyParser.json());
-  app.use(checkAuth);
+  //app.use(checkAuth);
   // app.use(updateLastSeen);
 
   app.get("/", (_, res) => {

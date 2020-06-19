@@ -69,7 +69,7 @@ export class Registrate extends Component{
         event.preventDefault();
         console.log(this.state);
         alert('Проверка введённых данных...Подождите...');
-        await axios.post('api/registrate', this.state.FormVarR)
+        await axios.post('api/signup', this.state.FormVarR)
         .then(res => {
           this.setState({DataRequestR: res.data});
           if(res.data.error)

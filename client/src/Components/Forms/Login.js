@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
-import Messenger from './../Messenger/Messenger';
+//import Messenger from './../Messenger/Messenger';
 import axios from '../../core/axios';
 export class Login extends Component{
     constructor(props) {
