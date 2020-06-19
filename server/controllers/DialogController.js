@@ -17,6 +17,7 @@ class DialogController {
 
   index = (req, res) => {                         //поиск диалогов всех в которых состоит юзер из токена.
     const userId = req.user._id;
+    //const userId = req.params.user;
     DialogModel.find()
       .or([{
           fromUser: userId,

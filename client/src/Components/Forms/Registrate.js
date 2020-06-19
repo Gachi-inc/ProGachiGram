@@ -9,10 +9,10 @@ export class Registrate extends Component{
         super(props);
         this.state = {
           FormVarR: {
-            login: "",
+            fullname: "",
             email: "",
             password: "",
-            passwordCheck: ""
+            //passwordCheck: ""
           },
           DataRequestR: {}
         };
@@ -25,38 +25,38 @@ export class Registrate extends Component{
       handleChangeLogin(event) {
         this.setState({FormVarR: 
           {
-            login: event.target.value,
+            fullname: event.target.value,
             email: this.state.FormVarR.email,
             password: this.state.FormVarR.password,
-            passwordCheck: this.state.FormVarR.passwordCheck
+            //passwordCheck: this.state.FormVarR.passwordCheck
           }});
           console.log(this.state.FormVarR);
       }
       handleChangeEmail(event) {
         this.setState({FormVarR: 
           {
-            login: this.state.FormVarR.login,
+            fullname: this.state.FormVarR.fullname,
             email: event.target.value,
             password: this.state.FormVarR.password,
-            passwordCheck: this.state.FormVarR.passwordCheck
+            //passwordCheck: this.state.FormVarR.passwordCheck
           }});
       }
       handleChangePass(event) {
         this.setState({FormVarR: 
           {
-            login: this.state.FormVarR.login,
+            fullname: this.state.FormVarR.fullname,
             email: this.state.FormVarR.email,
             password: event.target.value,
-            passwordCheck: this.state.FormVarR.passwordCheck
+            //passwordCheck: this.state.FormVarR.passwordCheck
           }});
       }
       handleChangePassCh(event) {
         this.setState({FormVarR: 
           {
-            login: this.state.FormVarR.login,
+            fullname: this.state.FormVarR.fullname,
             email: this.state.FormVarR.email,
             password: this.state.FormVarR.password,
-            passwordCheck: event.target.value
+            //passwordCheck: event.target.value
           }});
       }
       //Отправка данных на сервер для посылания сообщений на почту. Тестирую, пока в стадии написания. 
@@ -69,7 +69,8 @@ export class Registrate extends Component{
         event.preventDefault();
         console.log(this.state);
         alert('Проверка введённых данных...Подождите...');
-        await axios.post('api/signup', this.state.FormVarR)
+        console.log(this.state.FormVarR);
+        await axios.post('api/user/signup', this.state.FormVarR)
         .then(res => {
           this.setState({DataRequestR: res.data});
           if(res.data.error)
