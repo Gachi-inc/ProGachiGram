@@ -41,11 +41,8 @@ const Actions = {
         console.log(response.data.message);
       });
   },
-  fetchUserRegister: postData => dispatch => {
-    return userApi
-    .signUp(postData).then(({data}) => {
-      return data;
-    })
+  fetchUserRegister: postData => () => {
+    return userApi.signUp(postData);
   },
 };
 

@@ -79,4 +79,4 @@ const SidebarContainer = ({ user }) => {
 };
 
 
-export default connect(({ user }) => ({ user: user.data }))(SidebarContainer);
+export default connect(({ user }) => ({ user: user.data }, console.log(user.data)))(SidebarContainer);
