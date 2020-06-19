@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
 import axios from '../../core/axios';
-import validateForm from "utils/validate";
+import { userActions } from 'redux/actions';
+import store from 'redux/store';
 
 function  GetVallidateMessage(props) {
   if(props.Valid)
@@ -23,21 +24,12 @@ export class Registrate extends Component{
             password: "",
             //passwordCheck: ""
           },
-          DataRequestR: {}
         };
         this.GetPost = this.GetPost.bind(this);
         this.handleChangeLogin = this.handleChangeLogin.bind(this);
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangePass = this.handleChangePass.bind(this);
         this.handleChangePassCh = this.handleChangePassCh.bind(this);
-      }
-
-      validate = (name, value) => {
-        let errors = {};
-    
-        validateForm({name, value, errors});
-    
-        return errors;
       }
 
       handleChangeLogin(event) {
@@ -84,8 +76,8 @@ export class Registrate extends Component{
       }
       async GetPost(event){
         event.preventDefault();
-        alert('Проверка введённых данных...Подождите...');
-        await axios.post('api/user/signup', this.state.FormVar)
+        alert('Проверка введённых данных...Нажмите "ОК" и подождите');
+        /*await axios.post('api/user/signup', this.state.FormVar)
         .then(res => {
           this.setState({DataRequestR: res.data});
           if(res.data.error)
@@ -93,7 +85,17 @@ export class Registrate extends Component{
           else {
             document.getElementById('FormR').submit();
           }
-        }).catch(err => console.log('error:', err));
+        }).catch(err => console.log('error:', err));*/
+        store
+        .dispatch(userActions.fetchUserRegister(this.state.FormVar))
+        .then(data => {
+          console.log(data);
+          document.getElementById('FormR').submit();
+        })
+        .catch(err => {
+          alert('Непредвиденная ошибка');
+          console.log(err);
+        })
       }
     render() {
       return (
@@ -104,16 +106,12 @@ export class Registrate extends Component{
               <HLetters>Регистрация</HLetters>
               <label> Логин:</label>
               <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.login} onChange={this.handleChangeLogin}/>
-              <GetVallidateMessage Valid={this.validate("login", this.state.FormVar.fullname)}/>
               <label> E-mail:</label>
               <FormInpt type="email" placeholder="Введите e-mail" name="email" value={this.state.FormVar.email} onChange={this.handleChangeEmail}/>
-              <GetVallidateMessage Valid={this.validate("email", this.state.FormVar.email)}/>
               <label> Пароль:</label>
               <FormInpt  type="password" placeholder="Введите пароль" name="password" value={this.state.FormVar.password} onChange={this.handleChangePass}/>
-              <GetVallidateMessage Valid={this.validate("password", this.state.FormVar.password)}/>
               <label> Повторите пароль:</label>
               <FormInpt type="password" placeholder="Повторите пароль" name="passwordCheck" value={this.state.FormVar.passwordCheck} onChange={this.handleChangePassCh}/>
-              <GetVallidateMessage Valid={this.validate("passwordCheck", this.state.FormVar.passwordCheck)}/>
               
               <FormSbmt value="Зарегистрироваться" onClick={this.GetPost} readOnly/>
             </StyledForms>

@@ -1,4 +1,4 @@
-/*import { openNotification } from 'utils/helpers';
+//import { openNotification } from 'utils/helpers';
 import { userApi } from 'utils/api';
 
 const Actions = {
@@ -28,11 +28,7 @@ const Actions = {
       .signIn(postData)
       .then(({ data }) => {
         const { token } = data;
-        openNotification({
-          title: 'Отлично!',
-          text: 'Авторизация успешна.',
-          type: 'success',
-        });
+        console.log('Работает');
         window.axios.defaults.headers.common['token'] = token;
         window.localStorage['token'] = token;
         dispatch(Actions.fetchUserData());
@@ -40,16 +36,15 @@ const Actions = {
         return data;
       })
       .catch(({ response }) => {
-        openNotification({
-          title: 'Ошибка при авторизации',
-          text: 'Неверный логин или пароль',
-          type: 'error',
-        });
+        console.log('Что-то пошло не так');
       });
   },
-  fetchUserRegister: postData => () => {
-    return userApi.signUp(postData);
+  fetchUserRegister: postData => dispatch => {
+    return userApi
+    .signUp(postData).then(({data}) => {
+      return data;
+    })
   },
 };
 
-export default Actions;*/
+export default Actions;
