@@ -76,7 +76,7 @@ export class Registrate extends Component{
           if(res.data.error)
             alert(res.data.errorMessage);
           else {
-            /*сюда пихай функцию для письма */
+            /*await axios.post('/api/sendmailer', )*/
             document.getElementById('FormR').submit();
           }
         }).catch(err => console.log('error:', err));
