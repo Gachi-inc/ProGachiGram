@@ -25,7 +25,7 @@ const createRoutes = (app, io) => {
   //const UploadFileController = new UploadFileCtrl();
 
   app.use(bodyParser.json());
-  app.use(checkAuth);
+  //app.use(checkAuth);
   // app.use(updateLastSeen);
 
   app.get("/", (_, res) => {
@@ -41,7 +41,7 @@ const createRoutes = (app, io) => {
   app.delete("/api/user/:id", UserController.delete);
 
   app.use('/api/sendmailer', sendMailerRouter);
-  app.get("/api/dialogs/:id", DialogController.index);
+  app.get("/api/dialogs/", DialogController.index);
   app.delete("/api/dialogs/:id", DialogController.delete);
   app.post("/api/dialogs", DialogController.create);
 

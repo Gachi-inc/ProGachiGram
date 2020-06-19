@@ -98,7 +98,7 @@ export const SideBar = styled.div`
   z-index: 1000;
   box-shadow: 5px 0 10px rgba(0,0,0,0.5);
 
-  .sidebar__header{
+  .sidebar-content__header{
     border-bottom: 1px solid white;
     display: flex;
     justify-content: space-between;
@@ -119,7 +119,7 @@ export const SideBar = styled.div`
       width: 23px;
     }
   }
-  .sidebar__search-dialog{
+  .sidebar-content__search-dialog{
     font-size: var(--font-size-s);
     background-color: #333;
     color: white;
@@ -137,7 +137,7 @@ export const SideBar = styled.div`
     }
   }
 
-  .sidebar__dialogs{
+  .sidebar-content__dialogs{
     overflow: auto;
     height: 88vh;
     .dialogs{

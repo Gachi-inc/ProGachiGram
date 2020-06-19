@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types' 
-import {Search, Empty} from '../Messenger/Messenger.styled'
+import {Empty} from '../Messenger/Messenger.styled'
 import povertyIcon from '../../assets/png/poverty.png'
 import {Loader, MessagesWrap} from './Message.styled'
 import Message from "./Message"

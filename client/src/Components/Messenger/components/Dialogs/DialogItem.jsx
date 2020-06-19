@@ -1,5 +1,5 @@
 import React from 'react';
-import {DlgItm, UserАvatar, DlgItmInfo, DlgItmInfo__top, DlgItmInfo__bottom, IsOnline} from './DialogItem.styles';
+import {DlgItm, UserАvatar, DlgItmInfo, DlgItmInfoTop, DlgItmInfoBottom, IsOnline} from './DialogItem.styles';
 // import  Time from '../../../Time/index'
 import { format, isToday, isThisYear } from 'date-fns';
 import { ru } from 'date-fns/locale';
@@ -32,7 +32,7 @@ const DialogItem = ({ _id, user, unreaded, created_at, text, isMe, onSelect}) =>
                 {user.isonline? <IsOnline/> : ""}
             </UserАvatar>
             <DlgItmInfo>
-                <DlgItmInfo__top>
+                <DlgItmInfoTop>
                     <b>
                         {user.fullname}
                     </b>
@@ -40,15 +40,15 @@ const DialogItem = ({ _id, user, unreaded, created_at, text, isMe, onSelect}) =>
                         {getMessageTime(created_at)}
                         {/* <Time date = {message.created_at}/> */}
                     </span>
-                </DlgItmInfo__top>
-                <DlgItmInfo__bottom>
+                </DlgItmInfoTop>
+                <DlgItmInfoBottom>
                     <p>
                         {text}
                     </p>
                     {/* иконка прочитанного сообщения */}
                     {/* {isMe && <IconReaded isMe = {true} isReaded = {false}/>} */}
                     {unreaded > 0 && (<div className= "dlgitminfo__bottom--counter">{unreaded > 99? "+99": unreaded}</div>)}
-                </DlgItmInfo__bottom>
+                </DlgItmInfoBottom>
             </DlgItmInfo>
         </DlgItm>
     )   

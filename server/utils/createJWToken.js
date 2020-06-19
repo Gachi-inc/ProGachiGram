@@ -21,7 +21,6 @@ function createJWToken(user) {
       algorithm: "HS256",
     }
   );
-  //console.log("process.env.JWT_SECRET: ", process.env.JWT_SECRET);
   return token;
 }
 
