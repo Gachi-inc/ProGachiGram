@@ -35,26 +35,12 @@ export class Login extends Component{
   async GetPostAndRedirect(event){
     event.preventDefault();
     alert('Проверка введённых данных...Подождите...');
-    /*await axios.post('/api/user/signin', this.state.FormVar)
-    .then(res => {
-      if(res.data.status === 'success')
-      {
-        window.localStorage.token = res.data.token;
-        console.log(window.localStorage.token);
-      } 
-      else alert(res.data.message);
-      
-      document.getElementById('Form').submit();
-    } 
-    )*/
     store
         .dispatch(userActions.fetchUserLogin(this.state.FormVar))
-        .then(data => {
-          document.getElementById('Form').submit();
-        })
-        .catch(err => {
-          alert('Непредвиденная ошибка');
-          console.log(err);
+        .then(({ status }) => {
+          if (status === 'success') {
+            this.props.history.push('/im');
+          }
         })
   }
     render()

@@ -22,7 +22,7 @@ const SideBar = ({
     onModalOk,
 }) => {
     return (
-        <React.Fragment className="sidebar-content">
+        <React.Fragment >
             <div className="sidebar-content__header">
                 <div>
                     <img src = {UsersSvg} alt = "group-icon"/>
