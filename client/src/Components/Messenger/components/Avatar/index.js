@@ -12,7 +12,7 @@ const createDefaultAvatar = (user) =>{
 
 
 const UserAvatar = ({user}) =>{
-    console.log(user);
+
     if (user.avatar) {
         return(
           <img 
@@ -22,7 +22,8 @@ const UserAvatar = ({user}) =>{
           />
         ) 
     } else {
-          const {currentColor, firstChar} = createDefaultAvatar(user)
+          const {currentColor, firstChar} = createDefaultAvatar(user);
+          console.log(currentColor)
           return(
               <Avatar
                   style={{

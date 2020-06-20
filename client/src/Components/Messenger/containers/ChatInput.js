@@ -16,17 +16,7 @@ const ChatInput = props => {
     user,
   } = props;
 
-//   if (!currentDialogId) {
-//     return null;
-//   }
-
-    window.navigator.getUserMedia =
-    window.navigator.getUserMedia ||
-    window.navigator.mozGetUserMedia ||
-    window.navigator.msGetUserMedia ||
-    window.navigator.webkitGetUserMedia;
-
-    const [value, setValue] = useState('');
+  const [value, setValue] = useState('');
 
   const sendMessage = () => {
     if (value ) {
@@ -61,7 +51,7 @@ const ChatInput = props => {
 export default connect(
   ({ dialogs, user }) => ({
     dialogs,
-    //user: user.data, /// ЖДУ ОТПРАВКУ И КОННЕКТ С СЕРВЕРОМ НА ПРЕДМЕТ ЮЗЕРОВ
+    user: user.data, /// ЖДУ ОТПРАВКУ И КОННЕКТ С СЕРВЕРОМ НА ПРЕДМЕТ ЮЗЕРОВ
   }),
   { ...messagesActions },
 )(ChatInput);

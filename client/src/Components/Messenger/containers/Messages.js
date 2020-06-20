@@ -16,7 +16,7 @@ const Dialogs =({
     removeMessageById, 
     addMessage,
     })=>{
-    
+    console.log(currentDialog);
     const messagesRef = useRef(null);
 
     const onNewMessage = data => {

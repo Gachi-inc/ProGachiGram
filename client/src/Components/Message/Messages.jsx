@@ -32,7 +32,7 @@ const Messages = ({
                             <Message 
                             
                                 {...item}
-                                //isMe={user.id === item.user.id}
+                                isMe={user.id === item.user.id}
                                 onRemoveMessage={onRemoveMessage.bind(this, item._id)}
                                 key = {item._id} 
                             />
