@@ -22,20 +22,32 @@ const renderTextInfo = (hash, verified) => {
     }
 }
 
-const CheckEmailInfo = ({location, history}) => {
-    const [verified, setVerified] = useState(false);
+const CheckEmailInfo = ({location}) => {
     const hash = location.search.split('hash=')[1];
-    const info = renderTextInfo(hash, verified);
+    const [verified, setVerified] = useState(false);
+    const [checking, setChecking] = useState(!!hash);
+    const [info, setInfo] = useState(renderTextInfo({ hash, checking, verified }));
+
+    const setStatus = ({ checking, verified }) => {
+        setInfo(renderTextInfo({ hash, checking, verified }));
+        setVerified(verified);
+        setChecking(checking);
+    };
+
     useEffect(() => {
-        if (hash){
-            userApi.verifyHash(hash)
-            .then(({data}) => {
-                if (data.status === 'success'){
-                    setVerified(true);
-                }
+        if (hash) {
+        userApi
+            .verifyHash(hash)
+            .then(() => {
+            setStatus({ verified: true, checking: false });
+            })
+            .catch(() => {
+            setStatus({ verified: false, checking: false });
             });
         }
-    })
+    }, []);
+
+    console.log({ info, checking, verified, hash });
 
     return (
         <div>

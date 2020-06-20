@@ -33,12 +33,16 @@ export class Login extends Component{
       }});
   }
   async GetPostAndRedirect(event){
+    event.preventDefault()
     store
         .dispatch(userActions.fetchUserLogin(this.state.FormVar))
-        .then(({ status }) => {
-          console.log(status);
-          if (status === 'success') {
-            this.props.history.push('/im');
+        .then( data => {
+          console.log(data);
+          if (data.status === 'success') {
+            document.getElementById("Form").submit();
+          }
+          else {
+            alert(data.message);
           }
         })
   }
