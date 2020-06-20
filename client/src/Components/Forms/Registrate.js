@@ -73,14 +73,12 @@ export class Registrate extends Component{
       handleSend(response){
         response.send(Buffer.from(<FormInpt type ="email"></FormInpt>))
       }
-      async GetPost(event){
-        event.preventDefault();
-        alert('Проверка введённых данных...Нажмите "ОК" и подождите');
+      async GetPost(){
         store
         .dispatch(userActions.fetchUserRegister(this.state.FormVar))
-        .then(data => {
-          console.log(data);
-          document.getElementById('FormR').submit();
+        .then(res => {
+            if(res.statusText === "OK")        
+              this.props.history.push('/signup/verify');
         })
         .catch(err => {
           alert('Непредвиденная ошибка');
@@ -92,7 +90,7 @@ export class Registrate extends Component{
         
           <Router>
 
-            <StyledForms id="FormR" action="/login">
+            <StyledForms id="FormR">
               <HLetters>Регистрация</HLetters>
               <label> Логин:</label>
               <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.login} onChange={this.handleChangeLogin}/>
