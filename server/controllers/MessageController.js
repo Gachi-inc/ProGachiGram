@@ -66,7 +66,7 @@ class MessageController {
   };
 
   create = (req, res) => {            //проверено
-    const userId = req.user._id
+    const userId = req.user._id;
     const postData = {
       text: req.body.text,
       dialog: req.body.dialog_id,
