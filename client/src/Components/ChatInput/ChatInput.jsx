@@ -11,12 +11,17 @@ const ChatInput = props => {
         setValue,
         handleSendMessage,
         sendMessage,
-       
+        isLoading
+
+
+
+
       } = props;
     return (
         <React.Fragment>
             <ExportMsgField>
-                <MsgField 
+                <MsgField
+                    rows="10" 
                     placeholder = "Введите текст сообщения"
                     onChange={e => setValue(e.target.value)}
                     onKeyUp={handleSendMessage}

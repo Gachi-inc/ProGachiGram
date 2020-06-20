@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const MsgField = styled.input`
+export const MsgField = styled.textarea`
 padding-left: 5%;
 height: 30px;
 width: 84%;
