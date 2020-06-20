@@ -1,17 +1,20 @@
 import React, { useEffect, useRef } from "react"
 import { connect } from "react-redux"
 import {messagesActions} from 'redux/actions'
+import find from 'lodash/find';
+
 import {Messages as BaseMessages} from "Components/Message/Messages"
 import socket from "core/socket"
 
 
 const Dialogs =({ 
-    currentDialogId, 
+    currentDialog, 
     fetchMessages, 
     items,
     user, 
     isLoading,
     removeMessageById, 
+    addMessage,
     })=>{
     
     const messagesRef = useRef(null);
@@ -20,16 +23,15 @@ const Dialogs =({
         addMessage(data);
     };
 
-
     useEffect(()=>{
-        if(currentDialogId){
-            fetchMessages(currentDialogId);
+        if(currentDialog){
+            fetchMessages(currentDialog._id);
         }
 
         socket.on('SERVER:NEW_MESSAGE', onNewMessage);
 
         return () => socket.removeListener('SERVER:NEW_MESSAGE', onNewMessage);
-    }, [currentDialogId]);
+    }, [currentDialog]);
 
 
 
@@ -45,9 +47,9 @@ const Dialogs =({
             items={items}
             isLoading={isLoading && !user}
             onRemoveMessage={removeMessageById}
-            toUser={
-              user._id !== currentDialog.toUser._id ? currentDialog.fromUser : currentDialog.toUser
-            }
+            // toUser={
+            //   user.id !== currentDialog.toUser.id ? currentDialog.fromUser : currentDialog.toUser
+            // }
         />
     );
 };

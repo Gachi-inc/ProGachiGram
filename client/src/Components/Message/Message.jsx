@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {Msg, MsgАvatar, Bubble, Text, MsgDate} from './Message.styled'
-import PropTypes from 'prop-types' 
+
 import  Time from '../Time/index'
 import Avatar from '../Messenger/components/Avatar'
 
@@ -12,18 +13,21 @@ const Type = (isMe) =>{
 
 
 const Message = ({
-    //user, 
-    text, 
-    // date, 
-    // isMe,
-    //  _id 
+    avatar,
+    user,
+    text,
+    date,
+    isMe,
+    readed,   
+    onRemoveMessage,
+
 }) =>{
 
     return(
-        // className = {Type(isMe), _id}
-        <Msg   >
+        
+        <Msg className = {Type(isMe), isMe}  >
             <MsgАvatar className ="msg__avatar">
-                {/* <Avatar user = {user}/> */}
+                <Avatar user = {user}/>
             </MsgАvatar>
             <div className = 'message__content' >
                 <Bubble className ="msg__bubble">
@@ -33,7 +37,7 @@ const Message = ({
                 </Bubble>
                 <MsgDate lassName ="msg__date">
                     <span>
-                        <Time date = {new Date}/>
+                        <Time date = {date}/>
                     </span>
                 </MsgDate>
             </div>
@@ -52,6 +56,7 @@ Message.propTypes = {
     data: PropTypes.string,
     text: PropTypes.string,
     user: PropTypes.object,
+    isMe: PropTypes.bool,
 }
 
 export default Message;

@@ -53,7 +53,6 @@ const DialogItem = ({
                             {toUser.fullname}
                         </b>
                         <span>
-                            {console.log(lastMessage.createdAt)}
                             {getMessageTime(lastMessage.createdAt)}
                         </span>
                     </DlgItmInfoTop>

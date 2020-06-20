@@ -5,12 +5,20 @@ import povertyIcon from '../../assets/png/poverty.png'
 import {Loader, MessagesWrap} from './Message.styled'
 import Message from "./Message"
 
-const Messages = ({blockRef, isLoading, items}) => {  
+const Messages = ({
+    onRemoveMessage,
+    blockRef,
+    isLoading,
+    items,
+    user,
+    toUser
+    }) => { 
+
     return( 
         <MessagesWrap 
             ref={blockRef} 
             className = "messages">
-                {isLoading ? (
+                {isLoading && !user ? (
                     <Loader className = "lds-ring">
                         <div></div>
                         <div></div>
@@ -20,13 +28,22 @@ const Messages = ({blockRef, isLoading, items}) => {
                     </Loader>
                 ) : items && !isLoading? (
                     items.length > 0 ? (
-                        items.map(item => <Message key = {item._id} {...item}/>)
-                        ) : (
+                        items.map(item => (
+                            <Message 
+                            
+                                {...item}
+                                //isMe={user.id === item.user.id}
+                                onRemoveMessage={onRemoveMessage.bind(this, item._id)}
+                                key = {item._id} 
+                            />
+                            ), )
+                    ) : (
                         <Empty>
                             <img className = "messages-empty" src = {povertyIcon} alt = "empty-icon"/>
                             <span>Диалог пуст!</span>
-                        </Empty>)
-                ) : (
+                        </Empty>
+                        )
+                    ) : (
                         <Empty>
                             <img className = "messages-empty" src = {povertyIcon} alt = "empty-icon"/>
                             <span>Выберите диалог</span>

@@ -12,6 +12,7 @@ const createDefaultAvatar = (user) =>{
 
 
 const UserAvatar = ({user}) =>{
+    console.log(user);
     if (user.avatar) {
         return(
           <img 
