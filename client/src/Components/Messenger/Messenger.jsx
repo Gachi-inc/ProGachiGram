@@ -27,7 +27,6 @@ import {
 
 const Messenger = props =>{
     const{setCurrentDialogId, user, isSearchMsgOpen} = props
-    
 
     useEffect(() => {
         const { pathname } = props.location;

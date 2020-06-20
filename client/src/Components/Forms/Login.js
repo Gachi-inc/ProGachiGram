@@ -33,14 +33,12 @@ export class Login extends Component{
       }});
   }
   async GetPostAndRedirect(event){
-    event.preventDefault()
     store
         .dispatch(userActions.fetchUserLogin(this.state.FormVar))
         .then( data => {
-          if (data.status === 'success') {
-             this.props.history.push('/im');
-          }
-          else {
+          console.log(data);
+          this.props.history.push('/im');
+          if (data.status === 'error') {
             alert(data.message);
           }
         })
@@ -49,7 +47,7 @@ export class Login extends Component{
     {
       return (
         <Router> 
-          <StyledForms id="Form" action="/im">
+          <StyledForms id="Form">
             <HLetters>Вход</HLetters>
             <label> Логин/E-mail:</label>
             <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.fullname} onChange={this.handleChangeLogin}/>        

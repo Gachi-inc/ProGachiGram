@@ -11,7 +11,7 @@ const Actions = {
     payload: bool,
   }),
   fetchUserData: () => dispatch => {
-    userApi
+      userApi
       .getMe()
       .then(({ data }) => {
         dispatch(Actions.setUserData(data));
@@ -27,7 +27,7 @@ const Actions = {
     return userApi
       .signIn(postData)
       .then(({ data }) => {
-        if(data.status === 'error') return data;
+        if(data.status === 'error'){return data;}
         const { token } = data;
         window.axios.defaults.headers.common['token'] = token;
         window.localStorage['token'] = token;
