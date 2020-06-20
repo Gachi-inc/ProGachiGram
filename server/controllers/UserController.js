@@ -89,28 +89,29 @@ class UserController {
     user.confirmed_hash = confirmed_hash;
     user
       .save()
-      .then((obj) => {
-        res.json({
-         _id: obj._id,
-         fullname: obj.fullname,
-         last_seen: obj.last_seen
-        })
-      })
-
-    let transporter = nodemailer.createTransport({
-      host: "smtp.mailtrap.io",
-      port: 2525,
-      auth: {
-        user: process.env.log,
-        pass: process.env.pass
-      }
-    });
-    console.log("Creating!!!", postData);
-    transporter.sendMail({
-        from: '"ProGachiGram"<team2-6300b4@inbox.mailtrap.io>',
+      // .then((obj) => {
+      //   res.json({
+      //    _id: obj._id,
+      //    fullname: obj.fullname,
+      //    last_seen: obj.last_seen
+      //   })
+      // })
+const URL = "http://localhost:3000/api/user/verify?hash=" + user.confirmed_hash;
+const transporter = nodemailer.createTransport({
+  host: 'smtp.mail.ru',
+  port: 465,
+  auth: {
+      user: process.env.emailMailer,
+      pass: process.env.passwordMailer
+  }
+});
+console.log("мы вошли перед почтой")
+    let result = transporter.sendMail({
+        from: `"ProGachiGram"<${process.env.emailMailer}>`,
         to: postData.email,
         subject: "Подтверждение регистрации",
-        html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/api/user/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`
+        html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/api/user/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`,
+        text: `Please confirm your account by clicking the following link: ${URL}` 
       }).then(function () {
         console.log("Message sent: %s", postData.email);
         res.json({
@@ -136,7 +137,8 @@ class UserController {
     const hash = req.query.hash;
     if (!hash) {
       return res.status(420).json({
-        errors: 'Данная ссылка недействительна'
+        status: 'error',
+        message: 'Данная ссылка недействительна'
       });
     }
 
