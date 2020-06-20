@@ -21,7 +21,8 @@ const Main = props => {
             <Route 
                 path="/im" 
                 render = {()=>(isAuth ? <Messenger/>: <Redirect to = "/signin"/>)}
-            />    
+            /> 
+
         </Switch>
     </StyledMain>
     );

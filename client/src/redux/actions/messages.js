@@ -19,10 +19,10 @@ const Actions = {
   fetchSendMessage: ({ text, dialogId, attachments }) => dispatch => {
     return messagesApi.send(text, dialogId, attachments);
   },
-//   setIsLoading: bool => ({
-//     type: "MESSAGES:SET_IS_LOADING",
-//     payload: bool
-//   }),
+  setIsLoading: bool => ({
+    type: "MESSAGES:SET_IS_LOADING",
+    payload: bool
+  }),
   removeMessageById: id => dispatch => {
     if (window.confirm("Вы действительно хотите удалить сообщение?")) {
       messagesApi
@@ -39,6 +39,7 @@ const Actions = {
     }
   },
   fetchMessages: dialogId => dispatch => {
+    console.log(dialogId);
     dispatch(Actions.setIsLoading(true));
     messagesApi
       .getAllByDialogId(dialogId)

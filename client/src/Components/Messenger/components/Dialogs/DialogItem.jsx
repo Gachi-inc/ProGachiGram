@@ -39,7 +39,7 @@ const DialogItem = ({
 
     }) =>{  
     return(
-        <Link to={`/dialog/${_id}`}>
+        <Link to={`/im/dialog/${_id}`}>
             <DlgItm className = "dialogs__item"
             //onClick = {onSelect.bind(this, _id)}
             >

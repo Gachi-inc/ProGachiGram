@@ -11,12 +11,19 @@ const Type = (isMe) =>{
 }
 
 
-const Message = ({user, text, date, isMe, _id }) =>{
+const Message = ({
+    //user, 
+    text, 
+    // date, 
+    // isMe,
+    //  _id 
+}) =>{
 
     return(
-        <Msg className = {Type(isMe), _id}  >
+        // className = {Type(isMe), _id}
+        <Msg   >
             <MsgАvatar className ="msg__avatar">
-                <Avatar user = {user}/>
+                {/* <Avatar user = {user}/> */}
             </MsgАvatar>
             <div className = 'message__content' >
                 <Bubble className ="msg__bubble">
@@ -26,7 +33,7 @@ const Message = ({user, text, date, isMe, _id }) =>{
                 </Bubble>
                 <MsgDate lassName ="msg__date">
                     <span>
-                        <Time date = {date}/>
+                        <Time date = {new Date}/>
                     </span>
                 </MsgDate>
             </div>
