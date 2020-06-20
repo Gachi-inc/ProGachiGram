@@ -15,7 +15,7 @@ const ChatInput = props => {
     //removeAttachment,
     user,
   } = props;
-  
+
   const [value, setValue] = useState('');
 
   const sendMessage = () => {
@@ -31,7 +31,6 @@ const ChatInput = props => {
   const handleSendMessage = e => {
     socket.emit('DIALOGS:TYPING', { dialogId: currentDialogId, user });
     if (e.keyCode === 13) {
-      console.log('dddd')
       sendMessage();
     }
   };
