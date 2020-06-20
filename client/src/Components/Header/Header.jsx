@@ -10,7 +10,7 @@ import {
 function CheckUser(props){
      if(props.isLogIn === "/im")
      {
-        return <nav><a href="/">LogOut</a></nav>
+        return <nav><a href="/" onClick={window.localStorage.clear()}>LogOut</a></nav>
      }
      else return <nav>
              <NavLink exact to="/signup" activeStyle={ActiveNavLink}>

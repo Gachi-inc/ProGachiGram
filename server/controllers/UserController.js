@@ -193,7 +193,7 @@ console.log("мы вошли перед почтой")
     ]
     }, (err, user) => {
       if (err || !user) {
-        return res.status(404).json({
+        return res.json({
           status: 'error',
           message: 'User not found'
         });
@@ -202,7 +202,7 @@ console.log("мы вошли перед почтой")
       if (bcrypt.compareSync(postData.password, user.password)) {
         
         if (!user.confirmed) {
-          return res.status(404).json({
+          return res.json({
             status: 'error',
             message: 'User not activated'
           });
@@ -214,7 +214,7 @@ console.log("мы вошли перед почтой")
           token
         });
       } else {
-        res.status(403).json({
+        res.json({
           status: 'error',
           message: 'Incorrect password or email'
         });

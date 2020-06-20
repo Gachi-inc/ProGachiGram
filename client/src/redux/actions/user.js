@@ -24,22 +24,17 @@ const Actions = {
       });
   },
   fetchUserLogin: postData => dispatch => {
-    console.log('В fetchUserLogin перед return');
     return userApi
       .signIn(postData)
       .then(({ data }) => {
+        if(data.status === 'error') return data;
         const { token } = data;
-        console.log('Работает');
         window.axios.defaults.headers.common['token'] = token;
         window.localStorage['token'] = token;
         dispatch(Actions.fetchUserData());
         dispatch(Actions.setIsAuth(true));
         return data;
       })
-      .catch(({ response }) => {
-        console.log('Что-то пошло не так');
-        console.log(response.data.message);
-      });
   },
   fetchUserRegister: postData => () => {
     return userApi.signUp(postData);
