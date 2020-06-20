@@ -10,7 +10,8 @@ module.exports =  (req, _, next) => {
         last_seen: new Date()
       }
     },
-    {new: true})
-  };
-next()
-}
+    {new: true}).then(function () {console.log("Updated")});
+    return next();
+}else{
+  next();
+};}

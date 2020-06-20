@@ -1,7 +1,6 @@
-
 import React from 'react';
 import {StyledMain} from './Main.styles';
-
+import CheckEmailInfo from './CheckInfo'
 import {Registrate} from '../Forms/Registrate';
 import {Login} from '../Forms/Login';
 import News from './../News/News';
@@ -17,6 +16,8 @@ const Main = props => {
         <Switch> 
             <Route exact path="/signin" component={Login}/>
             <Route exact path="/signup" component={Registrate}/>
+            <Route exact path="/signup/verify" component={CheckEmailInfo} />
+            <Route exact path="/" component={News}/>
             <Route 
                 path="/im" 
                 render = {()=>(isAuth ? <Messenger/>: <Redirect to = "/signin"/>)}

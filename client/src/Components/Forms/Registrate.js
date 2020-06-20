@@ -4,14 +4,6 @@ import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
 import { userActions } from 'redux/actions';
 import store from 'redux/store';
 
-function  GetVallidateMessage(props) {
-  if(props.Valid)
-  {
-    return <label></label>
-  }
-  else return <br/>;
-}
-
 export class Registrate extends Component{
   
     constructor(props) {
@@ -67,20 +59,13 @@ export class Registrate extends Component{
             //passwordCheck: event.target.value
           }});
       }
-      //Отправка данных на сервер для посылания сообщений на почту. Тестирую, пока в стадии написания. 
-      //Пока даже не в стадии тестирования отправки с сервера на email
-      //
-      handleSend(response){
-        response.send(Buffer.from(<FormInpt type ="email"></FormInpt>))
-      }
-      async GetPost(event){
-        event.preventDefault();
-        alert('Проверка введённых данных...Нажмите "ОК" и подождите');
+      async GetPost(){
         store
         .dispatch(userActions.fetchUserRegister(this.state.FormVar))
-        .then(data => {
-          console.log(data);
-          document.getElementById('FormR').submit();
+        .then(res => {
+          console.log(res);
+          if(res.statusText === "OK")        
+            this.props.history.push('/signup/verify');
         })
         .catch(err => {
           alert('Непредвиденная ошибка');
@@ -92,7 +77,7 @@ export class Registrate extends Component{
         
           <Router>
 
-            <StyledForms id="FormR" action="/login">
+            <StyledForms id="FormR">
               <HLetters>Регистрация</HLetters>
               <label> Логин:</label>
               <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.login} onChange={this.handleChangeLogin}/>

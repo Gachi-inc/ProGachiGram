@@ -33,11 +33,10 @@ export class Login extends Component{
       }});
   }
   async GetPostAndRedirect(event){
-    event.preventDefault();
-    alert('Проверка введённых данных...Подождите...');
     store
         .dispatch(userActions.fetchUserLogin(this.state.FormVar))
         .then(({ status }) => {
+          console.log(status);
           if (status === 'success') {
             this.props.history.push('/im');
           }
