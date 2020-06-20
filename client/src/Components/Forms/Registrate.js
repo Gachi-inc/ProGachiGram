@@ -67,18 +67,13 @@ export class Registrate extends Component{
             //passwordCheck: event.target.value
           }});
       }
-      //Отправка данных на сервер для посылания сообщений на почту. Тестирую, пока в стадии написания. 
-      //Пока даже не в стадии тестирования отправки с сервера на email
-      //
-      handleSend(response){
-        response.send(Buffer.from(<FormInpt type ="email"></FormInpt>))
-      }
       async GetPost(){
         store
         .dispatch(userActions.fetchUserRegister(this.state.FormVar))
         .then(res => {
-            if(res.statusText === "OK")        
-              this.props.history.push('/signup/verify');
+          console.log(res);
+          if(res.statusText === "OK")        
+            this.props.history.push('/signup/verify');
         })
         .catch(err => {
           alert('Непредвиденная ошибка');

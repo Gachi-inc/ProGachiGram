@@ -110,7 +110,7 @@ class UserController {
         from: '"ProGachiGram"<team2-6300b4@inbox.mailtrap.io>',
         to: postData.email,
         subject: "Подтверждение регистрации",
-        html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/api/user/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`
+        html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/signup/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`
       }).then(function () {
         console.log("Message sent: %s", postData.email);
         res.json({
