@@ -17,11 +17,11 @@ const Main = props => {
         <Switch> 
             <Route exact path="/signin" component={Login}/>
             <Route exact path="/signup" component={Registrate}/>
-            <Route exact path="/" component={News}/>
             <Route 
                 path="/im" 
                 render = {()=>(isAuth ? <Messenger/>: <Redirect to = "/signin"/>)}
-            />    
+            /> 
+
         </Switch>
     </StyledMain>
     );

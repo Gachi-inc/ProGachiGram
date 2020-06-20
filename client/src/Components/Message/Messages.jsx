@@ -5,10 +5,11 @@ import povertyIcon from '../../assets/png/poverty.png'
 import {Loader, MessagesWrap} from './Message.styled'
 import Message from "./Message"
 
-    const Messages = ({blockRef, isLoading, items}) => {  
-    return <MessagesWrap 
-        ref={blockRef} 
-        className = "messages">
+const Messages = ({blockRef, isLoading, items}) => {  
+    return( 
+        <MessagesWrap 
+            ref={blockRef} 
+            className = "messages">
                 {isLoading ? (
                     <Loader className = "lds-ring">
                         <div></div>
@@ -31,8 +32,9 @@ import Message from "./Message"
                             <span>Выберите диалог</span>
                         </Empty>
                 )}
-            </MessagesWrap>
-    }
+        </MessagesWrap>
+    )
+}
 
 
 

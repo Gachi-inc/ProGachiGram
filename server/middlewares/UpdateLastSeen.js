@@ -10,5 +10,7 @@ module.exports =  (req, _, next) => {
         last_seen: new Date()
       }
     },
-    {new: true}).then(next());
-};}
+    {new: true})
+  };
+next()
+}

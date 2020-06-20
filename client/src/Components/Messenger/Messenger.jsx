@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-//import SocketChat from 'socket.io-client';
+import React, { useEffect } from 'react';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { dialogsActions } from 'redux/actions';
 
 import Messages from "./containers/Messages"
 import SideBarContent from './containers/SideBar'
@@ -23,18 +25,17 @@ import {
 
 //const socket = SocketChat('http://localhost:5000');
 
-class Messenger extends Component{
+const Messenger = props =>{
+    const{setCurrentDialogId, user, isSearchMsgOpen} = props
+    
 
-    constructor(props){
-        super(props);
-        this.state ={
-            User: props.DataRequest,
-            isSearchMsgOpen: false,
-            isOnline: false,
-        }
-    }
+    useEffect(() => {
+        const { pathname } = props.location;
+        const dialogId = pathname.split('/').pop();
+        if (dialogId !== "im") setCurrentDialogId(dialogId);
+      }, [props.location.pathname]);
 
-    render(){
+    
         return (
             
             <StyledMessenger>
@@ -44,53 +45,59 @@ class Messenger extends Component{
                 </SideBar>
 
                 <Wrapper className = "chat__dialog">
-
-                    {this.state.isSearchMsgOpen === false ? 
-                    <ChatName className = "chat__dialog-header">
-                        <div/>
-                        <div className = "chat__dialog-header-center">
-                            <b className = "chat__dialog-header-username">{this.state.User}</b>
-                            <div className = "chat__dialog-header-status">
-                                <IsOnline className = {this.state.isOnline? "status-online" : "status"}>
-                                    {this.state.isOnline? "online" : "offline"}
-                                </IsOnline>  
+                {user && (
+                    <React.Fragment>
+                        <ChatName className = "chat__dialog-header">
+                            <div/>
+                            <div className = "chat__dialog-header-center">
+                                <b className = "chat__dialog-header-username">{user.fullname}</b>
+                                <div className = "chat__dialog-header-status">
+                                    <IsOnline className = {user.isOnline? "status-online" : "status"}>
+                                        {user.isOnline? "online" : "offline"}
+                                    </IsOnline>  
+                                </div>
                             </div>
-                        </div>
-                        <div className = "chat__searchbar">
-                            <button className = "chat__searchbar-button" 
-                                onClick={() => this.openSearchMsg()}>
-                                <img className = "chat__searchbar-icon" src = {searchSvg} alt = "searchIcon"/>
-                            </button>
-                        </div>
-                    </ChatName>
-                :        
-                    <ChatName>
-                        <SearchMsg 
-                        isOpen={this.state.isSearchMsgOpen}
-                        onClose={() => this.closeSearchMsg()}>
-                            <input type="text" placeholder = "введите текст сообщения"/> 
-                        </SearchMsg>
-                    </ChatName>
-                }
+                            <div className = "chat__searchbar">
+                                {/* <button className = "chat__searchbar-button" 
+                                    onClick={() => this.openSearchMsg()}>
+                                    <img className = "chat__searchbar-icon" src = {searchSvg} alt = "searchIcon"/>
+                                </button> */}
+                            </div>
+                        </ChatName>
+                            
+                        {/* // <ChatName>
+                        //     <SearchMsg 
+                        //     isOpen={this.state.isSearchMsgOpen}
+                        //     onClose={() => this.closeSearchMsg()}>
+                        //         <input type="text" placeholder = "введите текст сообщения"/> 
+                        //     </SearchMsg>
+                        // </ChatName>
+                        //} */}
 
-                    <Chat>
-                        <Messages />
-                    </Chat>
+                        <Chat>
+                            <Messages />
+                        </Chat>
 
-                    <ChatInput/>
-
+                        <ChatInput/>
+                    </React.Fragment>
+                )}
                 </Wrapper>
             </StyledMessenger>
-        )
+        );
     }
 
-    openSearchMsg() {
-        this.setState({ isSearchMsgOpen: true });
-      }
-    
-      closeSearchMsg() {
-        this.setState({ isSearchMsgOpen: false });
-      }
-}
 
-export default Messenger;
+    // openSearchMsg() {
+    //     this.setState({ isSearchMsgOpen: true });
+    //   }
+    
+    //   closeSearchMsg() {
+    //     this.setState({ isSearchMsgOpen: false });
+    //   }
+
+export default withRouter(
+    connect(
+        ({user}) => ({user: user.data}),
+        dialogsActions,
+    )(Messenger)
+);
