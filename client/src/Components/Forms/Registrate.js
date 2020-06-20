@@ -4,14 +4,6 @@ import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
 import { userActions } from 'redux/actions';
 import store from 'redux/store';
 
-function  GetVallidateMessage(props) {
-  if(props.Valid)
-  {
-    return <label></label>
-  }
-  else return <br/>;
-}
-
 export class Registrate extends Component{
   
     constructor(props) {
