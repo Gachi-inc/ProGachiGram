@@ -13,12 +13,12 @@ function CheckUser(props){
         return <nav><a href="/">LogOut</a></nav>
      }
      else return <nav>
-             <NavLink exact to="/registrate" activeStyle={ActiveNavLink}>
-                {'SingIn'}
+             <NavLink exact to="/signup" activeStyle={ActiveNavLink}>
+                {'SignUp'}
              </NavLink>
 
-             <NavLink exact to="/login" activeStyle={ActiveNavLink}>
-                 {'LogIn'}
+             <NavLink exact to="/signin" activeStyle={ActiveNavLink}>
+                 {'SignIn'}
              </NavLink>
             </nav>
     }
@@ -98,9 +98,9 @@ const SideMenu = ({ children }) => {
 
     return <MenuInsides open={isMenuOpen}>
                 <NavLinkMobile exact to="/" activeStyle={ActiveNavLink}>{'Start'}</NavLinkMobile>
-                <NavLinkMobile exact to="/app" activeStyle={ActiveNavLink}>{'Messenger'}</NavLinkMobile>
-                <NavLinkMobile exact to="/registrate" activeStyle={ActiveNavLink}>{'SingIn'}</NavLinkMobile>
-                <NavLinkMobile exact to="/login" activeStyle={ActiveNavLink}>{'LogIn'}</NavLinkMobile>
+                {/* <NavLinkMobile exact to="/im" activeStyle={ActiveNavLink}>{'Messenger'}</NavLinkMobile> */}
+                <NavLinkMobile exact to="/signup" activeStyle={ActiveNavLink}>{'SignUp'}</NavLinkMobile>
+                <NavLinkMobile exact to="/signin" activeStyle={ActiveNavLink}>{'SignIn'}</NavLinkMobile>
            </MenuInsides>;
 }
 

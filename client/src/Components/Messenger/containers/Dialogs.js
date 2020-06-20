@@ -14,7 +14,7 @@ const Dialogs = ({ fetchDialogs, updateReadedStatus, currentDialogId, items, use
         items.filter(
           dialog =>
             dialog.fromUser.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0 ||
-            dialog.ToUser.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0,
+            dialog.toUser.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0,
         ),
       );
       setValue(value);

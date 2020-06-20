@@ -44,13 +44,13 @@ const DialogItem = ({
             //onClick = {onSelect.bind(this, _id)}
             >
                 <UserАvatar>
-                    <Avatar user = {lastMessage.user}/> 
-                    {lastMessage.user.isOnline? <IsOnline/> : ""}
+                    <Avatar user = {toUser}/> 
+                    {toUser.isOnline? <IsOnline/> : ""}
                 </UserАvatar>
                 <DlgItmInfo>
                     <DlgItmInfoTop>
                         <b>
-                            {lastMessage.user.fullname}
+                            {toUser.fullname}
                         </b>
                         <span>
                             {console.log(lastMessage.createdAt)}
@@ -65,7 +65,7 @@ const DialogItem = ({
                         {/* {isMe && <IconReaded isMe = {isMe} />} */}
                         {lastMessage.unreaded > 0 && (
                         <div className= "dlgitminfo__bottom--counter">
-                            {unreaded > 99? "+99": lastMessage.unreaded}
+                            {lastMessage.unreaded > 99? "+99": lastMessage.unreaded}
                         </div>)}
                     </DlgItmInfoBottom>
                 </DlgItmInfo>
