@@ -21,6 +21,7 @@ const SideBar = ({
     onChangeTextArea,
     onModalOk,
 }) => {
+
     return (
         <React.Fragment >
             <div className="sidebar-content__header">

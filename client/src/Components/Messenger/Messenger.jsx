@@ -6,6 +6,7 @@ import { dialogsActions } from 'redux/actions';
 import Messages from "./containers/Messages"
 import SideBarContent from './containers/SideBar'
 
+import ChatName from "./containers/ChatName"
 import ChatInput from "./containers/ChatInput"
 import SearchMsg from "../SearchMsg/SearchMsg"
 
@@ -19,8 +20,6 @@ import {
 
 import { 
     Chat,
-    ChatName,
-    IsOnline,
 } from './components/Chat/Chat.styles';
 
 //const socket = SocketChat('http://localhost:5000');
@@ -46,37 +45,10 @@ const Messenger = props =>{
                 <Wrapper className = "chat__dialog">
                 {user && (
                     <React.Fragment>
-                        <ChatName className = "chat__dialog-header">
-                            <div/>
-                            <div className = "chat__dialog-header-center">
-                                <b className = "chat__dialog-header-username">{user.fullname}</b>
-                                <div className = "chat__dialog-header-status">
-                                    <IsOnline className = {user.isOnline? "status-online" : "status"}>
-                                        {user.isOnline? "online" : "offline"}
-                                    </IsOnline>  
-                                </div>
-                            </div>
-                            <div className = "chat__searchbar">
-                                {/* <button className = "chat__searchbar-button" 
-                                    onClick={() => this.openSearchMsg()}>
-                                    <img className = "chat__searchbar-icon" src = {searchSvg} alt = "searchIcon"/>
-                                </button> */}
-                            </div>
-                        </ChatName>
-                            
-                        {/* // <ChatName>
-                        //     <SearchMsg 
-                        //     isOpen={this.state.isSearchMsgOpen}
-                        //     onClose={() => this.closeSearchMsg()}>
-                        //         <input type="text" placeholder = "введите текст сообщения"/> 
-                        //     </SearchMsg>
-                        // </ChatName>
-                        //} */}
-
+                        <ChatName/>
                         <Chat>
                             <Messages />
                         </Chat>
-
                         <ChatInput/>
                     </React.Fragment>
                 )}
