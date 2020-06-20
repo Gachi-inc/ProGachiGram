@@ -92,9 +92,10 @@ const messageModelScheme = new Schema({
     require: true
   },
   user: {
-    type: mongoose.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    require: true
+    autopopulate: true,
+    require: true,
   },
   text: {
     type: String,
@@ -106,11 +107,21 @@ const messageModelScheme = new Schema({
     default: false
   },
   
+  populatedField: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    // The below option tells this plugin to always call `populate()` on
+    // `populatedField`
+    autopopulate: true
+  }
+
+
+
 },
 {
   timestamps: true,
 });
-
+messageModelScheme.plugin(require('mongoose-autopopulate'));
 
 
 const DialogModel = mongoose.model('Dialog', dialogModelScheme);
