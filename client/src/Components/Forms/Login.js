@@ -37,9 +37,8 @@ export class Login extends Component{
     store
         .dispatch(userActions.fetchUserLogin(this.state.FormVar))
         .then( data => {
-          console.log(data);
           if (data.status === 'success') {
-            document.getElementById("Form").submit();
+             this.props.history.push('/im');
           }
           else {
             alert(data.message);
