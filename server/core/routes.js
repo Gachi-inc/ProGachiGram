@@ -26,7 +26,6 @@ const createRoutes = (app, io) => {
 
   app.use(bodyParser.json());
   app.use(checkAuth);
-  console.log(req.user);
   app.use(updateLastSeen);
 
   app.get("/", (_, res) => {
