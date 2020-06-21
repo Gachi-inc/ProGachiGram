@@ -11,8 +11,17 @@ class MessageController {
     this.io = io;
   }
 
+
+
+  forwardingMessage = (req, res) => {
+    const postData = {
+      attachemenst: req.message._id
+    };
+    MessageModel.findById(id, (err, message)).populate(["dialogs", "users"])
+    }
+
+
   updateReadStatus = (res, userId, dialogId) => {
-    console.log("Мы вошли 2");
     MessageModel.updateMany(
       {
         user: { $ne: userId },
@@ -31,7 +40,6 @@ class MessageController {
             message: err,
           });
         } else {
-          console.log("Мы вошли 3");
           this.io.emit("SERVER:MESSAGES_READED", {
             userId,
             dialogId
@@ -44,11 +52,7 @@ class MessageController {
   index = (req, res) => {
     const dialogId = req.query.dialog;
     const userId = req.user._id;
-    console.log("Мы вошли 1");
-    console.log("dialogId: ", dialogId);
-    console.log("userId: ", userId);
     this.updateReadStatus(res, userId, dialogId);
-    console.log("Мы вошли 4");
     MessageModel.find({
         dialog: dialogId
       })
@@ -60,12 +64,11 @@ class MessageController {
             message: "Messages not found",
           });
         }
-        console.log("Мы вошли 5: ", messages);
         res.json(messages);
       });
   };
 
-  create = (req, res) => {            //проверено
+  create = (req, res) => {            
     const userId = req.user._id;
     const postData = {
       text: req.body.text,
@@ -109,7 +112,6 @@ class MessageController {
             );
 
             res.json(message);
-
             this.io.emit("SERVER:NEW_MESSAGE", message);
           }
         );
@@ -165,7 +167,7 @@ class MessageController {
                 });
               }
 
-              dialog.lastMessage = lastMessage /*? lastMessage.toString() : ""*/;
+              dialog.lastMessage = lastMessage;
               dialog.save();
             });
           }
@@ -184,7 +186,4 @@ class MessageController {
     });
   };
 }
-
-
 module.exports = MessageController;
-//export default MessageController;

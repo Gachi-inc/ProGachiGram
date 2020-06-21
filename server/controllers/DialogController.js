@@ -15,45 +15,6 @@ class DialogController {
     this.io = io;
   }
 
-
-  // updateunRead = (req, res) => {                         //поиск диалогов всех в которых состоит юзер из токена.
-  //   const userId = req.user._id;
-  //   console.log(req);
-  //   //const userId = req.params.user;
-  //   DialogModel.find()
-  //     .or([{
-  //         fromUser: userId,
-  //       },
-  //       {
-  //         toUser: userId,
-  //       },
-  //     ])
-  //     .populate(["fromUser", "toUser"])
-  //     .populate({
-  //       path: "lastMessage",
-  //       populate: {
-  //         path: "user",
-  //       },
-  //     })
-  //     .exec(function (err, dialogs) {
-  //       if (err) {
-  //         return res.status(404).json({
-  //           message: "Dialogs not found",
-  //         });
-  //       }
-  //       return res.json(dialogs);
-  //     });
-  // };
-
-
-
-
-
-
-
-
-
-
   index = (req, res) => {                         //поиск диалогов всех в которых состоит юзер из токена.
     const userId = req.user._id;
     //const userId = req.params.user;
@@ -169,4 +130,3 @@ class DialogController {
 }
 
 module.exports = DialogController;
-// export default DialogController;

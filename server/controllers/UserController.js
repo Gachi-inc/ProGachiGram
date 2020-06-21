@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs')
 var {UserModel} = require('../models/Schemes');
 var {validationResult} = require('express-validator');
 var {createJWToken} = require('../utils/createJWToken');
-//const {user} = require("../config");
 
 class UserController {
   constructor(io) {
@@ -91,13 +90,6 @@ class UserController {
     user.confirmed_hash = confirmed_hash;
     user
       .save()
-      // .then((obj) => {
-      //   res.json({
-      //    _id: obj._id,
-      //    fullname: obj.fullname,
-      //    last_seen: obj.last_seen
-      //   })
-      // })
 const URL = "http://localhost:3000/api/user/verify?hash=" + user.confirmed_hash;
 const transporter = nodemailer.createTransport({
   host: 'smtp.mail.ru',
@@ -126,7 +118,7 @@ console.log("мы вошли перед почтой")
           message: error
         })
       })
-      .catch((reason) => {      ///Я хз, нужен здесь вообще catch или нет.
+      .catch((reason) => {
         res.status(500).json({
           status: "error",
           message: reason,
@@ -224,8 +216,4 @@ console.log("мы вошли перед почтой")
     });
   };
 }
-
-//export default UserController;
-
-
 module.exports = UserController;
