@@ -36,16 +36,18 @@ class UserController {
 
   findUsers = (req, res) => {
     const query = req.query.query;
-    UserModel.find({
-        fullname: new RegExp(query, 'i')
-      })
+    UserModel.find()
+    .or([
+      { fullname: new RegExp(query, "i") },
+      { email: new RegExp(query, "i") },
+    ])
       .then((users) => res.json(users))
-      .catch((err) => {
+      .catch((err => {
         return res.status(404).json({
-          status: 'error',
-          message: err
+          status: "error",
+          message: err,
         });
-      });
+      }));
   };
 
   delete = (req, res) => {
