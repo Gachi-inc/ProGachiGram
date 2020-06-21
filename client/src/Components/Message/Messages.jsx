@@ -32,6 +32,7 @@ const Messages = ({
                             <Message 
                             
                                 {...item}
+                                date = {item.createdAt}
                                 isMe={user.id === item.user.id}
                                 onRemoveMessage={onRemoveMessage.bind(this, item._id)}
                                 key = {item._id} 

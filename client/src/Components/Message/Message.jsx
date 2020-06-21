@@ -7,13 +7,12 @@ import Avatar from '../Messenger/components/Avatar'
 
 const Type = (isMe) =>{
     return(
-        isMe? Msg.clasName = "msg--isme": "msg"
+        isMe? "msg--isme": "msg"
         );   
 }
 
 
 const Message = ({
-    avatar,
     user,
     text,
     date,
@@ -25,7 +24,7 @@ const Message = ({
 
     return(
         
-        <Msg className = {Type(isMe), isMe}  >
+        <Msg className = {Type(isMe)}  >
             <MsgАvatar className ="msg__avatar">
                 <Avatar user = {user}/>
             </MsgАvatar>

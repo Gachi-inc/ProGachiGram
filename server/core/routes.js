@@ -14,7 +14,7 @@ var {
 var checkAuth = require('../middlewares/CheckAuth');
 var loginValidation = require('../utils/validations/signin');
 var registerValidation = require('../utils/validations/signup');
-var sendMailerRouter = require('../routes/SendMailerRoute')
+//var sendMailerRouter = require('../routes/SendMailerRoute')
 var updateLastSeen = require('../middlewares/UpdateLastSeen')
 
 
@@ -40,7 +40,7 @@ const createRoutes = (app, io) => {
   app.get("/api/user/:id", UserController.show);
   app.delete("/api/user/:id", UserController.delete);
 
-  app.use('/api/sendmailer', sendMailerRouter);
+  //app.use('/api/sendmailer', sendMailerRouter);
   app.get("/api/dialogs/", DialogController.index);
   app.delete("/api/dialogs/:id", DialogController.delete);
   app.post("/api/dialogs", DialogController.create);

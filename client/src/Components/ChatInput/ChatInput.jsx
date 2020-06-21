@@ -20,7 +20,8 @@ const ChatInput = props => {
     return (
         <React.Fragment>
             <ExportMsgField>
-                <MsgField
+                <MsgField 
+                    wrap="soft"
                     rows="10" 
                     placeholder = "Введите текст сообщения"
                     onChange={e => setValue(e.target.value)}
