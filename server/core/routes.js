@@ -1,10 +1,3 @@
-// import {
-//     UserCtrl,
-//     DialogCtrl,
-//     MessageCtrl,
-//    // UploadFileCtrl,
-//   } from "../controllers";
-
 var bodyParser = require('body-parser');
 var {
   UserCtrl,
@@ -23,14 +16,13 @@ const createRoutes = (app, io) => {
   const DialogController = new DialogCtrl(io);
   const MessageController = new MessageCtrl(io);
   //const UploadFileController = new UploadFileCtrl();
+  app.get("/api", (_, res) => {
+    res.send("Hello, World!");
+  });
 
   app.use(bodyParser.json());
   app.use(checkAuth);
   app.use(updateLastSeen);
-
-  app.get("/api", (_, res) => {
-    res.send("Hello, World!");
-  });
 
   app.get("/api/user/me", UserController.getMe);
   app.get("/api/user/verify", UserController.verify);

@@ -35,7 +35,7 @@ const SideBar = ({
 
 
     const [display, ChangeDisplay] = useState('display: none');
-    //const select = document.getElementById("f")["Users"];
+    const select = document.getElementById("f")["Users"];
     useEffect(() => {
         visible? ChangeDisplay('none') : ChangeDisplay('flex');
         document.getElementById("menu").style.display = display;
@@ -43,11 +43,11 @@ const SideBar = ({
     useEffect(() =>{
         if(inputValue) onSearch(inputValue);
     }, [inputValue, onSearch]);
-    // useEffect(() => {
-    //     if(select.value){
-    //         onSelectUser(true);
-    //     }
-    // }, [select.value]);
+    useEffect(() => {
+        if(select.value){
+            onSelectUser(true);
+        }
+    }, [select.value]);
     return (
         <React.Fragment >
             <div className="sidebar-content__header">
@@ -67,12 +67,11 @@ const SideBar = ({
                     <ModalBody>
                         <label>Введите имя пользователя или E-Mail</label><br/>
                         <StyledForms id="f">
-                            <select name="Users" onSelect={onSelectUser} style={{width: "100%"}} >
+                            <select name="Users" style={{width: "100%"}} >
                                 {options}
                             </select>
                             <FormInpt type="text" name="search" placeholder="Введите имя пользователя или почту" value={inputValue} onChange={onChangeInput}/>
                         </StyledForms>
-                        {console.log(selectedUserId)}
                         { selectedUserId && (
                             <div>
                                 <label>Введите текст сообщения</label>
