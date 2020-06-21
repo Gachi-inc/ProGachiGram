@@ -30,24 +30,26 @@ const SideBar = ({
 
 }) => {
 
-    const options = users.map(user => <option key={user._id} >{user.fullname}</option>)
+    const options = users.map(user => <option key={user._id} onClick ={onSelectUser} >{user.fullname}</option>)
 
 
 
     const [display, ChangeDisplay] = useState('display: none');
-    const select = document.getElementById("f")["Users"];
+    const select = options.length > 0? document.getElementById("f")["Users"] : null;
+    console.log(select);
     useEffect(() => {
         visible? ChangeDisplay('none') : ChangeDisplay('flex');
         document.getElementById("menu").style.display = display;
-    }, [display, visible]);
+    }, [visible]);
+
     useEffect(() =>{
         if(inputValue) onSearch(inputValue);
-    }, [inputValue, onSearch]);
-    useEffect(() => {
-        if(select.value){
-            onSelectUser(true);
-        }
-    }, [select.value]);
+    }, [inputValue]);
+    // useEffect(() => {
+    //     if(select.key){
+    //         onSelectUser(true);
+    //     }
+    // }, [select]);
     return (
         <React.Fragment >
             <div className="sidebar-content__header">
