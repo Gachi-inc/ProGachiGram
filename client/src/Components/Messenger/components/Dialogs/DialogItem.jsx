@@ -20,7 +20,7 @@ const getMessageTime = createdAt => {
 
 const renderLastMessage = (message, userId) => {
     let text = message.text;
-    return `${message.user._id === userId ? 'Вы: ' : ''}${text}`;
+    return `${message.user._id === userId ? 'Вы: ' : `${message.user.fullname}: `}${text}`;
   };
 
 
@@ -29,28 +29,29 @@ const renderLastMessage = (message, userId) => {
 const DialogItem = ({ 
     _id,
     unreaded,
-    created_at,
-    text,
-    //isMe,
-    //currentDialogId,
+    isMe,
+    currentDialogId,
     lastMessage,
     userId,
     toUser,
+    fromUser
 
     }) =>{  
+        
+    let partner = isMe? toUser: fromUser;
     return(
         <Link to={`/im/dialog/${_id}`}>
             <DlgItm className = "dialogs__item"
             //onClick = {onSelect.bind(this, _id)}
             >
                 <UserАvatar>
-                    <Avatar user = {toUser}/> 
-                    {toUser.isOnline? <IsOnline/> : ""}
+                    <Avatar user = {partner}/> 
+                    {partner.isOnline? <IsOnline/> : ""}
                 </UserАvatar>
                 <DlgItmInfo>
                     <DlgItmInfoTop>
                         <b>
-                            {toUser.fullname}
+                            {partner.fullname}
                         </b>
                         <span>
                             {getMessageTime(lastMessage.createdAt)}
@@ -62,9 +63,9 @@ const DialogItem = ({
                         </p>
                         {/* isReaded = {lastMessage.readed} */}
                         {/* {isMe && <IconReaded isMe = {isMe} />} */}
-                        {lastMessage.unreaded > 0 && (
+                        {unreaded > 0 && (
                         <div className= "dlgitminfo__bottom--counter">
-                            {lastMessage.unreaded > 99? "+99": lastMessage.unreaded}
+                            {unreaded > 99? "+99": unreaded}
                         </div>)}
                     </DlgItmInfoBottom>
                 </DlgItmInfo>

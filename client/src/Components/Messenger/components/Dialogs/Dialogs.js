@@ -3,7 +3,9 @@ import DialogItem from './DialogItem'
 import orderBy from 'lodash/orderBy'
 import {Search, Empty} from '../../Messenger.styled'
 import mailboxIcon from '../../../../assets/svg/mailbox.svg'
-const Dialogs = ({items, userId, onSearch, inputValue, onSelectDialog}) =>(  
+const Dialogs = ({items, userId, onSearch, inputValue, onSelectDialog}) =>{
+    console.log('dialogs', userId);
+    return(  
         <div className = "dialogs">
             <Search className ="sidebar__search-dialog" 
                 placeholder = "Поиск по названию диалога" 
@@ -17,7 +19,7 @@ const Dialogs = ({items, userId, onSearch, inputValue, onSelectDialog}) =>(
                         onSelect = {onSelectDialog}
                         key = {item._id}
                         isMe ={item.fromUser._id === userId}
-                        toUser =  {item.fromUser._id === userId? item.toUser : item.fromUser}
+                        userId = {userId}
                         {...item}
                     />
             )):(
@@ -28,6 +30,7 @@ const Dialogs = ({items, userId, onSearch, inputValue, onSelectDialog}) =>(
             )}
         </div>
     );
+}
 
 
 export {Dialogs};
