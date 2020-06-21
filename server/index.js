@@ -14,9 +14,9 @@ var server = require('http').createServer(app);
 var io = createSocket(server);
 
 createRoutes(app, io);
-
+console.log(process.env.uri);
 
 server.listen(process.env.PORT, ()=>{
-    console.log(`Server is running on http://localhost:${process.env.PORT}`);
+    //console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
 

@@ -39,10 +39,10 @@ const SideBar = ({
     useEffect(() => {
         visible? ChangeDisplay('none') : ChangeDisplay('flex');
         document.getElementById("menu").style.display = display;
-    }, [visible]);
+    }, [display, visible]);
     useEffect(() =>{
         if(inputValue) onSearch(inputValue);
-    }, [inputValue]);
+    }, [inputValue, onSearch]);
     // useEffect(() => {
     //     if(select.value){
     //         onSelectUser(true);
