@@ -40,7 +40,6 @@ const createRoutes = (app, io) => {
   app.get("/api/user/:id", UserController.show);
   app.delete("/api/user/:id", UserController.delete);
 
-  //app.use('/api/sendmailer', sendMailerRouter);
   app.get("/api/dialogs/", DialogController.index);
   app.delete("/api/dialogs/:id", DialogController.delete);
   app.post("/api/dialogs", DialogController.create);
@@ -49,8 +48,6 @@ const createRoutes = (app, io) => {
   app.post("/api/messages", MessageController.create);
   app.delete("/api/messages", MessageController.delete);
 
-  // app.post("/files", multer.single("file"), UploadFileController.create);
-  // app.delete("/files", UploadFileController.delete);
 };
 
 

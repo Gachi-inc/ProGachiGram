@@ -1,9 +1,9 @@
 
 var express = require('express');
 console.log('Server is starting...');
-
-const dotenv = require('dotenv');
-dotenv.config();
+//require('dotenv/config')
+//const dotenv = require('dotenv');
+//dotenv.config();
 
 var createRoutes = require('./core/routes');
 var createSocket = require('./core/socket');
