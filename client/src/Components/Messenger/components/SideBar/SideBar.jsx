@@ -63,7 +63,7 @@ const SideBar = ({
                     <ModalBody>
                         <label>Введите имя пользователя или E-Mail</label><br/>
                         <StyledForms id="f">
-                            <select name="Users" style={{width: "100%"}}>
+                            <select onChange={} name="Users" style={{width: "100%"}}>
                                 {options}
                             </select>
                             <FormInpt type="text" name="search" placeholder="Введите имя пользователя или почту" value={inputValue} onChange={onChangeInput}/>
