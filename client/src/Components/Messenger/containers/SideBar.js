@@ -46,8 +46,8 @@ const SidebarContainer = ({ user }) => {
       });
   };
 
-  const handleChangeInput = value => {
-    setInputValue(value);
+  const handleChangeInput = e => {
+    setInputValue(e.target.value);
   };
 
   const onChangeTextArea = e => {

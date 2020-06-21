@@ -27,7 +27,6 @@ import {
 
 const Messenger = props =>{
     const{setCurrentDialogId, user, isSearchMsgOpen} = props
-
     useEffect(() => {
         const { pathname } = props.location;
         const dialogId = pathname.split('/').pop();
@@ -36,9 +35,7 @@ const Messenger = props =>{
 
     
         return (
-            
             <StyledMessenger>
-                
                 <SideBar>
                     <SideBarContent/>
                 </SideBar>

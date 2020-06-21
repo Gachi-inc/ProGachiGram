@@ -8,6 +8,7 @@ export const StyledMessenger = styled.div`
   background: #333;
   box-shadow: 0px 0px 25px rgba(0,0,0,0.5);
   height: calc(100vh - 60px);
+  z-index: 0;
 `;
 
 // export const Chat = styled.div`
@@ -164,8 +165,61 @@ img.dialogs-empty{
   filter: brightness(0) invert(1);
 }
 
-img.messages-empty{
+i*mg.messages-empty{
   display: block;
   margin: 20% auto 0 auto;
 }
+`
+
+export const Modal = styled.div`
+  background: #333;
+  posiyion: absolute;
+  display: none;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  perspective: 500px;
+  z-index: 10;
+`
+
+export const ModalWrapper = styled.div`
+  height: max-content;
+  width: 50%;
+  max-width: 500px;
+  top: 15%;
+  background: #333;
+  position: absolute;
+  text-align: left;
+  box-shadow: 0px 0px 13px 0px rgba(0,0,0,0.4);
+  animation-name:modalopen;
+  animation-duration:.8s;
+  transform: rotateX(0deg);
+`
+
+export const ModalFooter = styled.div`
+  text-align: center;
+  background: #333;
+  button{
+    cursor:pointer;
+    font-size:20px;
+    color: black;
+    background: white;
+    width: 50%;
+  }
+  .close{
+    float: right;
+    border-left: 2px solid black;
+  }
+  .create{
+    
+    float:left;
+  }
+`
+
+export const ModalBody = styled.div`
+  text-align: center;
+  background: #333;
 `
