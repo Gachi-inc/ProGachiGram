@@ -35,15 +35,16 @@ const SidebarContainer = ({ user }) => {
   };
 
   const onAddDialog = () => {
-    dialogsApi
-      .create({
-        partner: selectedUserId,
-        text: messageText
-      })
-      .then(onClose)
-      .catch(() => {
-        setIsLoading(false);
-      });
+    console.log(selectedUserId);
+    // dialogsApi
+    //   .create({
+    //     toUser: selectedUserId,
+    //     text: messageText
+    //   })
+    //   .then(onClose)
+    //   .catch(() => {
+    //     setIsLoading(false);
+    //   });
   };
 
   const handleChangeInput = e => {

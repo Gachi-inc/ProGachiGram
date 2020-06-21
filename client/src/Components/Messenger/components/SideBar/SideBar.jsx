@@ -29,7 +29,11 @@ const SideBar = ({
     onModalOk,
 
 }) => {
-    const options = users.map(user => <option key={user._id}>{user.fullname}</option>)
+
+    const options = users.map(user => <option key={user._id} >{user.fullname}</option>)
+
+
+
     const [display, ChangeDisplay] = useState('display: none');
     //const select = document.getElementById("f")["Users"];
     useEffect(() => {
@@ -63,19 +67,19 @@ const SideBar = ({
                     <ModalBody>
                         <label>Введите имя пользователя или E-Mail</label><br/>
                         <StyledForms id="f">
-                            <select onChange={} name="Users" style={{width: "100%"}}>
+                            <select name="Users" onSelect={onSelectUser} style={{width: "100%"}} >
                                 {options}
                             </select>
                             <FormInpt type="text" name="search" placeholder="Введите имя пользователя или почту" value={inputValue} onChange={onChangeInput}/>
                         </StyledForms>
-                        
+                        {console.log(selectedUserId)}
                         { selectedUserId && (
                             <div>
                                 <label>Введите текст сообщения</label>
+                                <div/>
                                 <textarea autosize={{minRows: 3, maxRows: 10}} value={messageText} onChange={onChangeTextArea}></textarea>
                             </div>
                         )}
-                            
                     </ModalBody>
                     <ModalFooter>
                         <button className="create" disabled={!messageText} onClick={onModalOk}>Создать</button>
@@ -86,4 +90,9 @@ const SideBar = ({
         </React.Fragment>
     );
 }
+
+SideBar.defaultProps = {
+    users: [],
+  };
+
 export default SideBar;

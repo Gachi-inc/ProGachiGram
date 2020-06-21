@@ -4,7 +4,7 @@ import orderBy from 'lodash/orderBy'
 import {Search, Empty} from '../../Messenger.styled'
 import mailboxIcon from '../../../../assets/svg/mailbox.svg'
 const Dialogs = ({items, userId, onSearch, inputValue, onSelectDialog}) =>{
-    console.log('dialogs', userId);
+
     return(  
         <div className = "dialogs">
             <Search className ="sidebar__search-dialog" 
