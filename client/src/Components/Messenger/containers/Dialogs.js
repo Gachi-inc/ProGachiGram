@@ -4,7 +4,7 @@ import socket from "core/socket"
 
 import {dialogsActions} from 'redux/actions'
 import {Dialogs as BaseDialogs} from "../components/Dialogs/Dialogs"
-import { configs } from "eslint-plugin-prettier"
+
 
 const Dialogs = ({ fetchDialogs, updateReadedStatus, currentDialogId, items, userId }) => {
     const [inputValue, setValue] = useState('');
@@ -39,7 +39,7 @@ const Dialogs = ({ fetchDialogs, updateReadedStatus, currentDialogId, items, use
         socket.removeListener('SERVER:DIALOG_CREATED', fetchDialogs);
         socket.removeListener('SERVER:NEW_MESSAGE', fetchDialogs);
       };
-    }, []);
+    }, [fetchDialogs, updateReadedStatus]);
 
     return (
       <BaseDialogs
