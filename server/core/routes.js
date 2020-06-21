@@ -28,7 +28,7 @@ const createRoutes = (app, io) => {
   app.use(checkAuth);
   app.use(updateLastSeen);
 
-  app.get("/", (_, res) => {
+  app.get("/api", (_, res) => {
     res.send("Hello, World!");
   });
 
