@@ -29,25 +29,21 @@ const SideBar = ({
     onModalOk,
 
 }) => {
+    const options = users.map(user => <option key={user._id}>{user.fullname}</option>)
     const [display, ChangeDisplay] = useState('display: none');
     //const select = document.getElementById("f")["Users"];
     useEffect(() => {
         visible? ChangeDisplay('none') : ChangeDisplay('flex');
         document.getElementById("menu").style.display = display;
     }, [visible]);
-    /*useEffect(() =>{
-        if(inputValue){
-            onSearch(inputValue);
-            for(var i = 0; i < users.lenght; i++){
-                select.options.add(users[i]);
-            }
-        }
+    useEffect(() =>{
+        if(inputValue) onSearch(inputValue);
     }, [inputValue]);
-    useEffect(() => {
-        if(select.value){
-            onSelectUser(true);
-        }
-    }, [select.value]);*/
+    // useEffect(() => {
+    //     if(select.value){
+    //         onSelectUser(true);
+    //     }
+    // }, [select.value]);
     return (
         <React.Fragment >
             <div className="sidebar-content__header">
@@ -67,7 +63,9 @@ const SideBar = ({
                     <ModalBody>
                         <label>Введите имя пользователя или E-Mail</label><br/>
                         <StyledForms id="f">
-                            <select name="Users" style={{width: "100%"}}></select>
+                            <select name="Users" style={{width: "100%"}}>
+                                {options}
+                            </select>
                             <FormInpt type="text" name="search" placeholder="Введите имя пользователя или почту" value={inputValue} onChange={onChangeInput}/>
                         </StyledForms>
                         
