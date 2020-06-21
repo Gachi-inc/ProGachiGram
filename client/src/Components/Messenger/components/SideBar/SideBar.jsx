@@ -35,19 +35,20 @@ const SideBar = ({
 
 
     const [display, ChangeDisplay] = useState('display: none');
-    const select = document.getElementById("f")["Users"];
+    //const select = document.getElementById("f")["Users"];
     useEffect(() => {
         visible? ChangeDisplay('none') : ChangeDisplay('flex');
         document.getElementById("menu").style.display = display;
     }, [display, visible]);
     useEffect(() =>{
-        if(inputValue) onSearch(inputValue);
-    }, [inputValue, onSearch]);
-    useEffect(() => {
-        if(select.value){
-            onSelectUser(true);
-        }
-    }, [select.value]);
+        if(onSearch)
+            onSearch(inputValue);
+    }, [inputValue]);
+    // useEffect(() => {
+    //     if(select.value){
+    //         onSelectUser(true);
+    //     }
+    // }, [select.value]);
     return (
         <React.Fragment >
             <div className="sidebar-content__header">
