@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { userApi } from 'utils/api';
 
-const renderTextInfo = (hash, verified) => {
-    if(hash) {
-        if(verified){
+const renderTextInfo = (hash) => {
+    if(hash.hash) {
+        if(hash.verified){
             return{
                 status: 'success',
                 message: 'Аккаунт успешно подтверждён!'
@@ -26,10 +26,10 @@ const CheckEmailInfo = ({location}) => {
     const hash = location.search.split('hash=')[1];
     const [verified, setVerified] = useState(false);
     const [checking, setChecking] = useState(!!hash);
-    const [info, setInfo] = useState(renderTextInfo({ hash, checking, verified }));
+    const [info, setInfo] = useState(renderTextInfo({ hash, verified }));
 
     const setStatus = ({ checking, verified }) => {
-        setInfo(renderTextInfo({ hash, checking, verified }));
+        setInfo(renderTextInfo({ hash, verified }));
         setVerified(verified);
         setChecking(checking);
     };
@@ -39,10 +39,10 @@ const CheckEmailInfo = ({location}) => {
         userApi
             .verifyHash(hash)
             .then(() => {
-            setStatus({ verified: true, checking: false });
+            setStatus({  checking: false, verified: true });
             })
             .catch(() => {
-            setStatus({ verified: false, checking: false });
+            setStatus({ checking: false, verified: false });
             });
         }
     }, []);

@@ -47,14 +47,14 @@ class DialogController {
     console.log("Create");
     const postData = {
       fromUser: req.user._id,
-      toUser: req.body.partner,
+      toUser: req.body.toUser,
       dateOfCreate: Date(),
       updateDate: moment().format("YYYY-MM-DD HH:mm:s")
     };
 
     DialogModel.findOne({
         fromUser: req.user._id,
-        toUser: req.body.partner,
+        toUser: req.body.toUser,
       },
       (err, user) => {
         if (err) {
@@ -64,7 +64,7 @@ class DialogController {
           });
         }
         if (user) {
-          return res.status(403).json({
+          return res.json({
             status: "error",
             message: "Такой диалог уже есть",
           });

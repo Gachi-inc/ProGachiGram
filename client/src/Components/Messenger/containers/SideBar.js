@@ -21,6 +21,7 @@ const SidebarContainer = ({ user }) => {
     setVisible(true);
   };
 
+
   const onSearch = value => {
     setIsLoading(true);
     userApi
@@ -36,15 +37,16 @@ const SidebarContainer = ({ user }) => {
 
   const onAddDialog = () => {
     console.log(selectedUserId);
-    // dialogsApi
-    //   .create({
-    //     toUser: selectedUserId,
-    //     text: messageText
-    //   })
-    //   .then(onClose)
-    //   .catch(() => {
-    //     setIsLoading(false);
-    //   });
+    console.log(messageText);
+    dialogsApi
+      .create({
+        toUser: selectedUserId,
+        text: messageText
+      })
+      .then(onClose)
+      .catch(data => {
+        console.log(data);
+      })
   };
 
   const handleChangeInput = e => {

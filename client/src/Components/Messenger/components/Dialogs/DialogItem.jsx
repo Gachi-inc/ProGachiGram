@@ -37,7 +37,8 @@ const DialogItem = ({
     fromUser
 
     }) =>{  
-        
+    console.log(toUser);
+    console.log(fromUser);    
     let partner = isMe? toUser: fromUser;
     return(
         <Link to={`/im/dialog/${_id}`}>
