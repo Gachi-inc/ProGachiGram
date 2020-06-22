@@ -223,3 +223,35 @@ export const ModalBody = styled.div`
   text-align: center;
   background: #333;
 `
+
+
+export const ChatName = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  border-bottom: 1px solid rgba(191, 202, 245, .5);
+  padding: 15px;
+  background-color: white;
+  color: #202020;
+
+  .chat__dialog-header-center{
+    text-align: center;
+    position: relative;
+  }
+
+  .chat__dialog-header-username{  
+    display: block;
+    font-weight: 500;
+  }
+  button{
+    cursor: pointer;
+    background: #fff;
+  }
+  input{
+    width: 100%;
+  }
+
+`

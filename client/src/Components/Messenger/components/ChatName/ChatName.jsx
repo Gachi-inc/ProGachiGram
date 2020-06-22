@@ -1,14 +1,12 @@
 import React from 'react';
 import {ChatName, IsOnline} from "./ChatName.styles"
 
-const ChatNameComponent = (online, fullname) => {
-
+const ChatNameComponent = ({online, fullname}) => {
     return (
         <React.Fragment>
-            <ChatName className = "chat__dialog-header">
                 <div/>
                 <div className = "chat__dialog-header-center">
-                    {/* <b className = "chat__dialog-header-username">{fullname}</b> */}
+                    <b className = "chat__dialog-header-username">{fullname}</b>
                     <div className = "chat__dialog-header-status">
                         <IsOnline className = {online? "status-online" : "status"}>
                             {online? "online" : "offline"}
@@ -21,7 +19,6 @@ const ChatNameComponent = (online, fullname) => {
                         <img className = "chat__searchbar-icon" src = {searchSvg} alt = "searchIcon"/>
                     </button> */}
                 </div>
-            </ChatName>
                 
             {/* // <ChatName>
             //     <SearchMsg 
