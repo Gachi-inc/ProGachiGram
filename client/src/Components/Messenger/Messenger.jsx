@@ -6,7 +6,7 @@ import { dialogsActions } from 'redux/actions';
 import Messages from "./containers/Messages"
 import SideBarContent from './containers/SideBar'
 
-import ChatName from "./containers/ChatName"
+import ChatNameContent from "./containers/ChatName"
 import ChatInput from "./containers/ChatInput"
 import SearchMsg from "../SearchMsg/SearchMsg"
 
@@ -15,7 +15,8 @@ import searchSvg from "assets/svg/search.svg"
 import {
     StyledMessenger, 
     Wrapper,
-    SideBar
+    SideBar,
+    ChatName
 } from './Messenger.styled';
 
 import { 
@@ -42,7 +43,9 @@ const Messenger = props =>{
                 <Wrapper className = "chat__dialog">
                 {user && (
                     <React.Fragment>
-                        <ChatName/>
+                        <ChatName className = "chat__dialog-header">
+                            <ChatNameContent/>
+                        </ChatName>
                         <Chat>
                             <Messages />
                         </Chat>

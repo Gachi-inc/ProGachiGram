@@ -37,7 +37,7 @@ const Messages = ({
                                 onRemoveMessage={onRemoveMessage.bind(this, item._id)}
                                 key = {item._id} 
                             />
-                            ), )
+                            ))
                     ) : (
                         <Empty>
                             <img className = "messages-empty" src = {povertyIcon} alt = "empty-icon"/>
@@ -47,7 +47,7 @@ const Messages = ({
                     ) : (
                         <Empty>
                             <img className = "messages-empty" src = {povertyIcon} alt = "empty-icon"/>
-                            <span>Выберите диалог</span>
+                            <span>Откройте диалог</span>
                         </Empty>
                 )}
         </MessagesWrap>
@@ -60,4 +60,4 @@ Messages.propTypes = {
     items: PropTypes.array,
 };
 
-export {Messages};
+export default Messages;

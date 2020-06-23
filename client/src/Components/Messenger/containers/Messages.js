@@ -1,9 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useRef } from "react"
 import { connect } from "react-redux"
 import {messagesActions} from 'redux/actions'
 import find from 'lodash/find';
 
-import {Messages as BaseMessages} from "Components/Message/Messages"
+import {Messages as BaseMessages} from "Components/Message"
+import {Empty} from '../Messenger.styled'
+import povertyIcon from 'assets/png/poverty.png'
+
 import socket from "core/socket"
 
 
@@ -16,6 +20,14 @@ const Dialogs =({
     removeMessageById, 
     addMessage,
     })=>{
+    if (!currentDialog) {
+        return (
+        <Empty>
+            <img className = "messages-empty" src = {povertyIcon} alt = "empty-icon"/>
+            <span>Выберите диалог</span>
+        </Empty>
+        )
+    }
 
     const messagesRef = useRef(null);
 
@@ -47,9 +59,9 @@ const Dialogs =({
             items={items}
             isLoading={isLoading && !user}
             onRemoveMessage={removeMessageById}
-            // toUser={
-            //   user.id !== currentDialog.toUser.id ? currentDialog.fromUser : currentDialog.toUser
-            // }
+            toUser={
+                user._id !== currentDialog.toUser._id ? currentDialog.fromUser : currentDialog.toUser
+              }
         />
     );
 };
