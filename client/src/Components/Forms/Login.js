@@ -3,6 +3,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
 import { userActions } from 'redux/actions';
 import store from 'redux/store';
+import Header from '../Header/Header';
 
 export class Login extends Component{
     constructor(props) {

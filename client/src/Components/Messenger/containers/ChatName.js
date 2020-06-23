@@ -14,7 +14,6 @@ const ChatName = ({ currentDialogId, user, dialogs }) => {
 
   if (currentDialogObj.fromUser._id === user._id) {
     toUser = currentDialogObj.toUser;
-    console.log(toUser);
   } else {
     toUser = currentDialogObj.fromUser;
   }
