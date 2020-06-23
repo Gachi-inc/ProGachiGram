@@ -26,7 +26,6 @@ const ChatInput = props => {
                     placeholder = "Введите текст сообщения"
                     onChange={e => setValue(e.target.value)}
                     onKeyUp={handleSendMessage}
-                    placeholder="Введите текст сообщения…"
                     value={value}
                 />
                 
