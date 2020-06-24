@@ -18,6 +18,11 @@ const initialState = {
           ...state,
           isAuth: payload
         };
+        case "USER:LOGOUT":
+          return{
+            token: null,
+            isAuth: false
+          }
       default:
         return state;
     }

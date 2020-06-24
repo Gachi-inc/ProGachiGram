@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import {Header} from './Components/Header/Header';
+import Header from './Components/Header/Header';
 import Main from './Components/Main/Main';
 
 import {GlobalStyles} from './Components/GlobalStyles/GlobalStyles.js';
