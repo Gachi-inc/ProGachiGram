@@ -10,6 +10,10 @@ const Actions = {
     type: 'USER:SET_IS_AUTH',
     payload: bool,
   }),
+  clearState: () => ({
+    type: 'USER:LOGOUT'
+  }),
+
   fetchUserData: () => dispatch => {
       userApi
       .getMe()
@@ -39,6 +43,11 @@ const Actions = {
   fetchUserRegister: postData => () => {
     return userApi.signUp(postData);
   },
+  userLogOut: () => dispatch => {
+    window.axios.defaults.headers.delete;
+    window.localStorage.clear();
+    dispatch(Actions.clearState(false));
+  }
 };
 
 export default Actions;

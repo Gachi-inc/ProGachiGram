@@ -1,6 +1,7 @@
 import React, {Component, createContext, useState, useContext} from 'react';
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
+import { userActions } from 'redux/actions';
 import { 
     ActiveNavLink, Container, Logo, NavLink, StyledHeader,
     MenuForPhones, MenuInsides, Navbar, NavLinkMobile, SpanStyle
@@ -8,52 +9,52 @@ import {
 import { connect } from 'react-redux';
 //import News from './../News/News';
 
-function CheckUser(props){
-     if(props.isLogIn)
-     {
-        return <nav><a href="/" onClick={window.localStorage.clear()}>LogOut</a></nav>
-     }
-     else return <nav>
-             <NavLink exact to="/signup" activeStyle={ActiveNavLink}>
-                {'SignUp'}
-             </NavLink>
 
-             <NavLink exact to="/signin" activeStyle={ActiveNavLink}>
-                 {'SignIn'}
-             </NavLink>
-            </nav>
+const Header= props =>{
+    const {isAuth, userLogOut} = props;
+
+    const handleClick = (e) =>{
+        e.preventDefault();
+        userLogOut();
     }
 
-export class Header extends Component{
-    constructor(props){
-        super(props);
-        const {isAuth} = props;
-        this.state = {
-            LogBool: isAuth
-        };
-    }
-    
+    return(
+    <StyledHeader>
+        <MediaQuery maxDeviceWidth={1000}>
+            <NavState>
+                <MainMenu/>
+            </NavState>
+        </MediaQuery>
+        <MediaQuery minDeviceWidth={1000}>
+                <Container>
+                    <Logo>ProGachiGram</Logo>
+                    {isAuth?(
+                        <nav>
+                            <NavLink exact to="/" activeStyle={ActiveNavLink} >
+                                <span onClick = {handleClick}>LogOut</span>
+                            </NavLink>
+                        </nav>
+                    ):( 
+                        <nav>
+                            <NavLink exact to="/signup" activeStyle={ActiveNavLink}>
+                            {'SignUp'}
+                            </NavLink>
+            
+                            <NavLink exact to="/signin" activeStyle={ActiveNavLink}>
+                                {'SignIn'}
+                            </NavLink>
+                        </nav>
+                    )
+                    }
+                </Container>
+        </MediaQuery>
+    </StyledHeader> 
+    )
 
-    render(){
-        return(
-        <StyledHeader>
-            <MediaQuery maxDeviceWidth={1000}>
-                <NavState>
-                    <MainMenu/>
-                </NavState>
-            </MediaQuery>
-            <MediaQuery minDeviceWidth={1000}>
-                    <Container>
-                        <Logo>ProGachiGram</Logo>
-                        <CheckUser isLogIn={this.state.LogBool}/>
-                    </Container>
-            </MediaQuery>
-        </StyledHeader> 
-        )
-
-    }
 }
-export default connect(({user}) =>({isAuth: user.isAuth}))(Header)
+export default connect(({user}) =>({isAuth: user.isAuth}),
+        userActions,
+    )(Header)
 /* Для мобилок вспомогательный код */
 
 const HamburgerButton = () => {
