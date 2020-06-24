@@ -1,8 +1,16 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { ChatNameComponent as ChatNameBase } from "../components/ChatName/ChatName";
 import { connect } from "react-redux";
 
 const ChatName = ({ currentDialogId, user, dialogs }) => {
+  const [isOpen, ChangeOpen] = useState(false);
+  const OnOpen = () => {
+    ChangeOpen(true);
+  }
+  const OnClose = () => {
+    ChangeOpen(false);
+  }
+
   if (!dialogs.length || !currentDialogId) {
     return null;
   }
@@ -17,7 +25,12 @@ const ChatName = ({ currentDialogId, user, dialogs }) => {
   } else {
     toUser = currentDialogObj.fromUser;
   }
-  return <ChatNameBase online={toUser.isOnline} fullname={toUser.fullname} />;
+  return <ChatNameBase 
+  online={toUser.isOnline} 
+  fullname={toUser.fullname}
+  OnOpen={OnOpen}
+  OnClose={OnClose}
+  isOpen={isOpen}/>;
 };
 
 export default connect(({ dialogs, user }) => ({

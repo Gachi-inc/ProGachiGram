@@ -5,7 +5,7 @@ import {
     ActiveNavLink, Container, Logo, NavLink, StyledHeader,
     MenuForPhones, MenuInsides, Navbar, NavLinkMobile, SpanStyle
 } from './Header.styles';
-import { connect } from 'react-redux';
+
 //import News from './../News/News';
 
 function CheckUser(props){
@@ -27,12 +27,10 @@ function CheckUser(props){
 export class Header extends Component{
     constructor(props){
         super(props);
-        const {isAuth} = props;
         this.state = {
-            LogBool: isAuth
+            LogBool: window.localStorage.token
         };
     }
-    
 
     render(){
         return(
@@ -53,7 +51,6 @@ export class Header extends Component{
 
     }
 }
-export default connect(({user}) =>({isAuth: user.isAuth}))(Header)
 /* Для мобилок вспомогательный код */
 
 const HamburgerButton = () => {

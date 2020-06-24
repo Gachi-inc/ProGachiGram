@@ -3,12 +3,13 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {StyledForms, FormInpt, FormSbmt, HLetters} from './Forms.styles';
 import { userActions } from 'redux/actions';
 import store from 'redux/store';
-import Header from '../Header/Header';
+import { connect } from 'react-redux';
 
 export class Login extends Component{
     constructor(props) {
         super(props);
         this.state = {
+          isAuth : props,
           FormVar: {
             fullname: '',
             password: ''
@@ -34,21 +35,22 @@ export class Login extends Component{
       }});
   }
   async GetPostAndRedirect(event){
+    event.preventDefault();
     store
         .dispatch(userActions.fetchUserLogin(this.state.FormVar))
         .then( data => {
-          console.log(data);
-          this.props.history.push('/im');
+          //this.props.history.push('/im');
           if (data.status === 'error') {
             alert(data.message);
           }
+          else document.getElementById("Form").submit();
         })
   }
     render()
     {
       return (
         <Router> 
-          <StyledForms id="Form">
+          <StyledForms id="Form" action={this.state.isAuth? "/im": "/signin"}>
             <HLetters>Вход</HLetters>
             <label> Логин/E-mail:</label>
             <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.fullname} onChange={this.handleChangeLogin}/>        
@@ -60,3 +62,5 @@ export class Login extends Component{
       );
     }
 }
+
+export default connect(({user}) =>({isAuth: user.isAuth}))(Login)

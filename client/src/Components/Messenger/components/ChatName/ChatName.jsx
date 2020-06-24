@@ -1,7 +1,18 @@
-import React from 'react';
-import {ChatName, IsOnline} from "./ChatName.styles"
+import React, {useState, useEffect} from 'react';
+import {ChatName, IsOnline} from "./ChatName.styles";
+import {Modal as SearchArea} from "../../../SearchMsg/SearchMsg"
+const ChatNameComponent = ({
+    online, 
+    fullname,
+    OnOpen,
+    OnClose,
+    isOpen,
+}) => {
+    
+    /*useEffect(() =>{
+        isOpen? 
 
-const ChatNameComponent = ({online, fullname}) => {
+    }, [isOpen])*/
     return (
         <React.Fragment>
                 <div/>
@@ -14,10 +25,9 @@ const ChatNameComponent = ({online, fullname}) => {
                     </div>
                 </div>
                 <div className = "chat__searchbar">
-                    {/* <button className = "chat__searchbar-button" 
-                        onClick={() => this.openSearchMsg()}>
-                        <img className = "chat__searchbar-icon" src = {searchSvg} alt = "searchIcon"/>
-                    </button> */}
+                    <button className = "chat__searchbar-button" onClick={OnOpen}>
+                        <img className = "chat__searchbar-icon" /*src = {searchSvg}*/ alt = "searchIcon"/>
+                    </button>
                 </div>
                 
             {/* // <ChatName>
