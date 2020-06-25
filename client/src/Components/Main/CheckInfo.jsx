@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { userApi } from 'utils/api';
+import { withRouter } from 'react-router';
+
 
 const renderTextInfo = (hash) => {
     if(hash.hash) {
@@ -22,7 +24,7 @@ const renderTextInfo = (hash) => {
     }
 }
 
-const CheckEmailInfo = ({location}) => {
+const CheckEmailInfo = ({location, history}) => {
     const hash = location.search.split('hash=')[1];
     const [verified, setVerified] = useState(false);
     const [checking, setChecking] = useState(!!hash);
@@ -40,6 +42,7 @@ const CheckEmailInfo = ({location}) => {
             .verifyHash(hash)
             .then(() => {
             setStatus({  checking: false, verified: true });
+            setTimeout(() => history.push('/signin'), 5000);
             })
             .catch(() => {
             setStatus({ checking: false, verified: false });

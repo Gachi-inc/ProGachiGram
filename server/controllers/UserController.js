@@ -104,7 +104,7 @@ console.log("мы вошли перед почтой")
         from: `"ProGachiGram"<${process.env.emailMailer}>`,
         to: postData.email,
         subject: "Подтверждение регистрации",
-        html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:3000/signup/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`,
+        html: `Для того, чтобы подтвердить почту, перейдите <a href="http://${process.env.DOMAIN}/signup/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`,
         text: `Please confirm your account by clicking the following link: ${URL}` 
       }).then(function () {
         console.log("Message sent: %s", postData.email);

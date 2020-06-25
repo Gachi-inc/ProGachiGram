@@ -37,11 +37,10 @@ export class Login extends Component{
     store
         .dispatch(userActions.fetchUserLogin(this.state.FormVar))
         .then( data => {
-          console.log(data);
-          this.props.history.push('/');
           if (data.status === 'error') {
             alert(data.message);
           }
+          this.props.history.push('/');
         })
   }
     render()
