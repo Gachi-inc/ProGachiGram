@@ -30,7 +30,6 @@ const DialogItem = ({
     _id,
     unreaded,
     isMe,
-    currentDialogId,
     lastMessage,
     userId,
     toUser,
@@ -40,7 +39,7 @@ const DialogItem = ({
    
     let partner = isMe? toUser: fromUser;
     return(
-        <Link to={`/im/dialog/${_id}`}>
+        <Link to={`/dialog/${_id}`}>
             <DlgItm className = "dialogs__item"
             //onClick = {onSelect.bind(this, _id)}
             >
