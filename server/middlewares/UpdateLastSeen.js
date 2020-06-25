@@ -6,12 +6,8 @@ module.exports =  (req, _, next) => {
     UserModel.findOneAndUpdate({
       _id: req.user._id
     }, {
-      $set: {
-        last_seen: new Date()
-      }
-    },
-    {new: true}).then(function () {console.log("Updated")});
-    return next();
-}else{
+    $set: {last_seen: new Date()}, 
+    });
+  }
   next();
-};}
+};

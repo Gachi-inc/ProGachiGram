@@ -39,7 +39,7 @@ const Actions = {
     }
   },
   fetchMessages: dialogId => dispatch => {
-    console.log(dialogId);
+    console.log("Запрос сообщений");
     dispatch(Actions.setIsLoading(true));
     messagesApi
       .getAllByDialogId(dialogId)

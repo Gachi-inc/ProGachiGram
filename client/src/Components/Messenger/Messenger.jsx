@@ -30,7 +30,7 @@ const Messenger = props =>{
     useEffect(() => {
         const { pathname } = props.location;
         const dialogId = pathname.split('/').pop();
-        if (dialogId !== "im") setCurrentDialogId(dialogId);
+        setCurrentDialogId(dialogId);
       }, [props.location.pathname]);
 
     

@@ -23,7 +23,7 @@ const UserAvatar = ({user}) =>{
         ) 
     } else {
           const {currentColor, firstChar} = createDefaultAvatar(user);
-          console.log(currentColor)
+
           return(
               <Avatar
                   style={{
