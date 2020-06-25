@@ -21,6 +21,7 @@ const Actions = {
     });
   },
   fetchDialogs: () => dispatch => {
+    console.log("Запрос диалогов");
     dialogsApi.getAll().then(({ data }) => {
       dispatch(Actions.setDialogs(data));
     });

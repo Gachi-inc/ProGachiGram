@@ -17,10 +17,10 @@ const Main = props => {
             <Route exact path="/signin" component={Login}/>
             <Route exact path="/signup" component={Registrate}/>
             <Route exact path="/signup/verify" component={CheckEmailInfo} />
-            <Route exact path="/" component={News}/>
+            <Route exact path="/news" component={News}/>
             <Route 
-                path="/im" 
-                render = {()=>(isAuth ? <Messenger/>: <Redirect to = "/signin"/>)}
+                path="/" 
+                render = {()=>(isAuth ? <Messenger/>: <Redirect to = "/news"/>)}
             /> 
 
         </Switch>

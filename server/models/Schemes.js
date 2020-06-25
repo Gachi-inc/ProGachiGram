@@ -42,12 +42,13 @@ const userModelScheme = new Schema({
 }
 );
 
-userModelScheme.set('toJSON', {
-  virtuals: true,
+userModelScheme.virtual('isOnline').get(function(){
+  return differenceInMinutes(new Date(), this.last_seen) < 3;
 })
 
-userModelScheme.virtual('isOnline').get(function(){
-  return differenceInMinutes(this.last_seen,(new Date())) < 5;
+
+userModelScheme.set('toJSON', {
+  virtuals: true,
 })
 
 userModelScheme.pre('save', async function (next) {

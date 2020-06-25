@@ -38,7 +38,7 @@ export class Login extends Component{
         .dispatch(userActions.fetchUserLogin(this.state.FormVar))
         .then( data => {
           console.log(data);
-          this.props.history.push('/im');
+          this.props.history.push('/');
           if (data.status === 'error') {
             alert(data.message);
           }
