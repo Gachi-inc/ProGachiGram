@@ -9,14 +9,13 @@ module.exports = [
     oneOf([
       check('fullname')
           .exists()
-          .withMessage('fullname is required')
+          .withMessage('Заполните поле логина')
           .isEmail()
-          .withMessage('fullname not valid'),
+          .withMessage('Неправильно набрал логин.'),
         check('fullname')
           .exists()
-          .withMessage('fullname is required')
-          .isLength({ min: 2 })
-          .withMessage('wrong fullname length')
-        
+          .withMessage('Заполните поле логина.')
+          .isLength({ min: 6 })
+          .withMessage('Поле логина не может быть меньше 6 символов.')
     ])
 ];
