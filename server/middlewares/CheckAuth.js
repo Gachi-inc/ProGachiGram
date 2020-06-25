@@ -17,7 +17,7 @@ module.exports = (req, res, next) => {
 console.log("ddd");
 const token = "token" in req.headers ? (req.headers.token) : null;
 if(token){
-    console.log(token);
+    //console.log(token);
     verifyJWToken(token).then((user)=>{             //Декодируем вытянутый из хэдера токен и обрабатываем
         req.user = user.data._doc;                  //Возвращаем информацию
     next();
