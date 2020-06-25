@@ -7,9 +7,9 @@ var {
   MessageCtrl
 } = require('../controllers');
 var checkAuth = require('../middlewares/CheckAuth');
-var loginValidation = require('../utils/validations/signin');
-var registerValidation = require('../utils/validations/signup');
-//var sendMailerRouter = require('../routes/SendMailerRoute')
+//import { loginValidation, registerValidation } from "../utils/validations";
+var loginValidation = require('../utils/validations')
+var registerValidation = require('../utils/validations')
 var updateLastSeen = require('../middlewares/UpdateLastSeen')
 var staticPath = path.join(__dirname, '../../client/build');
 var indexHTML = path.join(__dirname,'../../client/build/index.html');

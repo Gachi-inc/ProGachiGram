@@ -2,6 +2,7 @@ const nodemailer = require("nodemailer");
 const bcrypt = require('bcryptjs')
 var {UserModel} = require('../models/Schemes');
 var {validationResult} = require('express-validator');
+//var {validatorSignIn, registerValidation} = require('../utils/validations/index');
 var {createJWToken} = require('../utils/createJWToken');
 
 class UserController {
@@ -76,9 +77,10 @@ class UserController {
       email: req.body.email,
       fullname: req.body.fullname,
       password: req.body.password,
+      passwordConfirmation: req.body.passwordConfirmation
     };
 
-    const errors = validationResult(postData);
+    const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       return res.status(422).json({
@@ -165,7 +167,8 @@ console.log("мы вошли перед почтой")
   login = (req, res) => {
     const postData = {
       email: req.body.fullname,
-      password: req.body.password
+      password: req.body.password,
+      passwordConfirmation: req.body.passwordConfirmation
     };
 
     const errors = validationResult(req);
