@@ -70,7 +70,6 @@ class UserController {
   };
 
   create = (req, res) => {
-    
     const salt = bcrypt.genSaltSync(10);
     const confirmed_hash = bcrypt.hashSync(req.body.password, salt);
     const postData = {
@@ -80,34 +79,43 @@ class UserController {
       passwordConfirmation: req.body.passwordConfirmation
     };
 
-    const errors = validationResult(req);
+    const errors = validationResult(postData);
 
+    const UserIsExist = UserModel.findOne({email: postData.email}, (err, result)=> {return result});
+    
+    if (UserIsExist) {
+      return res.json({
+      status: 'error',
+      message: "Пользователь с такой почтой существует"
+      });
+    }
+    
     if (!errors.isEmpty()) {
       return res.status(422).json({
         errors: errors.array()
       });
-    }
+    } else {
 
-    const user = new UserModel(postData);
-    user.confirmed_hash = confirmed_hash;
-    user
-      .save()
-const URL = "http://localhost:3000/api/user/verify?hash=" + user.confirmed_hash;
-const transporter = nodemailer.createTransport({
-  host: 'smtp.mail.ru',
-  port: 465,
-  auth: {
-      user: process.env.emailMailer,
-      pass: process.env.passwordMailer
-  }
-});
-console.log("мы вошли перед почтой")
-    let result = transporter.sendMail({
-        from: `"ProGachiGram"<${process.env.emailMailer}>`,
-        to: postData.email,
-        subject: "Подтверждение регистрации",
-        html: `Для того, чтобы подтвердить почту, перейдите <a href="http://${process.env.DOMAIN}/signup/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`,
-        text: `Please confirm your account by clicking the following link: ${URL}` 
+      const user = new UserModel(postData);
+      user.confirmed_hash = confirmed_hash;
+      user
+        .save()
+      const URL = `http://${process.env.DOMAIN}/api/user/verify?hash=` + user.confirmed_hash;
+      const transporter = nodemailer.createTransport({
+      host: 'smtp.mail.ru',
+      port: 465,
+      auth: {
+        user: process.env.emailMailer,
+        pass: process.env.passwordMailer
+    }
+  });
+
+    transporter.sendMail({
+      from: `"ProGachiGram"<${process.env.emailMailer}>`,
+      to: postData.email,
+      subject: "Подтверждение регистрации",
+      html: `Для того, чтобы подтвердить почту, перейдите <a href="http://${process.env.DOMAIN}/signup/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`,
+      text: `Please confirm your account by clicking the following link: ${URL}` 
       }).then(function () {
         console.log("Message sent: %s", postData.email);
         res.json({
@@ -126,6 +134,7 @@ console.log("мы вошли перед почтой")
           message: reason,
         });
       });
+    }
   }
 
 

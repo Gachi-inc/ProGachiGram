@@ -63,13 +63,12 @@ export class Registrate extends Component{
         store
         .dispatch(userActions.fetchUserRegister(this.state.FormVar))
         .then(res => {
-          console.log(res);
-          if(res.statusText === "OK")        
-            this.props.history.push('/signup/verify');
-        })
-        .catch(err => {
-          alert('Непредвиденная ошибка');
-          console.log(err);
+          console.log(res.data);
+          if(res.data.status === "error"){
+            alert(res.data.message);
+          } else{
+            this.props.history.push('/signup/verify');     
+          }  
         })
       }
     render() {
