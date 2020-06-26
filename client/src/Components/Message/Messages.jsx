@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types' 
 import {Empty} from '../Messenger/Messenger.styled'
 import povertyIcon from '../../assets/png/poverty.png'
 import {Loader, MessagesWrap} from './Message.styled'
 import Message from "./Message"
 import {TextArea} from "../Messenger/components/ChatName/ChatName.styles";
+import searchSvg from "assets/svg/search.svg"
 const Messages = ({
     onRemoveMessage,
     blockRef,
@@ -18,21 +19,24 @@ const Messages = ({
     setValue,
     SearchMessage,
     }) => { 
-
+        useEffect(() => {
+            if(isOpen) SearchMessage();
+        }, [isOpen])
     return( 
         <MessagesWrap 
             ref={blockRef} 
             className = "messages">
-                {/* <div className = "chat__searchbar">
-                    <button className = "chat__searchbar-button" onClick={OnOpen}>
-                        <img className = "chat__searchbar-icon" src = {searchSvg} alt = "searchIcon"/>
-                    </button>
-                </div> */}
-                <React.Fragment>
-                    <TextArea placeholder = "Введите текст сообщения" value={value} onChange={e => setValue(e.target.value)}></TextArea>
-                    <button className="button__search" onClick={SearchMessage}>Поиск</button>
-                    <button className="button__close" onClick={OnOpen}>Закрыть</button> 
-                </React.Fragment>
+                {isOpen? (<div className = "chat__searchbar">
+                            <button className = "chat__searchbar-button" onClick={OnOpen}>
+                                <img className = "chat__searchbar-icon" src = {searchSvg} alt = "searchIcon"/>
+                            </button>
+                        </div>): 
+                    (<React.Fragment>
+                        <TextArea placeholder = "Введите текст сообщения" value={value} onChange={e => setValue(e.target.value)}></TextArea>
+                        <button className="button__search" onClick={SearchMessage}>Поиск</button>
+                        <button className="button__close" onClick={OnOpen}>Закрыть</button> 
+                    </React.Fragment>) 
+                }
                 {isLoading && !user ? (
                     <Loader className = "lds-ring">
                         <div></div>

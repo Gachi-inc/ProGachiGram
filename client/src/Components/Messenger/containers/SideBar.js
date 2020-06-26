@@ -36,8 +36,6 @@ const SidebarContainer = ({ user }) => {
   };
 
   const onAddDialog = () => {
-    console.log(selectedUserId);
-    console.log(messageText);
     dialogsApi
       .create({
         toUser: selectedUserId,

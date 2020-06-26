@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {ChatName, IsOnline} from "./ChatName.styles";
-import searchSvg from "assets/svg/search.svg"
+
 
 const ChatNameComponent = ({
     online, 
