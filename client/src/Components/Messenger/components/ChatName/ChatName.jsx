@@ -9,6 +9,7 @@ const ChatNameComponent = ({
     return (
         <React.Fragment>
                 <div className = "chat__dialog-header-center">
+                    <div/>
                     <b className = "chat__dialog-header-username">{fullname}</b>
                     <div className = "chat__dialog-header-status">
                         <IsOnline className = {online? "status-online" : "status"}>
