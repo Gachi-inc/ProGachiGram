@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { connect } from "react-redux"
 import {messagesActions} from 'redux/actions'
 import find from 'lodash/find';
@@ -28,7 +28,18 @@ const Dialogs =({
         </Empty>
         )
     }
+    const [isOpen, ChangeOpen] = useState(true);
+    const [value, setValue] = useState('');
 
+    const OnOpen = () => {
+        isOpen? ChangeOpen(false): ChangeOpen(true);
+    }
+
+    const SearchMessage = () =>{
+        // items.filter(
+        // message => message.text.
+        // )
+    }
     const messagesRef = useRef(null);
 
     const onNewMessage = data => {
@@ -59,6 +70,11 @@ const Dialogs =({
             items={items}
             isLoading={isLoading && !user}
             onRemoveMessage={removeMessageById}
+            OnOpen={OnOpen}
+            isOpen={isOpen}
+            value={value}
+            setValue={setValue}
+            SearchMessage={SearchMessage}
             toUser={
                 user._id !== currentDialog.toUser._id ? currentDialog.fromUser : currentDialog.toUser
               }

@@ -229,7 +229,7 @@ export const ChatName = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-center;
   align-items: center;
   height: 70px;
   border-bottom: 1px solid rgba(191, 202, 245, .5);
