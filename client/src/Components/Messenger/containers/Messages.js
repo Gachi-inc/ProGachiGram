@@ -30,21 +30,32 @@ const Dialogs =({
     }
     const [isOpen, ChangeOpen] = useState(true);
     const [value, setValue] = useState('');
+    const [filtred, setSearchItems] = useState(Array.from(items));
 
     const OnOpen = () => {
         isOpen? ChangeOpen(false): ChangeOpen(true);
     }
 
     const SearchMessage = () =>{
-        // items.filter(
-        // message => message.text.
-        // )
+        setSearchItems(
+            items.filter(
+                message => 
+                message.text.toLowerCase().indexOf(value.toLowerCase()) >= 0
+            ),
+        );
     }
     const messagesRef = useRef(null);
 
     const onNewMessage = data => {
         addMessage(data);
     };
+
+    useEffect(() => {
+        if (items.length) {
+            SearchMessage();
+        }
+      }, [items]);
+
 
     useEffect(()=>{
         if(currentDialog){
@@ -67,7 +78,7 @@ const Dialogs =({
         <BaseMessages 
             user={user}
             blockRef={messagesRef}
-            items={items}
+            items={filtred}
             isLoading={isLoading && !user}
             onRemoveMessage={removeMessageById}
             OnOpen={OnOpen}
