@@ -63,7 +63,6 @@ export class Registrate extends Component{
         store
         .dispatch(userActions.fetchUserRegister(this.state.FormVar))
         .then(res => {
-          console.log(res.data);
           if(res.data.status === "error"){
             alert(res.data.message);
           } else{
