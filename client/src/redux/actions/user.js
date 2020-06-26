@@ -18,6 +18,7 @@ const Actions = {
       userApi
       .getMe()
       .then(({ data }) => {
+        console.log("Запрос даты юзера");
         dispatch(Actions.setUserData(data));
       })
       .catch(err => {

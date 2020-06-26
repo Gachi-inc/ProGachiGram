@@ -34,7 +34,7 @@ const Message = ({
                         {text} 
                     </Text>
                 </Bubble>
-                <MsgDate lassName ="msg__date">
+                <MsgDate className ="msg__date">
                     <span>
                         <Time date = {date}/>
                     </span>

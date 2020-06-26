@@ -1,33 +1,41 @@
 var bodyParser = require('body-parser');
+var path = require('path');
+var express = require('express');
 var {
   UserCtrl,
   DialogCtrl,
   MessageCtrl
 } = require('../controllers');
 var checkAuth = require('../middlewares/CheckAuth');
-var loginValidation = require('../utils/validations/signin');
-var registerValidation = require('../utils/validations/signup');
-//var sendMailerRouter = require('../routes/SendMailerRoute')
+//import { loginValidation, registerValidation } from "../utils/validations";
+var loginValidation = require('../utils/validations')
+var registerValidation = require('../utils/validations')
 var updateLastSeen = require('../middlewares/UpdateLastSeen')
-
+var staticPath = path.join(__dirname, '../../client/build');
+var indexHTML = path.join(__dirname,'../../client/build/index.html');
 
 const createRoutes = (app, io) => {
   const UserController = new UserCtrl(io);
   const DialogController = new DialogCtrl(io);
   const MessageController = new MessageCtrl(io);
-  //const UploadFileController = new UploadFileCtrl();
-  app.get("/api", (_, res) => {
-    res.send("Hello, World!");
-  });
-
+  
+  app.use(express.static(staticPath));
+  // app.get('/*', (req, res) => res.sendFile(indexHTML));
   app.use(bodyParser.json());
   app.use(checkAuth);
   app.use(updateLastSeen);
 
+  app.get("/api", (_, res) => {
+    res.send("Hello, World!");
+  });
+  
+  console.log("1");
   app.get("/api/user/me", UserController.getMe);
   app.get("/api/user/verify", UserController.verify);
-  app.post('/api/user/signup', registerValidation, UserController.create);
-  app.post("/api/user/signin", loginValidation, UserController.login);
+  app.post('/api/user/signup', UserController.create);
+  app.post("/api/user/signin", UserController.login);
+  //app.post('/api/user/signup', registerValidation, UserController.create);
+  //app.post("/api/user/signin", loginValidation, UserController.login);
   app.get("/api/user/find", UserController.findUsers);
   app.get("/api/user/:id", UserController.show);
   app.delete("/api/user/:id", UserController.delete);
@@ -39,7 +47,9 @@ const createRoutes = (app, io) => {
   app.get("/api/messages", MessageController.index);
   app.post("/api/messages", MessageController.create);
   app.delete("/api/messages", MessageController.delete);
-
+  app.get('/*', (req, res) => res.sendFile(indexHTML));
+  console.log("2");
+  
 };
 
 
