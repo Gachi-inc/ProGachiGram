@@ -6,6 +6,7 @@ import {
     ActiveNavLink, Container, Logo, NavLink, StyledHeader,
     MenuForPhones, MenuInsides, Navbar, NavLinkMobile, SpanStyle
 } from './Header.styles';
+import { connect } from "react-redux";
 
 //import News from './../News/News';
 

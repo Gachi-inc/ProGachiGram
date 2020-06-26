@@ -9,7 +9,6 @@ export class Login extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          isAuth : props,
           FormVar: {
             fullname: '',
             password: ''
@@ -39,18 +38,17 @@ export class Login extends Component{
     store
         .dispatch(userActions.fetchUserLogin(this.state.FormVar))
         .then( data => {
-          //this.props.history.push('/im');
+          this.props.history.push('/im');
           if (data.status === 'error') {
             alert(data.message);
           }
-          else document.getElementById("Form").submit();
         })
   }
     render()
     {
       return (
         <Router> 
-          <StyledForms id="Form" action={this.state.isAuth? "/im": "/signin"}>
+          <StyledForms id="Form">
             <HLetters>Вход</HLetters>
             <label> Логин/E-mail:</label>
             <FormInpt type="text" placeholder="Введите логин" name="login" value={this.state.FormVar.fullname} onChange={this.handleChangeLogin}/>        
@@ -62,5 +60,3 @@ export class Login extends Component{
       );
     }
 }
-
-export default connect(({user}) =>({isAuth: user.isAuth}))(Login)

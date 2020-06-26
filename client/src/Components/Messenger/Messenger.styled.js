@@ -240,18 +240,29 @@ export const ChatName = styled.div`
   .chat__dialog-header-center{
     text-align: center;
     position: relative;
+    display: block;
   }
-
   .chat__dialog-header-username{  
     display: block;
     font-weight: 500;
   }
+  .chat__searchbar{
+    display: block;
+  }
+  .buttons__searchAndclose{
+    width: max-content;
+    border: 2px solid black;
+  }
   button{
     cursor: pointer;
     background: #fff;
+    // margin-left: 2%;
   }
   input{
     width: 100%;
+  }
+  .button__search{
+
   }
 
 `

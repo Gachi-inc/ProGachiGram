@@ -46,7 +46,7 @@ const Actions = {
   userLogOut: () => dispatch => {
     window.axios.defaults.headers.delete;
     window.localStorage.clear();
-    dispatch(Actions.clearState(false));
+    dispatch(Actions.clearState());
   }
 };
 
