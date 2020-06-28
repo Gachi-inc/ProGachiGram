@@ -28,16 +28,9 @@ const Dialogs =({
         </Empty>
         )
     }
-    const [isOpen, ChangeOpen] = useState(true);
+    const [visible, setVisible] = useState(false);
     const [value, setValue] = useState('');
     const [filtred, setSearchItems] = useState(Array.from(items));
-
-    const OnOpen = () => {
-        if(!isOpen){
-            setValue('');
-        }
-        isOpen? ChangeOpen(false) : ChangeOpen(true);
-    }
 
     const SearchMessage = () =>{
         setSearchItems(
@@ -47,6 +40,22 @@ const Dialogs =({
             ),
         );
     }
+
+    const onOpen = () => {
+        setVisible(true);
+    }
+    const onClose = () =>{
+        setValue('');
+        
+        setVisible(false);
+        // console.log(id);
+        // if(id) scroll(id);
+    }
+
+    const Scroll = (id) =>{
+        document.getElementById(id).scrollIntoView({block: "center", behavior: "smooth"})
+    }
+   
     const messagesRef = useRef(null);
 
     const onNewMessage = data => {
@@ -57,7 +66,15 @@ const Dialogs =({
         if (items.length) {
             SearchMessage();
         }
+
       }, [items]);
+
+    //   useEffect(() => {
+    //     if (id) {
+    //         console.log(id);
+    //         Scroll();
+    //     }
+    //   }, [id]);
 
 
     useEffect(()=>{
@@ -70,11 +87,13 @@ const Dialogs =({
         return () => socket.removeListener('SERVER:NEW_MESSAGE', onNewMessage);
     }, [currentDialog]);
 
-
+        
 
 
     useEffect(()=>{ 
-        messagesRef.current.scrollTo(0, 999999);
+        messagesRef.current.scrollTo({
+            top: 9999,
+        });
     }, [items]);
 
     return (
@@ -84,11 +103,13 @@ const Dialogs =({
             items={filtred}
             isLoading={isLoading && !user}
             onRemoveMessage={removeMessageById}
-            OnOpen={OnOpen}
-            isOpen={isOpen}
+            onOpen={onOpen}
+            onClose={onClose}
+            isOpen={visible}
             value={value}
             setValue={setValue}
             SearchMessage={SearchMessage}
+            scroll = {Scroll}
             toUser={
                 user._id !== currentDialog.toUser._id ? currentDialog.fromUser : currentDialog.toUser
               }

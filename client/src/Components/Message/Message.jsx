@@ -19,12 +19,19 @@ const Message = ({
     isMe,
     readed,   
     onRemoveMessage,
-
+    id,
+    onClose,
+    scroll
 }) =>{
+    let currentMessage = '';
 
     return(
         
-        <Msg className = {Type(isMe)}  >
+        <Msg className = {Type(isMe)} id={id} 
+            onClick = {()=>{
+                onClose();
+                scroll();
+            }} >
             <MsgАvatar className ="msg__avatar">
                 <Avatar user = {user}/>
             </MsgАvatar>

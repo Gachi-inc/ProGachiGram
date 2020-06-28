@@ -111,3 +111,30 @@ export const MessagesWrap = styled.div`
     padding: var(--padding);
     overflow: auto;
 `
+
+export const TextArea = styled.input.attrs({
+    type: 'input',
+    })`
+    width: 70%;
+    color: #333;
+    cursor: pointer;
+    left: 74%;
+    `;
+
+export const Searchfield = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 40px;
+    padding: 5px 0px;
+    border-bottom: 1px solid rgba(191, 202, 245, .5);
+`
+
+export const Button = styled.button`
+    background-color: #333;
+    border-radius: 10px;
+    color: white;
+    padding: 0px 7px;
+    img{
+        padding-top: 4px;
+    }
+`

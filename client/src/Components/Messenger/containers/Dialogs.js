@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import socket from "core/socket"
 
 import {dialogsActions} from 'redux/actions'
-import {Dialogs as BaseDialogs} from "../components/Dialogs/Dialogs"
+import {Dialogs as BaseDialogs} from "../components/Dialogs/Dialogs.jsx"
 
 
 const Dialogs = ({ fetchDialogs, updateReadedStatus, currentDialogId, items, userId }) => {
