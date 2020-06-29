@@ -7,7 +7,8 @@ import {
     MessagesWrap, 
     TextArea,
     Searchfield,
-    Button
+    Button,
+    ButtonRedirect
 } from './Message.styled'
 import Message from "./Message"
 
@@ -28,7 +29,8 @@ const Messages = ({
     scroll,
     //selectedMessages,
     onSelect
-    }) => { 
+    }) => {
+        const [isRedirecting, SetRedirecting] = useState(false);
         useEffect(() => {
             console.log("search")
            if (!isOpen) {
@@ -51,7 +53,9 @@ const Messages = ({
                     <Button className = "search-field-btn-open" onClick={onOpen}>
                         <img className = "search-field-icon" src = {searchSvg} alt = "searchIcon"/>
                     </Button>
-                    <Button className = "redirect-button" /*onClick={}*/>Переслать</Button>
+                    <ButtonRedirect className = "redirect-button" isRedirecting={isRedirecting} onClick={() => {
+                        isRedirecting ? SetRedirecting(false) : SetRedirecting(true);
+                    }}>Переслать</ButtonRedirect>
                 </Searchfield>)
             }
             <MessagesWrap 

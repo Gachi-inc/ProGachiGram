@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {Msg, MsgАvatar, Bubble, Text, MsgDate} from './Message.styled'
+import {Msg, MsgАvatar, Bubble, Text, MsgDate, Container} from './Message.styled'
 import  Time from '../Time/index'
 import Avatar from '../Messenger/components/Avatar'
 
@@ -25,17 +25,14 @@ const Message = ({
     onSelect
 }) =>{
     let currentMessage = '';
-
+    const [isSelected, SelectMessage] = useState(false);
     return(
-        
-        <Msg className = {Type(isMe)} id={id} 
-            onClick = {()=>{
-                // selectMessages.push(id);
-                // console.log(selectMessages);
-                onSelect();
-                // onClose();
-                // scroll();
-            }} >
+        <Container isSelected={isSelected}
+        onClick = {()=>{
+            onSelect();
+            isSelected ? SelectMessage(false) : SelectMessage(true);
+        }} >
+            <Msg className = {Type(isMe)} id={id}>
             <MsgАvatar className ="msg__avatar">
                 <Avatar user = {user}/>
             </MsgАvatar>
@@ -52,6 +49,7 @@ const Message = ({
                 </MsgDate>
             </div>
         </Msg>
+        </Container>
     )   
 
 }

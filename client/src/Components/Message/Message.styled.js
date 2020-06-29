@@ -30,11 +30,16 @@ export const MsgDate = styled.span`
     font-size: 12px;
 `
 
+export const Container = styled.div`
+    background-color: ${(props) => (props.isSelected === true ? "rgba(51, 51, 51, 0.6)" : "")};
+`
+
 export const Msg = styled.div`
  display: flex;
  flex-direction: ${(props) => (props.className === "msg--isme" ? "row-reverse" : "")};
  max-width: 440px;
- margin-bottom: 15px;
+ margin-bottom: 0.5%;
+ padding-top: 1%;
  margin-left: ${(props) => (props.className === "msg--isme" ? "auto" : "unset")};
     ${Bubble}{
         background: ${(props) => (props.className === "msg--isme" ? "#ffffff" : "#333")};
@@ -129,6 +134,18 @@ export const Button = styled.button`
     background-color: #333;
     border-radius: 10px;
     color: white;
+    cursor: pointer;
+    padding: 0px 7px;
+    img{
+        padding-top: 4px;
+    }
+    height: max-content;
+`
+
+export const ButtonRedirect = styled.button`
+    background-color: #333;
+    border-radius: 10px;
+    color: ${(props) => (props.isRedirecting === true ? "yellow" : "white")};
     cursor: pointer;
     padding: 0px 7px;
     img{
