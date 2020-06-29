@@ -33,9 +33,7 @@ const Dialogs =({
     const [filtred, setSearchItems] = useState(Array.from(items));
 
     const OnOpen = () => {
-        if(!isOpen){
-            setValue('');
-        }
+        if(!isOpen) setValue('');
         isOpen? ChangeOpen(false) : ChangeOpen(true);
     }
 
