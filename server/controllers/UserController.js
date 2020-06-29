@@ -80,61 +80,60 @@ class UserController {
     };
 
     const errors = validationResult(postData);
+    console.log(postData.email);
 
-    const UserIsExist = UserModel.findOne({email: postData.email}, (err, result)=> {return result});
-    
-    if (UserIsExist) {
-      return res.json({
-      status: 'error',
-      message: "Пользователь с такой почтой существует"
-      });
-    }
-    
-    if (!errors.isEmpty()) {
-      return res.status(422).json({
-        errors: errors.array()
-      });
-    } else {
-
-      const user = new UserModel(postData);
-      user.confirmed_hash = confirmed_hash;
-      user
-        .save()
-      const URL = `http://${process.env.DOMAIN}/api/user/verify?hash=` + user.confirmed_hash;
-      const transporter = nodemailer.createTransport({
-      host: 'smtp.mail.ru',
-      port: 465,
-      auth: {
-        user: process.env.emailMailer,
-        pass: process.env.passwordMailer
-    }
-  });
-
-    transporter.sendMail({
-      from: `"ProGachiGram"<${process.env.emailMailer}>`,
-      to: postData.email,
-      subject: "Подтверждение регистрации",
-      html: `Для того, чтобы подтвердить почту, перейдите <a href="http://${process.env.DOMAIN}/signup/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`,
-      text: `Please confirm your account by clicking the following link: ${URL}` 
-      }).then(function () {
-        console.log("Message sent: %s", postData.email);
-        res.json({
-          status: 'success',
-          message: 'Вам отправлено письмо для подтверждения аккаунта!'
+    UserModel.findOne({email: postData.email}).then(function (result) {                     //Для меня некоторая загадка, почему нельзя после первого
+      if (result) {return res.json({
+        status: 'error',
+        message: "Пользователь с такой почтой существует"
         });
-      }, function (error) {
-        res.json({
-          status: 'failed',
-          message: error
-        })
-      })
-      .catch((reason) => {
-        res.status(500).json({
-          status: "error",
-          message: reason,
-        });
+      } else {
+        if (!errors.isEmpty()) {
+          return res.status(422).json({
+            errors: errors.array()
+          });
+        } else {
+          const user = new UserModel(postData);
+          user.confirmed_hash = confirmed_hash;
+          user
+            .save()
+          const URL = `http://${process.env.DOMAIN}/api/user/verify?hash=` + user.confirmed_hash;
+          const transporter = nodemailer.createTransport({
+          host: 'smtp.mail.ru',
+          port: 465,
+          auth: {
+            user: process.env.emailMailer,
+            pass: process.env.passwordMailer
+        }
       });
-    }
+    
+        transporter.sendMail({
+          from: `"ProGachiGram"<${process.env.emailMailer}>`,
+          to: postData.email,
+          subject: "Подтверждение регистрации",
+          html: `Для того, чтобы подтвердить почту, перейдите <a href="http://${process.env.DOMAIN}/signup/verify?hash=${user.confirmed_hash}">по этой ссылке</a>`,
+          text: `Please confirm your account by clicking the following link: ${URL}` 
+          }).then(function () {
+            console.log("Message sent: %s", postData.email);
+            res.json({
+              status: 'success',
+              message: 'Вам отправлено письмо для подтверждения аккаунта!'
+            });
+          }, function (error) {
+            res.json({
+              status: 'failed',
+              message: error
+            })
+          })
+          .catch((reason) => {
+            res.status(500).json({
+              status: "error",
+              message: reason,
+            });
+          });
+        }
+      }
+    });   
   }
 
 

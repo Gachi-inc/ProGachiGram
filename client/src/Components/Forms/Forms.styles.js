@@ -25,8 +25,8 @@ export const FormSbmt = styled.input.attrs({
     })`
     border-radius: 25px;
     padding: 3%;
-    margin: 10% 0% 10% 30%;
-    width: 40%;
+    margin: 10% 0% 10% 0%;
+    width: 100%;
     text-align: center;
     cursor: pointer;
     `;

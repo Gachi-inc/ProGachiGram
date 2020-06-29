@@ -17,14 +17,3 @@ export const IsOnline = styled.span`
     background-color: ${(props) => (props.className === "status-online" ? `var(--color-online)` : `var(--color-offline);`)};
   }
 `
-
-export const TextArea = styled.input.attrs({
-  type: 'input',
-  })`
-  max-width: 50%;
-  background-color: var(--color-dark-translucent);
-  color: white;
-  border: 1px solid black;
-  cursor: pointer;
-  left: 74%;
-  `;

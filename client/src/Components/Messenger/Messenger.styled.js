@@ -37,9 +37,6 @@ inset 0 2px 0 rgba(255,255,255,.6),
 inset 0 0 20px rgba(0,0,0,.1);
 `
 
-export const ButtonImg = styled.i`
-`
-
 export const NavLink = styled(RouterLink)`
   margin-top: 10%;
 `;
@@ -165,14 +162,14 @@ img.dialogs-empty{
   filter: brightness(0) invert(1);
 }
 
-i*mg.messages-empty{
+img.messages-empty{
   display: block;
   margin: 20% auto 0 auto;
 }
 `
 
 export const Modal = styled.div`
-  background: #333;
+  background: rgba(51, 51, 51, 0.8);
   posiyion: absolute;
   display: none;
   justify-content: center;
@@ -246,13 +243,6 @@ export const ChatName = styled.div`
     display: block;
     font-weight: 500;
   }
-  .chat__searchbar{
-    display: block;
-  }
-  .buttons__searchAndclose{
-    width: max-content;
-    border: 2px solid black;
-  }
   button{
     cursor: pointer;
     background: #fff;
@@ -266,3 +256,11 @@ export const ChatName = styled.div`
   }
 
 `
+
+ // .chat__searchbar{
+  //   display: block;
+  // }
+  // .buttons__searchAndclose{
+  //   width: max-content;
+  //   border: 2px solid black;
+  // }

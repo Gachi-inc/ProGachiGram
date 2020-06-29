@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {ChatName, IsOnline} from "./ChatName.styles";
+import React from 'react';
+import {IsOnline} from "./ChatName.styles";
 
 
 const ChatNameComponent = ({
