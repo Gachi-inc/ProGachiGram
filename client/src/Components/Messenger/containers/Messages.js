@@ -31,7 +31,7 @@ const Dialogs =({
     const [visible, setVisible] = useState(false);
     const [value, setValue] = useState('');
     const [filtred, setSearchItems] = useState(Array.from(items));
-    const [selectedMessages, SelectMessage] = useState(new Set());
+    var selectedMessages = new Set();
     const SearchMessage = () =>{
         setSearchItems(
             items.filter(
