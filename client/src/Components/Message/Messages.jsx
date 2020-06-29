@@ -27,7 +27,7 @@ const Messages = ({
     setValue,
     SearchMessage,
     scroll,
-    //selectedMessages,
+    selectedMessages,
     onSelect
     }) => {
         const [isRedirecting, SetRedirecting] = useState(false);
@@ -54,7 +54,9 @@ const Messages = ({
                         <img className = "search-field-icon" src = {searchSvg} alt = "searchIcon"/>
                     </Button>
                     <ButtonRedirect className = "redirect-button" isRedirecting={isRedirecting} onClick={() => {
-                        isRedirecting ? SetRedirecting(false) : SetRedirecting(true);
+                        if(selectedMessages.size !== 0) {
+                            isRedirecting ? SetRedirecting(false) : SetRedirecting(true);
+                        }
                     }}>Переслать</ButtonRedirect>
                 </Searchfield>)
             }

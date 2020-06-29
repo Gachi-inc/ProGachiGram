@@ -140,6 +140,7 @@ const Dialogs =({
               }
             onSelect={Select}
             resentMessages = {resentMessages}
+            selectedMessages={selectedMessages}
         />
     );
 };
