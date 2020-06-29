@@ -118,6 +118,7 @@ const Dialogs =({
                 user._id !== currentDialog.toUser._id ? currentDialog.fromUser : currentDialog.toUser
               }
             onSelect={Select}
+            selectedMessages={selectedMessages}
         />
     );
 };
