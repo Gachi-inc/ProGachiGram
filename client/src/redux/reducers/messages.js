@@ -41,6 +41,11 @@ const initialState = {
           ...state,
           selected: payload,
         };
+      case 'MESSAGES:CLEAR_SELECTED_MESSAGES':
+        return {
+          ...state,
+          selected: undefined,
+        };
       default:
         return state;
     }

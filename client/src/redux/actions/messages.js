@@ -16,13 +16,16 @@ const Actions = {
       });
     }
   },
+
   fetchSendMessage: ({ text, dialogId, attachments }) => dispatch => {
     return messagesApi.send(text, dialogId, attachments);
   },
+
   setIsLoading: bool => ({
     type: "MESSAGES:SET_IS_LOADING",
     payload: bool
   }),
+
   removeMessageById: id => dispatch => {
     if (window.confirm("Вы действительно хотите удалить сообщение?")) {
       messagesApi
@@ -38,6 +41,7 @@ const Actions = {
         });
     }
   },
+
   fetchMessages: dialogId => dispatch => {
     console.log("Запрос сообщений");
     dispatch(Actions.setIsLoading(true));
@@ -50,11 +54,22 @@ const Actions = {
         dispatch(Actions.setIsLoading(false));
       });
   },
+
   setSelectedMessages: selectedArr =>({
     type: "MESSAGES:SET_SELECTED_MESSAGES",
     payload: selectedArr
-  })
+  }),
+  clearSelectedMessages: () =>({
+    type: "MESSAGES:CLEAR_SELECTED_MESSAGES"
+  }),
 
+  setResentMessages: (messages, dialogId) => dispatch =>{
+    console.log(dialogId);
+    messages.map(message => {
+      const text = message.text;
+      dispatch(Actions.fetchSendMessage({text, dialogId}));
+    })
+  }
 };
 
 export default Actions;
