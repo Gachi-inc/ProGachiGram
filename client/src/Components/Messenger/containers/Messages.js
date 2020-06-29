@@ -28,6 +28,8 @@ const Dialogs =({
         </Empty>
         )
     }
+
+    //const [selected, setSelectedMessage] = useState
     const [visible, setVisible] = useState(false);
     const [value, setValue] = useState('');
     const [filtred, setSearchItems] = useState(Array.from(items));
@@ -54,6 +56,13 @@ const Dialogs =({
 
     const Scroll = (id) =>{
         document.getElementById(id).scrollIntoView({block: "center", behavior: "smooth"})
+    }
+    const Select = (item) => {
+        console.log(item);
+        }
+
+    const ResentMessage = (id) => {
+
     }
    
     const messagesRef = useRef(null);
@@ -110,6 +119,8 @@ const Dialogs =({
             setValue={setValue}
             SearchMessage={SearchMessage}
             scroll = {Scroll}
+            //selectedMessages = {selected}
+            onSelect = {Select}
             toUser={
                 user._id !== currentDialog.toUser._id ? currentDialog.fromUser : currentDialog.toUser
               }

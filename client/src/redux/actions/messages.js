@@ -49,7 +49,12 @@ const Actions = {
       .catch(() => {
         dispatch(Actions.setIsLoading(false));
       });
-  }
+  },
+  setSelectedMessages: selectedArr =>({
+    type: "MESSAGES:SET_SELECTED_MESSAGES",
+    payload: selectedArr
+  })
+
 };
 
 export default Actions;
