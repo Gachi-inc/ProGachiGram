@@ -145,7 +145,7 @@ export const Button = styled.button`
 export const ButtonRedirect = styled.button`
     background-color: #333;
     border-radius: 10px;
-    color: ${(props) => (props.isRedirecting === true ? "yellow" : "white")};
+    color: white;
     cursor: pointer;
     padding: 0px 7px;
     img{
