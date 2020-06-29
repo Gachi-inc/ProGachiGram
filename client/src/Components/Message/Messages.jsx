@@ -25,7 +25,8 @@ const Messages = ({
     value,
     setValue,
     SearchMessage,
-    scroll
+    scroll,
+    onSelect
     }) => { 
         useEffect(() => {
             console.log("search")
@@ -49,6 +50,7 @@ const Messages = ({
                     <Button className = "search-field-btn-open" onClick={onOpen}>
                         <img className = "search-field-icon" src = {searchSvg} alt = "searchIcon"/>
                     </Button>
+                    <Button className = "redirect-button" /*onClick={}*/>Переслать</Button>
                 </Searchfield>)
             }
             <MessagesWrap 
@@ -75,6 +77,7 @@ const Messages = ({
                                     onClose = {onClose}
                                     id = {item._id}
                                     scroll = {scroll.bind(this, item._id)}
+                                    onSelect={onSelect.bind(this, item)}
                                 />
                                 ))
                         ) : (

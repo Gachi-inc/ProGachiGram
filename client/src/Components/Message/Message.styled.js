@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-
-
-
 export const MsgАvatar = styled.div`
     display: flex;
     flex-direction: column-reverse;
@@ -56,7 +53,6 @@ export const Msg = styled.div`
     ${MsgDate}{
         flex-direction: ${(props) => (props.className === "msg--isme" ? "row-reverse" : "row")};
     }
-   
  }
 `
 
@@ -133,8 +129,10 @@ export const Button = styled.button`
     background-color: #333;
     border-radius: 10px;
     color: white;
+    cursor: pointer;
     padding: 0px 7px;
     img{
         padding-top: 4px;
     }
+    height: max-content;
 `

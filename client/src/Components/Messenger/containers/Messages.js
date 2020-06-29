@@ -31,7 +31,7 @@ const Dialogs =({
     const [visible, setVisible] = useState(false);
     const [value, setValue] = useState('');
     const [filtred, setSearchItems] = useState(Array.from(items));
-
+    const [selected, SelectMessage] = useState(false);
     const SearchMessage = () =>{
         setSearchItems(
             items.filter(
@@ -40,7 +40,9 @@ const Dialogs =({
             ),
         );
     }
-
+    const Select = () => {
+        SelectMessage(true);
+    }
     const onOpen = () => {
         setVisible(true);
     }
@@ -113,6 +115,7 @@ const Dialogs =({
             toUser={
                 user._id !== currentDialog.toUser._id ? currentDialog.fromUser : currentDialog.toUser
               }
+            onSelect={Select}
         />
     );
 };

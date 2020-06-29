@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {Msg, MsgАvatar, Bubble, Text, MsgDate} from './Message.styled'
-
 import  Time from '../Time/index'
 import Avatar from '../Messenger/components/Avatar'
 
@@ -21,7 +20,8 @@ const Message = ({
     onRemoveMessage,
     id,
     onClose,
-    scroll
+    scroll,
+    onSelect,
 }) =>{
     let currentMessage = '';
 
@@ -29,8 +29,9 @@ const Message = ({
         
         <Msg className = {Type(isMe)} id={id} 
             onClick = {()=>{
-                onClose();
-                scroll();
+                // onClose();
+                // scroll();
+                onSelect();
             }} >
             <MsgАvatar className ="msg__avatar">
                 <Avatar user = {user}/>
