@@ -36,6 +36,11 @@ const initialState = {
           ...state,
           isLoading: payload,
         };
+      case 'MESSAGES:SET_SELECTED_MESSAGES':
+        return {
+          ...state,
+          selected: payload,
+        };
       default:
         return state;
     }

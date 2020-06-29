@@ -26,6 +26,7 @@ const Messages = ({
     setValue,
     SearchMessage,
     scroll,
+    //selectedMessages,
     onSelect
     }) => { 
         useEffect(() => {
@@ -57,7 +58,7 @@ const Messages = ({
                 ref={blockRef} 
                 className = "messages">
                     
-                    {isLoading && !user ? (
+                    {isLoading ? (
                         <Loader className = "lds-ring">
                             <div></div>
                             <div></div>
@@ -77,7 +78,8 @@ const Messages = ({
                                     onClose = {onClose}
                                     id = {item._id}
                                     scroll = {scroll.bind(this, item._id)}
-                                    onSelect={onSelect.bind(this, item)}
+                                    //selectMessages = {selectedMessages}
+                                    onSelect = {onSelect.bind(this, item)}
                                 />
                                 ))
                         ) : (

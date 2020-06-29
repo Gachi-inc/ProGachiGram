@@ -21,7 +21,8 @@ const Message = ({
     id,
     onClose,
     scroll,
-    onSelect,
+    selectMessages,
+    onSelect
 }) =>{
     let currentMessage = '';
 
@@ -29,9 +30,11 @@ const Message = ({
         
         <Msg className = {Type(isMe)} id={id} 
             onClick = {()=>{
+                // selectMessages.push(id);
+                // console.log(selectMessages);
+                onSelect();
                 // onClose();
                 // scroll();
-                onSelect();
             }} >
             <MsgАvatar className ="msg__avatar">
                 <Avatar user = {user}/>
