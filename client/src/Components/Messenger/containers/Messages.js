@@ -19,6 +19,10 @@ const Dialogs =({
     isLoading,
     removeMessageById, 
     addMessage,
+    setSelectedMessages,
+    selected,
+    setResentMessages,
+    clearSelectedMessages
     })=>{
     if (!currentDialog) {
         return (
@@ -80,6 +84,23 @@ const Dialogs =({
     //     }
     //   }, [id]);
 
+    // useEffect(()=>{
+    //     if (selected){
+    //         setResentMessages(selected, currentDialog._id);
+    //     }
+    // })
+
+    const setSelect = () => {}
+
+
+    const resentMessages = () => {
+        if(selectedMessages.size ){
+            setSelectedMessages(Array.from(selectedMessages));
+            console.log(selected);
+            //setResentMessages(selected, currentDialog._id);
+            //clearSelectedMessages();
+        }
+    }
 
     useEffect(()=>{
         if(currentDialog){
@@ -118,6 +139,7 @@ const Dialogs =({
                 user._id !== currentDialog.toUser._id ? currentDialog.fromUser : currentDialog.toUser
               }
             onSelect={Select}
+            resentMessages = {resentMessages}
         />
     );
 };
@@ -128,6 +150,7 @@ export default connect(
         items: messages.items, 
         isLoading: messages.isLoading,
         user: user.data,
+        selected: messages.selected
     }),
     messagesActions
  )(Dialogs);
