@@ -8,7 +8,6 @@ const Actions = {
   addMessage: message => (dispatch, getState) => {
     const { dialogs } = getState();
     const { currentDialogId } = dialogs;
-
     if (currentDialogId === message.dialog._id) {
       dispatch({
         type: "MESSAGES:ADD_MESSAGE",
@@ -25,6 +24,10 @@ const Actions = {
     type: "MESSAGES:SET_IS_LOADING",
     payload: bool
   }),
+
+  fetchResendMessage: ({dialogId}) => dispatch =>{
+    return messagesApi.resend(dialogId)
+  },
 
   removeMessageById: id => dispatch => {
     if (window.confirm("Вы действительно хотите удалить сообщение?")) {
@@ -66,9 +69,11 @@ const Actions = {
   setResentMessages: (messages, dialogId) => dispatch =>{
     console.log(dialogId);
     messages.map(message => {
-      const text = message.text;
+      const text = `Пересланное сообщение \n\r\
+      От: ${message.user.fullname} Текст: ${message.text}`;
       dispatch(Actions.fetchSendMessage({text, dialogId}));
     })
+    dispatch(Actions.clearSelectedMessages());
   }
 };
 

@@ -110,7 +110,6 @@ class MessageController {
                 }
               }
             );
-
             res.json(message);
             this.io.emit("SERVER:NEW_MESSAGE", message);
           }

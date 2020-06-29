@@ -84,13 +84,14 @@ const Dialogs =({
     //     }
     //   }, [id]);
 
-    // useEffect(()=>{
-    //     if (selected){
-    //         setResentMessages(selected, currentDialog._id);
-    //     }
-    // })
+    useEffect(()=>{
+        if (selected){
+            console.log(selected[0].dialog);
+            if(selected[0].dialog  && selected[0].dialog !== currentDialog._id)
+            setResentMessages(selected, currentDialog._id);
+        }
+    })
 
-    const setSelect = () => {}
 
 
     const resentMessages = () => {

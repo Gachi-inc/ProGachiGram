@@ -28,9 +28,9 @@ const Messages = ({
     SearchMessage,
     scroll,
     selectedMessages,
-    onSelect
+    onSelect,
+    resentMessages
     }) => {
-        const [isRedirecting, SetRedirecting] = useState(false);
         useEffect(() => {
             console.log("search")
            if (!isOpen) {
@@ -53,11 +53,7 @@ const Messages = ({
                     <Button className = "search-field-btn-open" onClick={onOpen}>
                         <img className = "search-field-icon" src = {searchSvg} alt = "searchIcon"/>
                     </Button>
-                    <ButtonRedirect className = "redirect-button" isRedirecting={isRedirecting} onClick={() => {
-                        if(selectedMessages.size !== 0) {
-                            isRedirecting ? SetRedirecting(false) : SetRedirecting(true);
-                        }
-                    }}>Переслать</ButtonRedirect>
+                    <ButtonRedirect className = "redirect-button" isRedirecting={resentMessages} onClick={resentMessages}>Переслать</ButtonRedirect>
                 </Searchfield>)
             }
             <MessagesWrap 
