@@ -162,14 +162,14 @@ img.dialogs-empty{
   filter: brightness(0) invert(1);
 }
 
-i*mg.messages-empty{
+img.messages-empty{
   display: block;
   margin: 20% auto 0 auto;
 }
 `
 
 export const Modal = styled.div`
-  background: #333;
+  background: rgba(51, 51, 51, 0.8);
   posiyion: absolute;
   display: none;
   justify-content: center;
