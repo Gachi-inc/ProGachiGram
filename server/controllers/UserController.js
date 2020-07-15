@@ -97,7 +97,7 @@ class UserController {
           user.confirmed_hash = confirmed_hash;
           user
             .save()
-          const URL = `http://${process.env.DOMAIN}/api/user/verify?hash=` + user.confirmed_hash;
+          const URL = `${process.env.DOMAIN}/api/user/verify?hash=` + user.confirmed_hash;
           const transporter = nodemailer.createTransport({
           host: 'smtp.mail.ru',
           port: 465,
